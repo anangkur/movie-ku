@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearHorizontalWrap"
+    android:layout_margin="@dimen/dimens_16dp"
+    android:foreground="?selectableItemBackground">
+    <ImageView
+        android:id="@+id/iv_item"
+        android:layout_height="@dimen/dimens_100dp"
+        android:layout_width="@dimen/dimens_64dp"/>
+    <LinearLayout
+        style="@style/LinearVerticalWrap"
+        android:layout_marginStart="@dimen/dimens_16dp">
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextTitleBig"
+            android:textStyle="bold"
+            android:text="@string/text_lorem_ipsum"/>
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/RatingBarSmall"
+            android:layout_marginVertical="@dimen/dimens_10dp"/>
+        <TextView
+            android:id="@+id/tv_genre"
+            style="@style/TextTitleNormal"
+            android:text="@string/text_lorem_ipsum"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_duration"
+            style="@style/TextTitleNormal"
+            android:text="@string/text_lorem_ipsum"
+            android:layout_marginTop="@dimen/dimens_10dp"/>
+    </LinearLayout>
+</LinearLayout>

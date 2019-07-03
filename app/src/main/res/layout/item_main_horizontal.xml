@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearVerticalWrapAll"
+    android:layout_marginHorizontal="@dimen/dimens_16dp"
+    android:layout_marginTop="@dimen/dimens_16dp"
+    android:foreground="?selectableItemBackground">
+    <ImageView
+        android:id="@+id/iv_item"
+        android:layout_height="@dimen/dimens_240dp"
+        android:layout_width="@dimen/dimens_160dp"/>
+    <LinearLayout
+        style="@style/LinearVerticalWrap"
+        android:layout_marginVertical="@dimen/dimens_24dp">
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextTitleBig"
+            android:text="@string/text_lorem_ipsum"
+            android:textStyle="bold"/>
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/RatingBarSmall"
+            android:layout_marginTop="@dimen/dimens_10dp"/>
+    </LinearLayout>
+</LinearLayout>
