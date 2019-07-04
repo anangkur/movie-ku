@@ -7,33 +7,26 @@
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="@style/CollapsingDefault"
-            android:background="@color/gray_light"
             app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_horizontal"
-                style="@style/RecyclerWrap"
-                android:layout_marginTop="@dimen/dimens_80dp"/>
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_main"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:layout_marginTop="@dimen/dimens_24dp"
-                app:title=""
-                app:layout_scrollFlags="scroll">
-                <TextView
-                    android:id="@+id/title_toolbar"
-                    style="@style/TextTitleSuperExtraBig"
-                    android:text="@string/text_lorem_ipsum"
-                    android:textStyle="bold"/>
-            </androidx.appcompat.widget.Toolbar>
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_slider"
+                style="@style/ViewPagerDefault"
+                android:layout_height="@dimen/dimens_240dp"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_slider"
+                style="@style/TabLayoutSlider"
+                android:layout_gravity="bottom|center"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_main"
+            style="@style/TabLayoutDefault"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/black"
+            android:minHeight="?actionBarSize"/>
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.core.widget.NestedScrollView
-        style="@style/NestedScrollDefault"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_vertical"
-            style="@style/RecyclerDefault"/>
-    </androidx.core.widget.NestedScrollView>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_main"
+        style="@style/ViewPagerDefault"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

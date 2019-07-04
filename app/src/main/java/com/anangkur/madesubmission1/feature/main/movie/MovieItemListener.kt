@@ -1,7 +1,7 @@
-package com.anangkur.madesubmission1.feature.main
+package com.anangkur.madesubmission1.feature.main.movie
 
 import com.anangkur.madesubmission1.data.model.Result
 
-interface MainItemListener {
+interface MovieItemListener {
     fun onClickItem(data: Result)
 }

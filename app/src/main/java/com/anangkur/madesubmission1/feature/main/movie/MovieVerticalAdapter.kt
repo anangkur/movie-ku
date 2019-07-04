@@ -1,4 +1,4 @@
-package com.anangkur.madesubmission1.feature.main
+package com.anangkur.madesubmission1.feature.main.movie
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,14 +12,14 @@ import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_main_horizontal.view.*
+import kotlinx.android.synthetic.main.item_main_vertical.view.*
 
-class MainHorizontalAdapter(val itemListener: MainItemListener): RecyclerView.Adapter<MainHorizontalAdapter.ViewHolder>() {
+class MovieVerticalAdapter(val itemListener: MovieItemListener): RecyclerView.Adapter<MovieVerticalAdapter.ViewHolder>() {
 
     private val items = ArrayList<Result>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main_horizontal, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main_vertical, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -42,12 +42,12 @@ class MainHorizontalAdapter(val itemListener: MainItemListener): RecyclerView.Ad
             Glide.with(itemView.context)
                 .load("${Const.baseImageUrl}${data.poster_path}")
                 .apply(RequestOptions().centerCrop())
-                .apply(RequestOptions().transforms(RoundedCorners(64)))
+                .apply(RequestOptions().transforms(RoundedCorners(54)))
                 .into(itemView.iv_item)
             itemView.tv_title.text = data.original_title
             itemView.rating.rating = newRating
-            Log.d("RATING_H", "Old Vlaue: ${data.vote_average}")
-            Log.d("RATING_H", "new Vlaue: $newRating")
+            itemView.tv_duration.text = data.release_date
+            itemView.tv_genre.text = itemView.context.resources.getString(R.string.text_lorem_ipsum)
             itemView.setOnClickListener { itemListener.onClickItem(data) }
         }
     }

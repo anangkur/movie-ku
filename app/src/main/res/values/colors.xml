@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#99000000</color>
-    <color name="gray_light">#eeeeee</color>
     <color name="colorAccent">#f1c40f</color>
 
     <color name="white">#ffffff</color>
+    <color name="gray_light">#eeeeee</color>
+    <color name="gray">#aaaaaa</color>
     <color name="black">#000000</color>
     <color name="black_60">#99000000</color>
     <color name="black_40">#66000000</color>

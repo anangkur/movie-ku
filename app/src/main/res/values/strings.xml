@@ -4,13 +4,18 @@
     <!--others-->
     <string name="text_lorem_ipsum">Lorem Ipsum</string>
     <string name="text_lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a eros turpis. Praesent porttitor molestie nisi ut consequat. Nulla placerat nulla elit, in convallis ipsum tincidunt at.</string>
-    <!--end of others-->
-
-    <!--toolbar-->
-    <string name="toolbar_main">New</string>
     <string name="text_release_date">Release Date</string>
     <string name="text_language">Language</string>
     <string name="text_popularity">Popularity</string>
     <string name="text_overview">Overview</string>
+    <!--end of others-->
+
+    <!--toolbar-->
+    <string name="toolbar_main">New</string>
     <!--end of toolbar-->
+
+    <!--tab-->
+    <string name="tab_movie">Movie</string>
+    <string name="tab_tv">Tv</string>
+    <!--end of tab-->
 </resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/NestedScrollDefault"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <LinearLayout style="@style/LinearVerticalDefault">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_horizontal"
+            style="@style/RecyclerWrap"
+            android:nestedScrollingEnabled="false"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_vertical"
+            style="@style/RecyclerDefault"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

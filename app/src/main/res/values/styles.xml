@@ -70,8 +70,19 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="AppBarDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <style name="CollapsingDefault">
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="titleEnabled">false</item>
+    </style>
+
+    <style name="CollapsingFull">
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="titleEnabled">false</item>
     </style>
@@ -173,5 +184,33 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimens_1dp</item>
         <item name="android:background">@color/gray_light</item>
+    </style>
+
+    <style name="TabLayoutDefault">
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="TabLayoutSlider">
+        <item name="android:layout_width">@dimen/dimens_120dp</item>
+        <item name="android:layout_height">@dimen/dimens_24dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabBackground">@drawable/tab_selector</item>
+        <item name="tabIndicatorHeight">@dimen/dimens_0dp</item>
+        <item name="tabMaxWidth">@dimen/dimens_0dp</item>
+        <item name="tabMinWidth">@dimen/dimens_0dp</item>
+        <item name="tabPadding">@dimen/dimens_0dp</item>
+    </style>
+
+    <style name="FrameLayoutDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ViewPagerDefault">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 </resources>
