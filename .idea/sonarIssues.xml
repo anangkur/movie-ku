@@ -148,6 +148,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../android-nutricell/app/src/main/java/id/co/nutricell/gits/mvvm/profile/ProfileFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-nutricell/app/src/main/java/id/co/nutricell/gits/mvvm/profile/ProfileViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-nutricell/app/src/main/java/id/co/nutricell/gits/mvvm/profile/jadwal/ProfileJadwalFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-nutricell/app/src/main/java/id/co/nutricell/gits/mvvm/profile/konsultasi/ProfileKonsultasiFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-nutricell/app/src/main/res/layout/profile_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
       </map>
     </option>
   </component>

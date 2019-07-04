@@ -8,6 +8,6 @@ import com.google.gson.Gson
 class DetailPresenter(private val view: DetailView){
 
     fun getDataFromIntent(intent: Intent){
-        view.onDataReady(Gson().fromJson(intent.getStringExtra(Const.EXTRA_DETAIL), Result::class.java))
+        view.onDataReady(intent.getParcelableExtra(Const.EXTRA_DETAIL))
     }
 }

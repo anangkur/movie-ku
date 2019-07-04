@@ -46,7 +46,7 @@ class DetailActivity : AppCompatActivity() {
 
     fun startActivity(context: Context, data: Result){
         val intent = Intent(context, DetailActivity::class.java)
-            .putExtra(Const.EXTRA_DETAIL, Gson().toJson(data))
+            .putExtra(Const.EXTRA_DETAIL, data)
         context.startActivity(intent)
     }
 
