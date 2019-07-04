@@ -6,10 +6,11 @@
     android:foreground="?selectableItemBackground">
     <ImageView
         android:id="@+id/iv_item"
-        android:layout_height="@dimen/dimens_100dp"
-        android:layout_width="@dimen/dimens_64dp"/>
+        android:layout_height="@dimen/dimens_150dp"
+        android:layout_width="@dimen/dimens_100dp"/>
     <LinearLayout
         style="@style/LinearVerticalWrap"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/dimens_16dp">
         <TextView
             android:id="@+id/tv_title"
@@ -25,10 +26,14 @@
             style="@style/TextTitleNormal"
             android:text="@string/text_lorem_ipsum"
             android:visibility="gone"/>
-        <TextView
-            android:id="@+id/tv_duration"
-            style="@style/TextTitleNormal"
-            android:text="@string/text_lorem_ipsum"
-            android:layout_marginTop="@dimen/dimens_10dp"/>
+        <LinearLayout
+            style="@style/LinearVerticalDefault"
+            android:gravity="bottom">
+            <TextView
+                android:id="@+id/tv_duration"
+                style="@style/TextTitleNormal"
+                android:text="@string/text_lorem_ipsum"
+                android:layout_marginTop="@dimen/dimens_10dp"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
