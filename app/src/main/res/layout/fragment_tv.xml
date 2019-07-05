@@ -2,5 +2,6 @@
 <LinearLayout style="@style/LinearVerticalDefault"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_parent_tv"
         style="@style/RecyclerDefault"/>
 </LinearLayout>

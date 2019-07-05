@@ -52,7 +52,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupDataToView(data: Result){
         Glide.with(this)
-            .load("${Const.baseImageUrl}${data.poster_path}")
+            .load("${Const.baseImageUrl}${data.backdrop_path}")
             .apply(RequestOptions().centerCrop())
             .into(iv_movie)
         tv_title.text = data.original_title
