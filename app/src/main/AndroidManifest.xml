@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.detail.DetailActivity"></activity>
+        <activity android:name=".feature.main.languageSetting.LanguageSettingActivity"></activity>
+        <activity android:name=".feature.detail.DetailActivity" />
         <activity android:name=".feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

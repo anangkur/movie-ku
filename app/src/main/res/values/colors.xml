@@ -16,4 +16,6 @@
 
     <color name="rating_active">#f1c40f</color>
     <color name="rating_inactive">#bdc3c7</color>
+
+    <color name="btn_green">#27ae60</color>
 </resources>

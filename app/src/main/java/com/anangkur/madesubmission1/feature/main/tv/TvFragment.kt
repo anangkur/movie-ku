@@ -27,7 +27,7 @@ class TvFragment : Fragment(), MovieItemListener{
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupPresenter()
-        tvPresenter.createDataPopular()
+        tvPresenter.createDataPopular(listOf(getString(R.string.category_popular), getString(R.string.category_new), getString(R.string.category_rating)))
     }
 
     private fun setupPresenter(){

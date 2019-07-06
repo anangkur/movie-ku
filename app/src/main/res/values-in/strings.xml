@@ -4,29 +4,29 @@
     <!--others-->
     <string name="text_lorem_ipsum">Lorem Ipsum</string>
     <string name="text_lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a eros turpis. Praesent porttitor molestie nisi ut consequat. Nulla placerat nulla elit, in convallis ipsum tincidunt at.</string>
-    <string name="text_release_date">Release Date</string>
-    <string name="text_language">Language</string>
-    <string name="text_popularity">Popularity</string>
-    <string name="text_overview">Overview</string>
+    <string name="text_release_date">Tanggal Rilis</string>
+    <string name="text_language">Bahasa</string>
+    <string name="text_popularity">Popularitas</string>
+    <string name="text_overview">Ikhtisar</string>
     <string name="text_bahasa_indonesia">Bahasa Indonesia</string>
     <string name="text_english">English</string>
     <!--end of others-->
 
     <!--toolbar-->
-    <string name="toolbar_main">New</string>
-    <string name="toolbar_setting_language">Change Language</string>
+    <string name="toolbar_main">Baru</string>
+    <string name="toolbar_setting_language">Ubah Bahasa</string>
     <!--end of toolbar-->
 
     <!--tab-->
-    <string name="tab_movie">Movie</string>
+    <string name="tab_movie">Film</string>
     <string name="tab_tv">Tv</string>
     <!--end of tab-->
 
     <!--tv categories-->
-    <string name="category_popular">Popular</string>
-    <string name="category_new">New</string>
-    <string name="category_rating">Highest Rating</string>
-    <string name="menu_change_language">Change Language</string>
+    <string name="category_popular">Populer</string>
+    <string name="category_new">Baru</string>
+    <string name="category_rating">Peringkat Tertinggi</string>
+    <string name="menu_change_language">Ubah Bahasa</string>
     <!--end of tv categories-->
 
     <!--language-->

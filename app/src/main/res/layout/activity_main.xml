@@ -7,12 +7,17 @@
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             style="@style/CollapsingDefault"
-            app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
+            app:contentScrim="@color/black_60"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp_slider"
                 style="@style/ViewPagerDefault"
                 android:layout_height="@dimen/dimens_240dp"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin"/>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_slider"
                 style="@style/TabLayoutSlider"

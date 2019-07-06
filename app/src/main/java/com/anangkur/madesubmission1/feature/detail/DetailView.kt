@@ -4,4 +4,5 @@ import com.anangkur.madesubmission1.data.model.Result
 
 interface DetailView {
     fun onDataReady(data: Result)
+    fun onLanguageReady(language: String?)
 }
