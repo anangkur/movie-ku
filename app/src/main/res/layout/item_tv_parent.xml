@@ -7,7 +7,8 @@
         android:text="@string/text_lorem_ipsum"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_margin="@dimen/dimens_16dp"/>
+        android:layout_marginHorizontal="@dimen/dimens_16dp"
+        android:layout_marginTop="@dimen/dimens_16dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_tv"
         style="@style/RecyclerWrap" />

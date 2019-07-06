@@ -176,7 +176,7 @@
 
     <style name="LineVertical">
         <item name="android:layout_width">@dimen/dimens_1dp</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">@dimen/dimens_0dp</item>
         <item name="android:background">@color/gray_light</item>
     </style>
 
