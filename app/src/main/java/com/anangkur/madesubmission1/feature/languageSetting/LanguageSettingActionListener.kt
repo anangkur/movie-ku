@@ -1,4 +1,4 @@
-package com.anangkur.madesubmission1.feature.main.languageSetting
+package com.anangkur.madesubmission1.feature.languageSetting
 
 interface LanguageSettingActionListener{
     fun onBtnSimpanClick()

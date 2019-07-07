@@ -9,10 +9,11 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.base.ImageSliderFragment
 import com.anangkur.madesubmission1.feature.base.SliderTabAdapter
 import com.anangkur.madesubmission1.feature.base.TabAdapter
-import com.anangkur.madesubmission1.feature.main.languageSetting.LanguageSettingActivity
+import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
 import com.anangkur.madesubmission1.utils.Const
@@ -32,12 +33,12 @@ class MainActivity : AppCompatActivity(){
 
         setupToolbar()
         setupPresenter()
+        presenter.loadLanguageSetting()
         setupTabAdapter()
         setupViewPager()
         setupCustomTab()
         setupSelectedCustomTab(0)
         setupViewPagerSlider()
-        presenter.loadLanguageSetting(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -73,13 +74,13 @@ class MainActivity : AppCompatActivity(){
                     setupLanguage(getString(R.string.language_english))
                 }
             }
-        })
+        }, SharedPreferenceHelper(this))
     }
 
     private fun setupTabAdapter(){
         tabAdapter = TabAdapter(supportFragmentManager)
-        tabAdapter.addFragment(MovieFragment(), resources.getString(R.string.tab_movie), resources.getDrawable(R.drawable.ic_movie_active), resources.getDrawable(R.drawable.ic_movie_inactive))
-        tabAdapter.addFragment(TvFragment(), resources.getString(R.string.tab_tv), resources.getDrawable(R.drawable.ic_tv_active), resources.getDrawable(R.drawable.ic_tv_inactive))
+        tabAdapter.addFragment(MovieFragment(), getString(R.string.tab_movie), resources.getDrawable(R.drawable.ic_movie_active), resources.getDrawable(R.drawable.ic_movie_inactive))
+        tabAdapter.addFragment(TvFragment(), getString(R.string.tab_tv), resources.getDrawable(R.drawable.ic_tv_active), resources.getDrawable(R.drawable.ic_tv_inactive))
     }
 
     private fun setupViewPager(){

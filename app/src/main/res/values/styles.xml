@@ -41,24 +41,9 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="RelativeDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
-    <style name="RelativeWrapAll">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
     <style name="RelativeWrap">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="RelativeWrapH">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="CoordinatorDefault">
@@ -71,19 +56,8 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="AppBarDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
     <style name="CollapsingDefault">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="titleEnabled">false</item>
-    </style>
-
-    <style name="CollapsingFull">
-        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
         <item name="titleEnabled">false</item>
     </style>
@@ -98,23 +72,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="RecyclerWrapAll">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
     <style name="TextTitleSuperExtraBig">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/size_24sp</item>
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-        <item name="android:color">@color/black</item>
-    </style>
-
-    <style name="TextTitleExtraBig">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/size_18sp</item>
         <item name="android:fontFamily">@font/comfortaa_regular</item>
         <item name="android:color">@color/black</item>
     </style>
@@ -135,27 +96,9 @@
         <item name="android:color">@color/black</item>
     </style>
 
-    <style name="TextTitleSmall">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/size_12sp</item>
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-        <item name="android:color">@color/black</item>
-    </style>
-
     <style name="NestedScrollDefault">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-    </style>
-
-    <style name="ImageViewDefault">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-
-    <style name="ImageViewWrapH">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="ImageViewWrapV">
@@ -205,11 +148,6 @@
         <item name="tabPadding">@dimen/dimens_0dp</item>
     </style>
 
-    <style name="FrameLayoutDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
     <style name="ViewPagerDefault">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
@@ -223,11 +161,6 @@
     <style name="RadioButtonDefault">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-    </style>
-
-    <style name="RadioGroupDefault">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="RadioGroupWrapVertical">

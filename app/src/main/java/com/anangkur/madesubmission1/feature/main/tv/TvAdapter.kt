@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.main.movie.MovieItemListener
@@ -43,6 +44,8 @@ class TvAdapter(private val movieItemListener: MovieItemListener): RecyclerView.
                 .load("${Const.baseImageUrl}${data.backdrop_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().transform(RoundedCorners(48)))
+                .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))
+                .apply(RequestOptions().error(R.drawable.ic_broken_image))
                 .into(itemView.iv_item)
             itemView.rating.rating = Utils.nomalizeRating(data.vote_average)
             itemView.setOnClickListener { movieItemListener.onClickItem(data) }

@@ -1,6 +1,7 @@
 package com.anangkur.madesubmission1.utils
 
 import android.content.Context
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import java.util.*
 
 object Utils{
@@ -14,5 +15,13 @@ object Utils{
         val conf = res.configuration
         conf.setLocale(Locale(lang.toLowerCase()))
         res.updateConfiguration(conf, dm)
+    }
+
+    fun createCircularProgressDrawable(context: Context): CircularProgressDrawable{
+        val circularProgressDrawable = CircularProgressDrawable(context)
+        circularProgressDrawable.strokeWidth = 4f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+        return circularProgressDrawable
     }
 }

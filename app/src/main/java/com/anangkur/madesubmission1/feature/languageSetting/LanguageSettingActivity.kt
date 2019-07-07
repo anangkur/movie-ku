@@ -1,12 +1,11 @@
-package com.anangkur.madesubmission1.feature.main.languageSetting
+package com.anangkur.madesubmission1.feature.languageSetting
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.RadioGroup
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.main.MainActivity
 import com.anangkur.madesubmission1.utils.Utils
 import kotlinx.android.synthetic.main.activity_language_setting.*
@@ -21,8 +20,8 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
 
         setupToolbar()
         setupPresenter()
+        presenter.loadLanguageSetting()
         setupChangeRadioLanguage()
-        presenter.loadLanguageSetting(this)
         btn_simpan.setOnClickListener { this.onBtnSimpanClick() }
     }
 
@@ -36,8 +35,8 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
     private fun setupChangeRadioLanguage(){
         rg_language.setOnCheckedChangeListener { radioGroup, selectedId ->
             when(selectedId){
-                R.id.rb_in -> presenter.saveLanguageSetting(this, getString(R.string.language_indonesian))
-                R.id.rb_en -> presenter.saveLanguageSetting(this, getString(R.string.language_english))
+                R.id.rb_in -> presenter.saveLanguageSetting(getString(R.string.language_indonesian))
+                R.id.rb_en -> presenter.saveLanguageSetting(getString(R.string.language_english))
             }
         }
     }
@@ -67,7 +66,7 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
                     setupRadioLanguage(getString(R.string.language_english))
                 }
             }
-        })
+        }, SharedPreferenceHelper(this))
     }
 
     fun startActivity(context: Context){

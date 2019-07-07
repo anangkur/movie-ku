@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ConstraintDefault"
-    tools:context=".feature.main.languageSetting.LanguageSettingActivity">
+    tools:context=".feature.languageSetting.LanguageSettingActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"

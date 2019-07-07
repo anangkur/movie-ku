@@ -1,10 +1,10 @@
 package com.anangkur.madesubmission1.feature.main.movie
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.utils.Const
@@ -43,6 +43,8 @@ class MovieVerticalAdapter(val itemListener: MovieItemListener): RecyclerView.Ad
                 .load("${Const.baseImageUrl}${data.poster_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().transforms(RoundedCorners(54)))
+                .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))
+                .apply(RequestOptions().error(R.drawable.ic_broken_image))
                 .into(itemView.iv_item)
             itemView.tv_title.text = data.original_title
             itemView.rating.rating = newRating

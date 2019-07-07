@@ -28,6 +28,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/local/SharedPreferenceHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/model/Result.kt">
           <value>
             <set />
@@ -69,6 +74,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/detail/DetailView.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/languageSetting/LanguageSettingActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/languageSetting/LanguageSettingPresenter.kt">
           <value>
             <set />
           </value>
@@ -193,6 +208,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_broken_image.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_movie_inactive.xml">
           <value>
             <set />
@@ -309,6 +329,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
           </value>

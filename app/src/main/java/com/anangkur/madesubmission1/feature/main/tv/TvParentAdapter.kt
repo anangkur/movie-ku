@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.model.TvParent
 import com.anangkur.madesubmission1.feature.main.movie.MovieItemListener
 import kotlinx.android.synthetic.main.item_tv_parent.view.*

@@ -2,16 +2,20 @@ package com.anangkur.madesubmission1.feature.detail
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.feature.main.languageSetting.LanguageSettingActivity
+import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -28,8 +32,8 @@ class DetailActivity : AppCompatActivity() {
         super.onStart()
         setupToolbar()
         setupPresenter()
-        detailPresenter.getDataFromIntent(intent)
-        detailPresenter.loadLanguageSetting(this)
+        detailPresenter.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL))
+        detailPresenter.loadLanguageSetting()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
             override fun onDataReady(data: Result) {
                 setupDataToView(data)
             }
-        })
+        }, SharedPreferenceHelper(this))
     }
 
     fun startActivity(context: Context, data: Result){
@@ -77,6 +81,8 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(this)
             .load("${Const.baseImageUrl}${data.backdrop_path}")
             .apply(RequestOptions().centerCrop())
+            .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(this)))
+            .apply(RequestOptions().error(R.drawable.ic_broken_image))
             .into(iv_movie)
         tv_title.text = data.original_title?:data.original_name
         rating.rating = Utils.nomalizeRating(data.vote_average)

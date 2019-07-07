@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import com.anangkur.madesubmission1.R
 import kotlinx.android.synthetic.main.tab_custom.view.*
-import androidx.core.content.ContextCompat
 
 class TabAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 
