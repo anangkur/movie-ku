@@ -5,4 +5,9 @@
     <ImageView
         android:id="@+id/iv_tab"
         style="@style/ImageViewWrapAll" />
+    <TextView
+        android:id="@+id/tv_tab"
+        style="@style/TextTitleNormal"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/dimens_10dp"/>
 </LinearLayout>

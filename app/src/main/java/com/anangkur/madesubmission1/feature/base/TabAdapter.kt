@@ -40,12 +40,16 @@ class TabAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(f
     fun getTabView(position: Int, context: Context): View {
         val view = LayoutInflater.from(context).inflate(R.layout.tab_custom, null)
         view.iv_tab.setImageDrawable(listIconInactive[position])
+        view.tv_tab.text = (listTitle[position])
+        view.tv_tab.setTextColor(view.context.resources.getColor(R.color.gray))
         return view
     }
 
     fun getSelectedTabView(position: Int, context: Context): View {
         val view = LayoutInflater.from(context).inflate(R.layout.tab_custom, null)
         view.iv_tab.setImageDrawable(listIconActive[position])
+        view.tv_tab.text = (listTitle[position])
+        view.tv_tab.setTextColor(view.context.resources.getColor(R.color.black))
         return view
     }
 }
