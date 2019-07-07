@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
 import com.anangkur.madesubmission1.utils.Const
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment(), MovieItemListener{
 
-    private lateinit var moviePresenter: MoviePresenter
+    private lateinit var movieViewModel: MovieViewModel
     private lateinit var movieVerticalAdapter: MovieVerticalAdapter
     private lateinit var movieHorizontalAdapter: MovieHorizontalAdapter
 
@@ -29,19 +31,20 @@ class MovieFragment : Fragment(), MovieItemListener{
         setupHorizontalAdapter()
         setupVerticalAdapter()
         setupPresenter()
-        moviePresenter.createHorizontalData(Const.jsonNowPlayingMovies)
-        moviePresenter.createVerticalData(Const.jsonPopularMovies)
+        movieViewModel.createHorizontalData(Const.jsonNowPlayingMovies)
+        movieViewModel.createVerticalData(Const.jsonPopularMovies)
     }
 
     private fun setupPresenter(){
-        moviePresenter = MoviePresenter(object: MovieView{
-            override fun onVerticalDataReady(data: List<Result>) {
-                movieVerticalAdapter.setRecyclerData(data)
-            }
-            override fun onHorizontalDataReady(data: List<Result>) {
-                movieHorizontalAdapter.setRecyclerData(data)
-            }
-        })
+        movieViewModel = MovieViewModel(Injection.provideRepository(requireContext()))
+        movieViewModel.apply {
+            horizontalDataLive.observe(this@MovieFragment, Observer {
+                movieHorizontalAdapter.setRecyclerData(it)
+            })
+            verticalLiveData.observe(this@MovieFragment, Observer {
+                movieVerticalAdapter.setRecyclerData(it)
+            })
+        }
     }
 
     private fun setupVerticalAdapter(){

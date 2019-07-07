@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.base.ImageSliderFragment
 import com.anangkur.madesubmission1.feature.base.SliderTabAdapter
@@ -25,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 class MainActivity : AppCompatActivity(){
 
     private lateinit var tabAdapter: TabAdapter
-    private lateinit var presenter: MainPresenter
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity(){
 
         setupToolbar()
         setupPresenter()
-        presenter.loadLanguageSetting()
+        viewModel.loadLanguageSetting()
         setupTabAdapter()
         setupViewPager()
         setupCustomTab()
@@ -66,15 +68,16 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun setupPresenter(){
-        presenter = MainPresenter(object : MainView{
-            override fun onLanguageReady(language: String?) {
-                if (language != null){
-                    setupLanguage(language)
+        viewModel = MainViewModel(Injection.provideRepository(this))
+        viewModel.apply {
+            languageLive.observe(this@MainActivity, Observer {
+                if (it != null){
+                    setupLanguage(it)
                 }else{
                     setupLanguage(getString(R.string.language_english))
                 }
-            }
-        }, SharedPreferenceHelper(this))
+            })
+        }
     }
 
     private fun setupTabAdapter(){

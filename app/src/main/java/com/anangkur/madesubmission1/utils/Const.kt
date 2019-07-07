@@ -1,7 +1,9 @@
 package com.anangkur.madesubmission1.utils
 
 object Const {
-    const val baseImageUrl = "https://image.tmdb.org/t/p/w500"
+    const val baseImageUrl = "https://image.tmdb.org/t/p/original"
+    const val baseUrl = "https://api.themoviedb.org/3/"
+    const val apiKey = "4b9bfb0e83de2a4afb17c157ccb254f3"
 
     const val EXTRA_DETAIL = "EXTRA_DETAIL"
 

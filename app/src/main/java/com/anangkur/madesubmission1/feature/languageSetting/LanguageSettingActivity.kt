@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.main.MainActivity
 import com.anangkur.madesubmission1.utils.Utils
@@ -12,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_language_setting.*
 
 class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListener {
 
-    private lateinit var presenter: LanguageSettingPresenter
+    private lateinit var viewModel: LanguageSettingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
 
         setupToolbar()
         setupPresenter()
-        presenter.loadLanguageSetting()
+        viewModel.loadLanguageSetting()
         setupChangeRadioLanguage()
         btn_simpan.setOnClickListener { this.onBtnSimpanClick() }
     }
@@ -35,8 +37,8 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
     private fun setupChangeRadioLanguage(){
         rg_language.setOnCheckedChangeListener { radioGroup, selectedId ->
             when(selectedId){
-                R.id.rb_in -> presenter.saveLanguageSetting(getString(R.string.language_indonesian))
-                R.id.rb_en -> presenter.saveLanguageSetting(getString(R.string.language_english))
+                R.id.rb_in -> viewModel.saveLanguageSetting(getString(R.string.language_indonesian))
+                R.id.rb_en -> viewModel.saveLanguageSetting(getString(R.string.language_english))
             }
         }
     }
@@ -56,17 +58,18 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
     }
 
     private fun setupPresenter(){
-        presenter = LanguageSettingPresenter(object : LanguageSettingView{
-            override fun onLanguageReady(language: String?) {
-                if (language != null){
-                    setupLanguage(language)
-                    setupRadioLanguage(language)
+        viewModel = LanguageSettingViewModel(Injection.provideRepository(this))
+        viewModel.apply {
+            languageLive.observe(this@LanguageSettingActivity, Observer {
+                if (it != null){
+                    setupLanguage(it)
+                    setupRadioLanguage(it)
                 }else{
                     setupLanguage(getString(R.string.language_english))
                     setupRadioLanguage(getString(R.string.language_english))
                 }
-            }
-        }, SharedPreferenceHelper(this))
+            })
+        }
     }
 
     fun startActivity(context: Context){

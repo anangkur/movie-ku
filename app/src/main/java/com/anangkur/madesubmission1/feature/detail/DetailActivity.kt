@@ -2,26 +2,24 @@ package com.anangkur.madesubmission1.feature.detail
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import androidx.lifecycle.Observer
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
+import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var detailPresenter: DetailPresenter
+    private lateinit var detailViewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +29,9 @@ class DetailActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         setupToolbar()
-        setupPresenter()
-        detailPresenter.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL))
-        detailPresenter.loadLanguageSetting()
+        setupViewModel()
+        detailViewModel.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL))
+        detailViewModel.loadLanguageSetting()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -55,20 +53,20 @@ class DetailActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
-    private fun setupPresenter(){
-        detailPresenter = DetailPresenter(object : DetailView{
-            override fun onLanguageReady(language: String?) {
-                if (language != null){
-                    setupLanguage(language)
+    private fun setupViewModel(){
+        detailViewModel = DetailViewModel(Injection.provideRepository(this))
+        detailViewModel.apply {
+            resultLive.observe(this@DetailActivity, Observer {
+                setupDataToView(it)
+            })
+            languageLive.observe(this@DetailActivity, Observer {
+                if (it != null){
+                    setupLanguage(it)
                 }else{
                     setupLanguage(getString(R.string.language_english))
                 }
-            }
-
-            override fun onDataReady(data: Result) {
-                setupDataToView(data)
-            }
-        }, SharedPreferenceHelper(this))
+            })
+        }
     }
 
     fun startActivity(context: Context, data: Result){
