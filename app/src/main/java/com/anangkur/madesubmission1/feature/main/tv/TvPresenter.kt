@@ -6,11 +6,11 @@ import com.anangkur.madesubmission1.utils.Const
 import com.google.gson.Gson
 
 class TvPresenter(private val view: TvView) {
-    fun createDataPopular(categories: List<String>){
-        val result = Gson().fromJson(Const.jsonNowPlayingMovies, Response::class.java).results
+    fun createDataPopular(categories: List<String>, jsonTV: List<String>){
         val listTvParent = ArrayList<TvParent>()
-        for (category in categories){
-            listTvParent.add(TvParent(category, result))
+        for (i in 0 until categories.size){
+            val result = Gson().fromJson(jsonTV[i], Response::class.java).results
+            listTvParent.add(TvParent(categories[i], result))
         }
         view.onPopularDataReady(listTvParent)
     }

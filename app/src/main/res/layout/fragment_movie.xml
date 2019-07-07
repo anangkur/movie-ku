@@ -5,10 +5,20 @@
     style="@style/NestedScrollDefault"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <LinearLayout style="@style/LinearVerticalDefault">
+        <TextView
+            style="@style/TextTitleBig"
+            android:text="@string/category_now_playing"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/dimens_16dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_horizontal"
             style="@style/RecyclerWrap"
             android:nestedScrollingEnabled="false"/>
+        <TextView
+            style="@style/TextTitleBig"
+            android:text="@string/category_popular"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/dimens_16dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_vertical"
             style="@style/RecyclerDefault"/>

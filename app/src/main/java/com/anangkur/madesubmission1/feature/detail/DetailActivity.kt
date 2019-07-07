@@ -78,9 +78,9 @@ class DetailActivity : AppCompatActivity() {
             .load("${Const.baseImageUrl}${data.backdrop_path}")
             .apply(RequestOptions().centerCrop())
             .into(iv_movie)
-        tv_title.text = data.original_title
+        tv_title.text = data.original_title?:data.original_name
         rating.rating = Utils.nomalizeRating(data.vote_average)
-        tv_release_date.text = data.release_date
+        tv_release_date.text = data.release_date?:"-"
         tv_language.text = data.original_language
         tv_popularity.text = data.popularity.toString()
         tv_overview.text = data.overview

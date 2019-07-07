@@ -47,7 +47,7 @@ class MovieVerticalAdapter(val itemListener: MovieItemListener): RecyclerView.Ad
             itemView.tv_title.text = data.original_title
             itemView.rating.rating = newRating
             itemView.tv_duration.text = data.release_date
-            itemView.tv_genre.text = itemView.context.resources.getString(R.string.text_lorem_ipsum)
+            itemView.tv_popularity.text = data.popularity.toString()
             itemView.setOnClickListener { itemListener.onClickItem(data) }
         }
     }

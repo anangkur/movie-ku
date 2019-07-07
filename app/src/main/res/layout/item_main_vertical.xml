@@ -21,11 +21,18 @@
             android:id="@+id/rating"
             style="@style/RatingBarSmall"
             android:layout_marginVertical="@dimen/dimens_10dp"/>
-        <TextView
-            android:id="@+id/tv_genre"
-            style="@style/TextTitleNormal"
-            android:text="@string/text_lorem_ipsum"
-            android:visibility="gone"/>
+        <LinearLayout
+            style="@style/LinearHorizontalWrap">
+            <TextView
+                style="@style/TextTitleNormal"
+                android:text="@string/text_popularity"/>
+            <TextView
+                android:id="@+id/tv_popularity"
+                style="@style/TextTitleNormal"
+                android:textStyle="bold"
+                android:text="@string/text_lorem_ipsum"
+                android:layout_marginStart="@dimen/dimens_10dp"/>
+        </LinearLayout>
         <LinearLayout
             style="@style/LinearVerticalDefault"
             android:gravity="bottom">

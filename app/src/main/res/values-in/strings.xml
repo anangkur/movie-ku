@@ -26,7 +26,7 @@
     <string name="category_popular">Populer</string>
     <string name="category_new">Baru</string>
     <string name="category_rating">Peringkat Tertinggi</string>
-    <string name="menu_change_language">Ubah Bahasa</string>
+    <string name="category_now_playing">Sedang diputar</string>
     <!--end of tv categories-->
 
     <!--language-->
@@ -37,4 +37,8 @@
     <!--button-->
     <string name="btn_simpan">Simpan</string>
     <!--text button-->
+
+    <!--menu-->
+    <string name="menu_change_language">Ubah Bahasa</string>
+    <!--end of menu-->
 </resources>

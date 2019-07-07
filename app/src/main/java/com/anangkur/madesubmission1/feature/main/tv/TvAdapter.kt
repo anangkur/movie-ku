@@ -38,7 +38,7 @@ class TvAdapter(private val movieItemListener: MovieItemListener): RecyclerView.
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         fun bind(data: Result){
-            itemView.tv_title.text = data.original_title
+            itemView.tv_title.text = data.original_name
             Glide.with(itemView.context)
                 .load("${Const.baseImageUrl}${data.backdrop_path}")
                 .apply(RequestOptions().centerCrop())

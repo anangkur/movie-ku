@@ -12,6 +12,7 @@ import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.model.TvParent
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
 import com.anangkur.madesubmission1.feature.main.movie.MovieItemListener
+import com.anangkur.madesubmission1.utils.Const
 import kotlinx.android.synthetic.main.fragment_tv.*
 
 class TvFragment : Fragment(), MovieItemListener{
@@ -27,7 +28,10 @@ class TvFragment : Fragment(), MovieItemListener{
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupPresenter()
-        tvPresenter.createDataPopular(listOf(getString(R.string.category_popular), getString(R.string.category_new), getString(R.string.category_rating)))
+        tvPresenter.createDataPopular(
+            categories = listOf(getString(R.string.category_popular), getString(R.string.category_new), getString(R.string.category_rating)),
+            jsonTV = listOf(Const.jsonPopularTv, Const.jsonOnTheAirTv, Const.jsonTopRatedTv)
+        )
     }
 
     private fun setupPresenter(){

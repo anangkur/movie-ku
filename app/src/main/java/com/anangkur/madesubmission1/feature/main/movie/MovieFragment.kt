@@ -29,8 +29,8 @@ class MovieFragment : Fragment(), MovieItemListener{
         setupHorizontalAdapter()
         setupVerticalAdapter()
         setupPresenter()
-        moviePresenter.createHorizontalData(Const.jsonNewMovies)
-        moviePresenter.createVerticalData(Const.jsonNowPlayingMovies)
+        moviePresenter.createHorizontalData(Const.jsonNowPlayingMovies)
+        moviePresenter.createVerticalData(Const.jsonPopularMovies)
     }
 
     private fun setupPresenter(){
