@@ -9,10 +9,23 @@
             style="@style/CollapsingDefault"
             app:contentScrim="@color/black_60"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/vp_slider"
-                style="@style/ViewPagerDefault"
-                android:layout_height="@dimen/dimens_240dp"/>
+            <RelativeLayout
+                style="@style/RelativeWrap">
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_slider"
+                    style="@style/ViewPagerDefault"
+                    android:layout_height="@dimen/dimens_240dp"/>
+                <ProgressBar
+                    android:id="@+id/pb_slider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:progressBarStyleSmall"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"/>
+                <include layout="@layout/layout_error"
+                    android:id="@+id/layout_error_slider"
+                    android:visibility="gone"/>
+            </RelativeLayout>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

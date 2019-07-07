@@ -1,7 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/LinearVerticalDefault"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_parent_tv"
-        style="@style/RecyclerDefault"/>
-</LinearLayout>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/NestedScrollDefault">
+    <LinearLayout
+        style="@style/LinearVerticalWrap">
+        <!--popular-->
+        <LinearLayout style="@style/LinearVerticalWrap">
+            <TextView
+                android:id="@+id/tv_title_popular"
+                style="@style/TextTitleNormal"
+                android:text="@string/category_popular"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginTop="@dimen/dimens_16dp"/>
+            <RelativeLayout
+                style="@style/RelativeWrap">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_popular"
+                    style="@style/RecyclerWrap" />
+                <ProgressBar
+                    android:id="@+id/pb_tv_popular"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="?android:progressBarStyleSmall"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"/>
+                <include layout="@layout/layout_error"
+                    android:id="@+id/layout_error_tv_popular"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <!--new-->
+        <LinearLayout style="@style/LinearVerticalWrap">
+            <TextView
+                android:id="@+id/tv_title_new"
+                style="@style/TextTitleNormal"
+                android:text="@string/category_new"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginTop="@dimen/dimens_16dp"/>
+            <RelativeLayout
+                style="@style/RelativeWrap">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_new"
+                    style="@style/RecyclerWrap" />
+                <ProgressBar
+                    android:id="@+id/pb_tv_new"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="?android:progressBarStyleSmall"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"/>
+                <include layout="@layout/layout_error"
+                    android:id="@+id/layout_error_tv_new"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <!--highest rating-->
+        <LinearLayout style="@style/LinearVerticalWrap">
+            <TextView
+                android:id="@+id/tv_title_rating"
+                style="@style/TextTitleNormal"
+                android:text="@string/category_rating"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginTop="@dimen/dimens_16dp"/>
+            <RelativeLayout
+                style="@style/RelativeWrap">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_rating"
+                    style="@style/RecyclerWrap" />
+                <ProgressBar
+                    android:id="@+id/pb_tv_rating"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="?android:progressBarStyleSmall"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"/>
+                <include layout="@layout/layout_error"
+                    android:id="@+id/layout_error_tv_rating"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

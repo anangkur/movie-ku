@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.Injection
-import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.base.ImageSliderFragment
 import com.anangkur.madesubmission1.feature.base.SliderTabAdapter
 import com.anangkur.madesubmission1.feature.base.TabAdapter
+import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
-import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -27,15 +28,25 @@ import kotlinx.android.synthetic.main.activity_main.toolbar
 class MainActivity : AppCompatActivity(){
 
     private lateinit var tabAdapter: TabAdapter
-    private lateinit var viewModel: MainViewModel
+    lateinit var viewModel: MainViewModel
+
+    private lateinit var pagerAdapter: SliderTabAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setupToolbar()
-        setupPresenter()
+
+        setupViewModel()
         viewModel.loadLanguageSetting()
+        viewModel.getSliderData(1)
+        viewModel.getHorizontalData(1)
+        viewModel.getVerticalData(1)
+        viewModel.getTvNew(1)
+        viewModel.getTvPopular(1)
+        viewModel.getTvRating(1)
+
         setupTabAdapter()
         setupViewPager()
         setupCustomTab()
@@ -67,14 +78,39 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    private fun setupPresenter(){
-        viewModel = MainViewModel(Injection.provideRepository(this))
+    private fun setupViewModel(){
+        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(MainViewModel::class.java)
         viewModel.apply {
             languageLive.observe(this@MainActivity, Observer {
                 if (it != null){
                     setupLanguage(it)
                 }else{
                     setupLanguage(getString(R.string.language_english))
+                }
+            })
+            sliderDataLive.observe(this@MainActivity, Observer {
+                if (it.results.isEmpty()){
+                    layout_error_slider.visibility = View.VISIBLE
+                    layout_error_slider.setOnClickListener { getSliderData(1) }
+                }else{
+                    for (item in it.results){
+                        val fragment = ImageSliderFragment()
+                        fragment.setData(item)
+                        pagerAdapter.addFragment(fragment)
+                    }
+                    setupSliderPage(pagerAdapter)
+                    layout_error_slider.visibility = View.GONE
+                }
+            })
+            showErrorSliderLive.observe(this@MainActivity, Observer {
+                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            })
+            showProgressSliderLive.observe(this@MainActivity, Observer {
+                if (it){
+                    pb_slider.visibility = View.VISIBLE
+                    layout_error_slider.visibility = View.GONE
+                }else{
+                    pb_slider.visibility = View.GONE
                 }
             })
         }
@@ -118,13 +154,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun setupViewPagerSlider(){
-        val pagerAdapter = SliderTabAdapter(supportFragmentManager)
-        pagerAdapter.addFragment(ImageSliderFragment("${Const.baseImageUrl}${Const.spidermanPosterPath}", Const.spidermanTitle, Const.spidermanOverview))
-        pagerAdapter.addFragment(ImageSliderFragment("${Const.baseImageUrl}${Const.shaftBackdropPath}", Const.shaftTitle, Const.shaftOverview))
-        pagerAdapter.addFragment(ImageSliderFragment("${Const.baseImageUrl}${Const.toyStory4BackdropPath}", Const.toyStory4Title, Const.toyStory4Overview))
-        pagerAdapter.addFragment(ImageSliderFragment("${Const.baseImageUrl}${Const.darkPhoenixBackdropPath}", Const.darkPhoenixTitle, Const.darkPhoenixOverview))
-        pagerAdapter.addFragment(ImageSliderFragment("${Const.baseImageUrl}${Const.annabelleBackdropPath}", Const.annabelleTitle, Const.annabelleOverview))
-        setupSliderPage(pagerAdapter)
+        pagerAdapter = SliderTabAdapter(supportFragmentManager)
     }
 
     private fun setupSliderPage(pagerAdapter: SliderTabAdapter){

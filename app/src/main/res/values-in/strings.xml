@@ -10,6 +10,7 @@
     <string name="text_overview">Ikhtisar</string>
     <string name="text_bahasa_indonesia">Bahasa Indonesia</string>
     <string name="text_english">English</string>
+    <string name="text_refresh">tekan untuk memuat ulang</string>
     <!--end of others-->
 
     <!--toolbar-->

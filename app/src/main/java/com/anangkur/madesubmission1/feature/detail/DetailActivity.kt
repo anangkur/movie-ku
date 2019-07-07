@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
+import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -54,7 +56,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel(){
-        detailViewModel = DetailViewModel(Injection.provideRepository(this))
+        detailViewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
                 setupDataToView(it)

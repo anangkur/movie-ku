@@ -1,9 +1,11 @@
 package com.anangkur.madesubmission1.feature.languageSetting
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.anangkur.madesubmission1.data.Repository
 
-class LanguageSettingViewModel(private val repository: Repository){
+class LanguageSettingViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
 
     val languageLive = MutableLiveData<String>()
 

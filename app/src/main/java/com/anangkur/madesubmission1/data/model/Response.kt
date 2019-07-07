@@ -1,6 +1,7 @@
 package com.anangkur.madesubmission1.data.model
 
 data class Response(
+    val success: Boolean,
     val dates: Dates,
     val page: Int,
     val results: List<Result>,

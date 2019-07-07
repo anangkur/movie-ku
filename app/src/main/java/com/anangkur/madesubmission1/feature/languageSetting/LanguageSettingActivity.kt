@@ -5,11 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.feature.main.MainActivity
 import com.anangkur.madesubmission1.utils.Utils
+import com.anangkur.madesubmission1.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_language_setting.*
 
 class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListener {
@@ -58,7 +60,7 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
     }
 
     private fun setupPresenter(){
-        viewModel = LanguageSettingViewModel(Injection.provideRepository(this))
+        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(LanguageSettingViewModel::class.java)
         viewModel.apply {
             languageLive.observe(this@LanguageSettingActivity, Observer {
                 if (it != null){

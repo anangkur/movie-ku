@@ -4,23 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.data.model.TvParent
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
-import com.anangkur.madesubmission1.feature.main.movie.MovieItemListener
-import com.anangkur.madesubmission1.utils.Const
+import com.anangkur.madesubmission1.feature.main.MainActivity
+import com.anangkur.madesubmission1.feature.main.MainItemListener
+import com.anangkur.madesubmission1.feature.main.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_tv.*
 
-class TvFragment : Fragment(), MovieItemListener{
+class TvFragment : Fragment(), MainItemListener {
 
-    private lateinit var tvViewModel: TvViewModel
-    private lateinit var tvParentAdapter: TvParentAdapter
+    private lateinit var tvViewModel: MainViewModel
+    private lateinit var tvNewAdapter: TvAdapter
+    private lateinit var tvPopularAdapter: TvAdapter
+    private lateinit var tvRatingAdapter: TvAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_tv, container, false)
@@ -28,29 +31,102 @@ class TvFragment : Fragment(), MovieItemListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupAdapter()
-        setupPresenter()
-        tvViewModel.createDataTvParent(
-            categories = listOf(getString(R.string.category_popular), getString(R.string.category_new), getString(R.string.category_rating)),
-            jsonTV = listOf(Const.jsonPopularTv, Const.jsonOnTheAirTv, Const.jsonTopRatedTv)
-        )
+        setupTvNewAdapter()
+        setupTvPopularAdapter()
+        setupTvRatingAdapter()
+        setupViewModel()
     }
 
-    private fun setupPresenter(){
-        tvViewModel = TvViewModel(Injection.provideRepository(requireContext()))
+    private fun setupViewModel(){
+        tvViewModel = (requireActivity() as MainActivity).viewModel
         tvViewModel.apply {
-            listTvParentLive.observe(this@TvFragment, Observer {
-                tvParentAdapter.setRecyclerData(it)
+            tvNewLive.observe(this@TvFragment, Observer {
+                if (it.isEmpty()){
+                    layout_error_tv_new.visibility = View.VISIBLE
+                    layout_error_tv_new.setOnClickListener { getTvNew(1) }
+                }else{
+                    tvNewAdapter.setRecyclerData(it)
+                    layout_error_tv_new.visibility = View.GONE
+                }
+            })
+            tvPopularLive.observe(this@TvFragment, Observer {
+                if (it.isEmpty()){
+                    layout_error_tv_popular.visibility = View.VISIBLE
+                    layout_error_tv_popular.setOnClickListener { getTvPopular(1) }
+                }else{
+                    tvPopularAdapter.setRecyclerData(it)
+                    layout_error_tv_popular.visibility = View.GONE
+                }
+            })
+            tvRatingLive.observe(this@TvFragment, Observer {
+                if (it.isEmpty()){
+                    layout_error_tv_rating.visibility = View.VISIBLE
+                    layout_error_tv_rating.setOnClickListener { getTvRating(1) }
+                }else{
+                    tvRatingAdapter.setRecyclerData(it)
+                    layout_error_tv_rating.visibility = View.GONE
+                }
+            })
+            showProgressNew.observe(this@TvFragment, Observer {
+                if (it){
+                    pb_tv_new.visibility = View.VISIBLE
+                    layout_error_tv_new.visibility = View.GONE
+                }else{
+                    pb_tv_new.visibility = View.GONE
+                }
+            })
+            showProgressPopular.observe(this@TvFragment, Observer {
+                if (it){
+                    pb_tv_popular.visibility = View.VISIBLE
+                    layout_error_tv_popular.visibility = View.GONE
+                }else{
+                    pb_tv_popular.visibility = View.GONE
+                }
+            })
+            showProgressRating.observe(this@TvFragment, Observer {
+                if (it){
+                    pb_tv_rating.visibility = View.VISIBLE
+                    layout_error_tv_rating.visibility = View.GONE
+                }else{
+                    pb_tv_rating.visibility = View.GONE
+                }
+            })
+            showErrorNew.observe(this@TvFragment, Observer {
+                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+            })
+            showErrorPopular.observe(this@TvFragment, Observer {
+                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+            })
+            showErrorRating.observe(this@TvFragment, Observer {
+                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
             })
         }
     }
 
-    private fun setupAdapter(){
-        tvParentAdapter = TvParentAdapter(this)
-        recycler_parent_tv.apply {
-            adapter = tvParentAdapter
+    private fun setupTvNewAdapter(){
+        tvNewAdapter = TvAdapter(this)
+        recycler_tv_new.apply {
+            adapter = tvNewAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
+        }
+    }
+
+    private fun setupTvPopularAdapter(){
+        tvPopularAdapter = TvAdapter(this)
+        recycler_tv_popular.apply {
+            adapter = tvPopularAdapter
+            itemAnimator = DefaultItemAnimator()
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
+        }
+    }
+
+    private fun setupTvRatingAdapter(){
+        tvRatingAdapter = TvAdapter(this)
+        recycler_tv_rating.apply {
+            adapter = tvRatingAdapter
+            itemAnimator = DefaultItemAnimator()
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
         }
     }
 

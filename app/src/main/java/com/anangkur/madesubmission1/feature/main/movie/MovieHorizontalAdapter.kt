@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
+import com.anangkur.madesubmission1.feature.main.MainItemListener
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_main_horizontal.view.*
 
-class MovieHorizontalAdapter(val itemListener: MovieItemListener): RecyclerView.Adapter<MovieHorizontalAdapter.ViewHolder>() {
+class MovieHorizontalAdapter(val itemListener: MainItemListener): RecyclerView.Adapter<MovieHorizontalAdapter.ViewHolder>() {
 
     private val items = ArrayList<Result>()
 

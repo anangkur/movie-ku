@@ -9,15 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.Injection
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
-import com.anangkur.madesubmission1.utils.Const
+import com.anangkur.madesubmission1.feature.main.MainActivity
+import com.anangkur.madesubmission1.feature.main.MainItemListener
+import com.anangkur.madesubmission1.feature.main.MainViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_movie.*
 
-class MovieFragment : Fragment(), MovieItemListener{
+class MovieFragment : Fragment(), MainItemListener {
 
-    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var movieViewModel: MainViewModel
     private lateinit var movieVerticalAdapter: MovieVerticalAdapter
     private lateinit var movieHorizontalAdapter: MovieHorizontalAdapter
 
@@ -30,19 +32,51 @@ class MovieFragment : Fragment(), MovieItemListener{
 
         setupHorizontalAdapter()
         setupVerticalAdapter()
-        setupPresenter()
-        movieViewModel.createHorizontalData(Const.jsonNowPlayingMovies)
-        movieViewModel.createVerticalData(Const.jsonPopularMovies)
+        setupViewModel()
     }
 
-    private fun setupPresenter(){
-        movieViewModel = MovieViewModel(Injection.provideRepository(requireContext()))
+    private fun setupViewModel(){
+        movieViewModel = (requireActivity() as MainActivity).viewModel
         movieViewModel.apply {
             horizontalDataLive.observe(this@MovieFragment, Observer {
-                movieHorizontalAdapter.setRecyclerData(it)
+                if (it.results.isEmpty()){
+                    layout_error_horizontal.visibility = View.VISIBLE
+                    layout_error_horizontal.setOnClickListener { getHorizontalData(1) }
+                }else{
+                    layout_error_horizontal.visibility = View.GONE
+                    movieHorizontalAdapter.setRecyclerData(it.results)
+                }
             })
             verticalLiveData.observe(this@MovieFragment, Observer {
-                movieVerticalAdapter.setRecyclerData(it)
+                if (it.results.isEmpty()){
+                    layout_error_vertical.visibility = View.VISIBLE
+                    layout_error_vertical.setOnClickListener { getVerticalData(1) }
+                }else{
+                    layout_error_vertical.visibility = View.GONE
+                    movieVerticalAdapter.setRecyclerData(it.results)
+                }
+            })
+            showProgressHorizontalLive.observe(this@MovieFragment, Observer {
+                if (it){
+                    pb_horizontal.visibility = View.VISIBLE
+                    layout_error_horizontal.visibility = View.GONE
+                }else{
+                    pb_horizontal.visibility = View.GONE
+                }
+            })
+            showProgressVerticalLive.observe(this@MovieFragment, Observer {
+                if (it){
+                    pb_vertical.visibility = View.VISIBLE
+                    layout_error_vertical.visibility = View.GONE
+                }else{
+                    pb_vertical.visibility = View.GONE
+                }
+            })
+            showErrorHorizontalLive.observe(this@MovieFragment, Observer {
+                view?.let { view -> Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+            })
+            showErrorVerticalLive.observe(this@MovieFragment, Observer {
+                view?.let { view -> Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
             })
         }
     }

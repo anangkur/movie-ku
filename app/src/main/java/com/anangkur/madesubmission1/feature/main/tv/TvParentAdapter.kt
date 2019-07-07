@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.TvParent
-import com.anangkur.madesubmission1.feature.main.movie.MovieItemListener
+import com.anangkur.madesubmission1.feature.main.MainItemListener
 import kotlinx.android.synthetic.main.item_tv_parent.view.*
 
-class TvParentAdapter(private val itemListener: MovieItemListener): RecyclerView.Adapter<TvParentAdapter.ViewHolder>(){
+class TvParentAdapter(private val itemListener: MainItemListener): RecyclerView.Adapter<TvParentAdapter.ViewHolder>(){
 
     private val items = ArrayList<TvParent>()
 

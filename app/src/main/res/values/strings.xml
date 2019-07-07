@@ -10,6 +10,7 @@
     <string name="text_overview">Overview</string>
     <string name="text_bahasa_indonesia">Bahasa Indonesia</string>
     <string name="text_english">English</string>
+    <string name="text_refresh">tap to reload</string>
     <!--end of others-->
 
     <!--toolbar-->
