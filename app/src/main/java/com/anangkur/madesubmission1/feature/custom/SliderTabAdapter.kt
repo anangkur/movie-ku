@@ -1,9 +1,8 @@
-package com.anangkur.madesubmission1.feature.base
+package com.anangkur.madesubmission1.feature.custom
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.anangkur.madesubmission1.feature.main.MainViewModel
 
 class SliderTabAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

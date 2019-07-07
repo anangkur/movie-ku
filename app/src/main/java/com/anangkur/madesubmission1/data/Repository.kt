@@ -29,21 +29,4 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
     override fun loadLanguage(): String? {
         return localDataSource.loadLanguage()
     }
-
-    companion object {
-
-        private var INSTANCE: Repository? = null
-
-        @JvmStatic
-        fun getInstance(localDataSource: LocalDataSource, remoteDataSource: RemoteDataSource) =
-            INSTANCE ?: synchronized(Repository::class.java) {
-                INSTANCE ?: Repository(localDataSource, remoteDataSource)
-                    .also { INSTANCE = it }
-            }
-
-        @JvmStatic
-        fun destroyInstance() {
-            INSTANCE = null
-        }
-    }
 }

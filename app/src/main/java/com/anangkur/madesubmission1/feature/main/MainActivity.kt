@@ -12,9 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.feature.base.ImageSliderFragment
-import com.anangkur.madesubmission1.feature.base.SliderTabAdapter
-import com.anangkur.madesubmission1.feature.base.TabAdapter
+import com.anangkur.madesubmission1.data.Repository
+import com.anangkur.madesubmission1.data.local.LocalDataSource
+import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
+import com.anangkur.madesubmission1.data.remote.RemoteDataSource
+import com.anangkur.madesubmission1.feature.custom.ImageSliderFragment
+import com.anangkur.madesubmission1.feature.custom.SliderTabAdapter
+import com.anangkur.madesubmission1.feature.custom.TabAdapter
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
@@ -79,7 +83,8 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
+            LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(MainViewModel::class.java)
         viewModel.apply {
             languageLive.observe(this@MainActivity, Observer {
                 if (it != null){

@@ -12,4 +12,10 @@ interface DataSource {
 
     // response callback
     interface GetDataCallback: ResponseCallback<Response>
+    interface ResponseCallback<T>{
+        fun onShowProgressDialog()
+        fun onHideProgressDialog()
+        fun onSuccess(data: T)
+        fun onFailed(errorMessage: String? = "")
+    }
 }

@@ -7,9 +7,12 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.Injection
+import com.anangkur.madesubmission1.data.Repository
+import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
+import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.main.MainActivity
+import com.anangkur.madesubmission1.feature.main.MainViewModel
 import com.anangkur.madesubmission1.utils.Utils
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_language_setting.*
@@ -23,7 +26,7 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
         setContentView(R.layout.activity_language_setting)
 
         setupToolbar()
-        setupPresenter()
+        setupViewModel()
         viewModel.loadLanguageSetting()
         setupChangeRadioLanguage()
         btn_simpan.setOnClickListener { this.onBtnSimpanClick() }
@@ -59,8 +62,9 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
         }
     }
 
-    private fun setupPresenter(){
-        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(LanguageSettingViewModel::class.java)
+    private fun setupViewModel(){
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(application,
+            Repository(LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(LanguageSettingViewModel::class.java)
         viewModel.apply {
             languageLive.observe(this@LanguageSettingActivity, Observer {
                 if (it != null){

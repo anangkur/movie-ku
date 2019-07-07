@@ -9,8 +9,11 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.data.Injection
+import com.anangkur.madesubmission1.data.Repository
+import com.anangkur.madesubmission1.data.local.LocalDataSource
+import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.data.model.Result
+import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
@@ -56,7 +59,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel(){
-        detailViewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
+            LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
                 setupDataToView(it)

@@ -7,7 +7,6 @@
         <!--popular-->
         <LinearLayout style="@style/LinearVerticalWrap">
             <TextView
-                android:id="@+id/tv_title_popular"
                 style="@style/TextTitleNormal"
                 android:text="@string/category_popular"
                 android:textColor="@color/black"
@@ -34,7 +33,6 @@
         <!--new-->
         <LinearLayout style="@style/LinearVerticalWrap">
             <TextView
-                android:id="@+id/tv_title_new"
                 style="@style/TextTitleNormal"
                 android:text="@string/category_new"
                 android:textColor="@color/black"
@@ -61,7 +59,6 @@
         <!--highest rating-->
         <LinearLayout style="@style/LinearVerticalWrap">
             <TextView
-                android:id="@+id/tv_title_rating"
                 style="@style/TextTitleNormal"
                 android:text="@string/category_rating"
                 android:textColor="@color/black"
