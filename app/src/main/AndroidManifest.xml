@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity"></activity>
-        <activity android:name=".feature.detail.DetailActivity" />
+        <activity android:name=".feature.detail.DetailActivity"
+            android:configChanges="orientation"/>
         <activity android:name=".feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

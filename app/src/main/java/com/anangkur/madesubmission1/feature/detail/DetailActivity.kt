@@ -36,7 +36,6 @@ class DetailActivity : AppCompatActivity() {
         setupToolbar()
         setupViewModel()
         detailViewModel.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL))
-        detailViewModel.loadLanguageSetting()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,13 +64,6 @@ class DetailActivity : AppCompatActivity() {
             resultLive.observe(this@DetailActivity, Observer {
                 setupDataToView(it)
             })
-            languageLive.observe(this@DetailActivity, Observer {
-                if (it != null){
-                    setupLanguage(it)
-                }else{
-                    setupLanguage(getString(R.string.language_english))
-                }
-            })
         }
     }
 
@@ -94,12 +86,5 @@ class DetailActivity : AppCompatActivity() {
         tv_language.text = data.original_language
         tv_popularity.text = data.popularity.toString()
         tv_overview.text = data.overview
-    }
-
-    private fun setupLanguage(language: String){
-        when (language){
-            getString(R.string.language_indonesian) -> Utils.setLocale(getString(R.string.language_indonesian), this)
-            getString(R.string.language_english) -> Utils.setLocale(getString(R.string.language_english), this)
-        }
     }
 }

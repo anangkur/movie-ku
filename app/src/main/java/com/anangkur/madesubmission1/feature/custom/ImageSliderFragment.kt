@@ -16,28 +16,33 @@ import kotlinx.android.synthetic.main.fragment_image_slider.view.*
 
 class ImageSliderFragment: Fragment(){
 
-    private var data: Result? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_image_slider, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        data?.let { data ->
+        val data = arguments?.getParcelable<Result>(Const.BUNDLE_RESULT)
+        data?.let { result ->
             Glide.with(requireContext())
-                .load("${Const.baseImageUrl}${data.backdrop_path}")
+                .load("${Const.baseImageUrl}${result.backdrop_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(requireContext())))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))
                 .into(view.iv_slider)
-            view.tv_title.text = data.title
-            view.tv_overview.text = data.overview
-            view.setOnClickListener { DetailActivity().startActivity(requireContext(), data) }
+            view.tv_title.text = result.title
+            view.tv_overview.text = result.overview
+            view.setOnClickListener { DetailActivity().startActivity(requireContext(), result) }
         }
     }
 
-    fun setData(data: Result){
-        this.data = data
+    companion object{
+        fun getInstance(data: Result): ImageSliderFragment{
+            val fragment = ImageSliderFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(Const.BUNDLE_RESULT, data)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

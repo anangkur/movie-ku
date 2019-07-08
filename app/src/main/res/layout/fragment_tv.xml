@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/NestedScrollDefault">
+    style="@style/NestedScrollDefault"
+    android:background="@color/white">
     <LinearLayout
         style="@style/LinearVerticalWrap">
         <!--popular-->
@@ -15,9 +16,6 @@
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_tv_popular"
-                    style="@style/RecyclerWrap" />
                 <ProgressBar
                     android:id="@+id/pb_tv_popular"
                     android:layout_height="wrap_content"
@@ -28,6 +26,10 @@
                 <include layout="@layout/layout_error"
                     android:id="@+id/layout_error_tv_popular"
                     android:visibility="gone"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_popular"
+                    style="@style/RecyclerWrap"
+                    android:background="@color/white"/>
             </RelativeLayout>
         </LinearLayout>
         <!--new-->
@@ -41,9 +43,6 @@
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_tv_new"
-                    style="@style/RecyclerWrap" />
                 <ProgressBar
                     android:id="@+id/pb_tv_new"
                     android:layout_height="wrap_content"
@@ -54,6 +53,10 @@
                 <include layout="@layout/layout_error"
                     android:id="@+id/layout_error_tv_new"
                     android:visibility="gone"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_new"
+                    style="@style/RecyclerWrap"
+                    android:background="@color/white"/>
             </RelativeLayout>
         </LinearLayout>
         <!--highest rating-->
@@ -67,9 +70,6 @@
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_tv_rating"
-                    style="@style/RecyclerWrap" />
                 <ProgressBar
                     android:id="@+id/pb_tv_rating"
                     android:layout_height="wrap_content"
@@ -80,6 +80,10 @@
                 <include layout="@layout/layout_error"
                     android:id="@+id/layout_error_tv_rating"
                     android:visibility="gone"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_tv_rating"
+                    style="@style/RecyclerWrap"
+                    android:background="@color/white"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

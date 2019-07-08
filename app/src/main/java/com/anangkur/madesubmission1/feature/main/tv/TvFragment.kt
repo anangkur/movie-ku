@@ -35,37 +35,25 @@ class TvFragment : Fragment(), MainItemListener {
         setupTvPopularAdapter()
         setupTvRatingAdapter()
         setupViewModel()
+        tvViewModel.getTvNew(1)
+        tvViewModel.getTvPopular(1)
+        tvViewModel.getTvRating(1)
     }
 
     private fun setupViewModel(){
         tvViewModel = (requireActivity() as MainActivity).viewModel
         tvViewModel.apply {
             tvNewLive.observe(this@TvFragment, Observer {
-                if (it.isEmpty()){
-                    layout_error_tv_new.visibility = View.VISIBLE
-                    layout_error_tv_new.setOnClickListener { getTvNew(1) }
-                }else{
-                    tvNewAdapter.setRecyclerData(it)
-                    layout_error_tv_new.visibility = View.GONE
-                }
+                tvNewAdapter.setRecyclerData(it)
+                layout_error_tv_new.visibility = View.GONE
             })
             tvPopularLive.observe(this@TvFragment, Observer {
-                if (it.isEmpty()){
-                    layout_error_tv_popular.visibility = View.VISIBLE
-                    layout_error_tv_popular.setOnClickListener { getTvPopular(1) }
-                }else{
-                    tvPopularAdapter.setRecyclerData(it)
-                    layout_error_tv_popular.visibility = View.GONE
-                }
+                tvPopularAdapter.setRecyclerData(it)
+                layout_error_tv_popular.visibility = View.GONE
             })
             tvRatingLive.observe(this@TvFragment, Observer {
-                if (it.isEmpty()){
-                    layout_error_tv_rating.visibility = View.VISIBLE
-                    layout_error_tv_rating.setOnClickListener { getTvRating(1) }
-                }else{
-                    tvRatingAdapter.setRecyclerData(it)
-                    layout_error_tv_rating.visibility = View.GONE
-                }
+                tvRatingAdapter.setRecyclerData(it)
+                layout_error_tv_rating.visibility = View.GONE
             })
             showProgressNew.observe(this@TvFragment, Observer {
                 if (it){
@@ -92,13 +80,16 @@ class TvFragment : Fragment(), MainItemListener {
                 }
             })
             showErrorNew.observe(this@TvFragment, Observer {
-                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                layout_error_tv_new.visibility = View.VISIBLE
+                layout_error_tv_new.setOnClickListener { getTvNew(1) }
             })
             showErrorPopular.observe(this@TvFragment, Observer {
-                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                layout_error_tv_popular.visibility = View.VISIBLE
+                layout_error_tv_popular.setOnClickListener { getTvPopular(1) }
             })
             showErrorRating.observe(this@TvFragment, Observer {
-                view?.let {view ->  Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                layout_error_tv_rating.visibility = View.VISIBLE
+                layout_error_tv_rating.setOnClickListener { getTvRating(1) }
             })
         }
     }

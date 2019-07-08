@@ -14,4 +14,6 @@ object Const {
     const val EXTRA_DETAIL = "EXTRA_DETAIL"
 
     const val PREF_LANGUAGE = "PREF_LANGUAGE"
+
+    const val BUNDLE_RESULT = "BUNDLE_RESULT"
 }

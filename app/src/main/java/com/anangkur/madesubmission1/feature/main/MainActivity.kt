@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -43,13 +45,7 @@ class MainActivity : AppCompatActivity(){
         setupToolbar()
 
         setupViewModel()
-        viewModel.loadLanguageSetting()
         viewModel.getSliderData(1)
-        viewModel.getHorizontalData(1)
-        viewModel.getVerticalData(1)
-        viewModel.getTvNew(1)
-        viewModel.getTvPopular(1)
-        viewModel.getTvRating(1)
 
         setupTabAdapter()
         setupViewPager()
@@ -65,7 +61,8 @@ class MainActivity : AppCompatActivity(){
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
-            R.id.menu_change_language -> LanguageSettingActivity().startActivity(this)
+            R.id.menu_change_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+
         }
         return true
     }
@@ -75,40 +72,20 @@ class MainActivity : AppCompatActivity(){
         supportActionBar?.title = ""
     }
 
-    private fun setupLanguage(language: String){
-        when (language){
-            getString(R.string.language_indonesian) -> Utils.setLocale(getString(R.string.language_indonesian), this)
-            getString(R.string.language_english) -> Utils.setLocale(getString(R.string.language_english), this)
-        }
-    }
-
     private fun setupViewModel(){
         viewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
             LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(MainViewModel::class.java)
         viewModel.apply {
-            languageLive.observe(this@MainActivity, Observer {
-                if (it != null){
-                    setupLanguage(it)
-                }else{
-                    setupLanguage(getString(R.string.language_english))
-                }
-            })
             sliderDataLive.observe(this@MainActivity, Observer {
-                if (it.results.isEmpty()){
-                    layout_error_slider.visibility = View.VISIBLE
-                    layout_error_slider.setOnClickListener { getSliderData(1) }
-                }else{
-                    for (item in it.results){
-                        val fragment = ImageSliderFragment()
-                        fragment.setData(item)
-                        pagerAdapter.addFragment(fragment)
-                    }
-                    setupSliderPage(pagerAdapter)
-                    layout_error_slider.visibility = View.GONE
+                for (item in it.results){
+                    pagerAdapter.addFragment(ImageSliderFragment.getInstance(item))
                 }
+                setupSliderPage(pagerAdapter)
+                layout_error_slider.visibility = View.GONE
             })
             showErrorSliderLive.observe(this@MainActivity, Observer {
-                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+                layout_error_slider.visibility = View.VISIBLE
+                layout_error_slider.setOnClickListener { getSliderData(1) }
             })
             showProgressSliderLive.observe(this@MainActivity, Observer {
                 if (it){

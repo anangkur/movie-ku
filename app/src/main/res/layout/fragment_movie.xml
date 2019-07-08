@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/NestedScrollDefault"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    <LinearLayout style="@style/LinearVerticalDefault">
+    <LinearLayout style="@style/LinearVerticalDefault"
+        android:background="@color/white">
         <TextView
             style="@style/TextTitleBig"
             android:text="@string/category_now_playing"
@@ -12,10 +13,6 @@
             android:layout_margin="@dimen/dimens_16dp"/>
         <RelativeLayout
             style="@style/RecyclerWrap">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_horizontal"
-                style="@style/RecyclerWrap"
-                android:nestedScrollingEnabled="false"/>
             <ProgressBar
                 android:id="@+id/pb_horizontal"
                 android:layout_height="wrap_content"
@@ -26,6 +23,11 @@
             <include layout="@layout/layout_error"
                 android:id="@+id/layout_error_horizontal"
                 android:visibility="gone"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_horizontal"
+                style="@style/RecyclerWrap"
+                android:nestedScrollingEnabled="false"
+                android:background="@color/white"/>
         </RelativeLayout>
         <TextView
             style="@style/TextTitleBig"
@@ -34,9 +36,6 @@
             android:layout_margin="@dimen/dimens_16dp"/>
         <RelativeLayout
             style="@style/RelativeWrap">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_vertical"
-                style="@style/RecyclerDefault"/>
             <ProgressBar
                 android:id="@+id/pb_vertical"
                 android:layout_height="wrap_content"
@@ -47,6 +46,10 @@
             <include layout="@layout/layout_error"
                 android:id="@+id/layout_error_vertical"
                 android:visibility="gone"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_vertical"
+                style="@style/RecyclerDefault"
+                android:background="@color/white"/>
         </RelativeLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

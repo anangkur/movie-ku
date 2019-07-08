@@ -33,28 +33,20 @@ class MovieFragment : Fragment(), MainItemListener {
         setupHorizontalAdapter()
         setupVerticalAdapter()
         setupViewModel()
+        movieViewModel.getHorizontalData(1)
+        movieViewModel.getVerticalData(1)
     }
 
     private fun setupViewModel(){
         movieViewModel = (requireActivity() as MainActivity).viewModel
         movieViewModel.apply {
             horizontalDataLive.observe(this@MovieFragment, Observer {
-                if (it.results.isEmpty()){
-                    layout_error_horizontal.visibility = View.VISIBLE
-                    layout_error_horizontal.setOnClickListener { getHorizontalData(1) }
-                }else{
-                    layout_error_horizontal.visibility = View.GONE
-                    movieHorizontalAdapter.setRecyclerData(it.results)
-                }
+                layout_error_horizontal.visibility = View.GONE
+                movieHorizontalAdapter.setRecyclerData(it.results)
             })
             verticalLiveData.observe(this@MovieFragment, Observer {
-                if (it.results.isEmpty()){
-                    layout_error_vertical.visibility = View.VISIBLE
-                    layout_error_vertical.setOnClickListener { getVerticalData(1) }
-                }else{
-                    layout_error_vertical.visibility = View.GONE
-                    movieVerticalAdapter.setRecyclerData(it.results)
-                }
+                layout_error_vertical.visibility = View.GONE
+                movieVerticalAdapter.setRecyclerData(it.results)
             })
             showProgressHorizontalLive.observe(this@MovieFragment, Observer {
                 if (it){
@@ -73,10 +65,12 @@ class MovieFragment : Fragment(), MainItemListener {
                 }
             })
             showErrorHorizontalLive.observe(this@MovieFragment, Observer {
-                view?.let { view -> Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                layout_error_horizontal.visibility = View.VISIBLE
+                layout_error_horizontal.setOnClickListener { getHorizontalData(1) }
             })
             showErrorVerticalLive.observe(this@MovieFragment, Observer {
-                view?.let { view -> Snackbar.make(view, it, Snackbar.LENGTH_SHORT).show() }
+                layout_error_vertical.visibility = View.VISIBLE
+                layout_error_vertical.setOnClickListener { getVerticalData(1) }
             })
         }
     }

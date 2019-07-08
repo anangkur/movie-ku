@@ -143,6 +143,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/custom/ImageSliderFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/detail/DetailActivity.kt">
           <value>
             <set />
@@ -494,6 +499,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../android-nutricell/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_finaltask/lib/detail.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_finaltask/lib/main.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_finaltask/lib/model/response.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/submissionmade3/app/src/main/java/me/hafizdwp/submissionmade3/mvvm/movie/MovieFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/submissionmade3/app/src/main/res/layout/movie_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/submissionmade3/app/src/main/res/layout/view_progress.xml">
           <value>
             <set />
           </value>

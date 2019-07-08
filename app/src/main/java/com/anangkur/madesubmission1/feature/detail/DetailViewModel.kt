@@ -9,13 +9,8 @@ import com.anangkur.madesubmission1.data.model.Result
 class DetailViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
 
     val resultLive = MutableLiveData<Result>()
-    val languageLive = MutableLiveData<String>()
 
     fun getDataFromIntent(data: Result){
         resultLive.value = data
-    }
-
-    fun loadLanguageSetting(){
-        languageLive.value = repository.loadLanguage()
     }
 }

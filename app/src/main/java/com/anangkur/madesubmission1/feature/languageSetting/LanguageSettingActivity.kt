@@ -27,9 +27,13 @@ class LanguageSettingActivity : AppCompatActivity(), LanguageSettingActionListen
 
         setupToolbar()
         setupViewModel()
-        viewModel.loadLanguageSetting()
         setupChangeRadioLanguage()
         btn_simpan.setOnClickListener { this.onBtnSimpanClick() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadLanguageSetting()
     }
 
     private fun setupToolbar(){

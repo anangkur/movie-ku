@@ -11,8 +11,6 @@ import com.anangkur.madesubmission1.utils.Const
 
 class MainViewModel(application: Application, private val repository: Repository): AndroidViewModel(application) {
 
-    val languageLive = MutableLiveData<String>()
-
     val sliderDataLive = MutableLiveData<Response>()
 
     val showProgressSliderLive = MutableLiveData<Boolean>()
@@ -132,10 +130,6 @@ class MainViewModel(application: Application, private val repository: Repository
                 onHideProgressDialog()
             }
         })
-    }
-
-    fun loadLanguageSetting(){
-        languageLive.value = repository.loadLanguage()
     }
 
     fun getSliderData(page: Int){
