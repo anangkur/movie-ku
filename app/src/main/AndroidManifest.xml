@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity"></activity>
-        <activity android:name=".feature.detail.DetailActivity"
-            android:configChanges="orientation"/>
+        <activity android:name=".feature.favourite.FavouriteActivity"></activity>
         <activity android:name=".feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feature.detail.DetailActivity" />
     </application>
 
 </manifest>

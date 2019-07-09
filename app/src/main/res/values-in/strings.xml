@@ -15,6 +15,7 @@
 
     <!--toolbar-->
     <string name="toolbar_setting_language">Ubah Bahasa</string>
+    <string name="toolbar_favourite">Favorit</string>
     <!--end of toolbar-->
 
     <!--tab-->
@@ -40,5 +41,6 @@
 
     <!--menu-->
     <string name="menu_change_language">Ubah Bahasa</string>
+    <string name="menu_favourite">Favourite</string>
     <!--end of menu-->
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
@@ -14,7 +15,7 @@ import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
-import com.anangkur.madesubmission1.feature.languageSetting.LanguageSettingActivity
+import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.anangkur.madesubmission1.utils.ViewModelFactory
@@ -39,13 +40,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_setting, menu)
+        menuInflater.inflate(R.menu.menu_setting_favourite, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
-            R.id.menu_change_language -> LanguageSettingActivity().startActivity(this)
+            R.id.menu_change_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            R.id.menu_favourite -> FavouriteActivity().startActivity(this)
         }
         return true
     }

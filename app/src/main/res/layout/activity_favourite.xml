@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/LinearVerticalDefault">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:elevation="@dimen/dimens_4dp"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_fav"
+        style="@style/TabLayoutDefault"
+        app:tabIndicatorColor="@color/black"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_fav"
+        style="@style/ViewPagerDefault" />
+</LinearLayout>

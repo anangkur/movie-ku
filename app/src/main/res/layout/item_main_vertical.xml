@@ -7,7 +7,8 @@
     <ImageView
         android:id="@+id/iv_item"
         android:layout_height="@dimen/dimens_150dp"
-        android:layout_width="@dimen/dimens_100dp"/>
+        android:layout_width="@dimen/dimens_100dp"
+        android:elevation="@dimen/dimens_4dp"/>
     <LinearLayout
         style="@style/LinearVerticalWrap"
         android:layout_height="match_parent"
