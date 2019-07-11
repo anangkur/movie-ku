@@ -1,5 +1,6 @@
 package com.anangkur.madesubmission1.feature.main.tv
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.anangkur.madesubmission1.feature.detail.DetailActivity
 import com.anangkur.madesubmission1.feature.main.MainActivity
 import com.anangkur.madesubmission1.feature.main.MainItemListener
 import com.anangkur.madesubmission1.feature.main.MainViewModel
+import com.anangkur.madesubmission1.utils.Const
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_tv.*
 
@@ -122,6 +124,6 @@ class TvFragment : Fragment(), MainItemListener {
     }
 
     override fun onClickItem(data: Result) {
-        DetailActivity().startActivity(requireContext(), data)
+        DetailActivity().startActivity(requireActivity(), data, Const.TYPE_TV, Const.requestCodeFavTv)
     }
 }

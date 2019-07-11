@@ -8,6 +8,9 @@ buildscript {
         google()
         jcenter()
         maven {
+            url "https://maven.google.com"
+        }
+        maven {
             url "https://plugins.gradle.org/m2/"
         }
     }

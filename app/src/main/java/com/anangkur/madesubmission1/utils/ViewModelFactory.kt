@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.feature.detail.DetailViewModel
+import com.anangkur.madesubmission1.feature.favourite.FavouriteViewModel
 import com.anangkur.madesubmission1.feature.main.MainViewModel
 
 class ViewModelFactory (private val application: Application, private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
@@ -14,6 +15,7 @@ class ViewModelFactory (private val application: Application, private val reposi
                 when {
                     isAssignableFrom(MainViewModel::class.java) -> MainViewModel(application, repository)
                     isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(application, repository)
+                    isAssignableFrom(FavouriteViewModel::class.java) -> FavouriteViewModel(application, repository)
                     else -> throw IllegalArgumentException("Unknown ViewModel kelas: ${modelClass.name}")
                 }
             } as T

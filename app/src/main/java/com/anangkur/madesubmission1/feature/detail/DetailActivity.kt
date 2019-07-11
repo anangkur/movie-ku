@@ -1,10 +1,13 @@
 package com.anangkur.madesubmission1.feature.detail
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
@@ -13,6 +16,7 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
+import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
@@ -21,11 +25,14 @@ import com.anangkur.madesubmission1.utils.Utils
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private lateinit var detailViewModel: DetailViewModel
+
+    private var data: Result? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,20 +43,24 @@ class DetailActivity : AppCompatActivity() {
         super.onStart()
         setupToolbar()
         setupViewModel()
-        detailViewModel.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL))
+        detailViewModel.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL), intent.getIntExtra(Const.EXTRA_TYPE, 1))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_setting_favourite, menu)
+        menuInflater.inflate(R.menu.menu_setting, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.menu_change_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            R.id.menu_favourite -> FavouriteActivity().startActivity(this)
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        setResult(Const.resultCodeDetail)
+        super.onBackPressed()
     }
 
     private fun setupToolbar(){
@@ -61,18 +72,35 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupViewModel(){
         detailViewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
-            LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(DetailViewModel::class.java)
+            LocalDataSource(SharedPreferenceHelper(this), ResultDatabase.getInstance(this)?.getDao()!!), RemoteDataSource)))
+            .get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
+                data = it
+                data?.let { data -> getDataById(data.id) }
+            })
+            successGetData.observe(this@DetailActivity, Observer {
                 setupDataToView(it)
+            })
+            showErrorGetData.observe(this@DetailActivity, Observer {
+                data?.let { data ->  setupDataToView(data.copy(favourite = false))}
+            })
+            successInsertResult.observe(this@DetailActivity, Observer {
+                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+                data?.let { data -> getDataById(data.id) }
+            })
+            successDeleteResult.observe(this@DetailActivity, Observer {
+                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+                data?.let { data -> getDataById(data.id) }
             })
         }
     }
 
-    fun startActivity(context: Context, data: Result){
+    fun startActivity(context: Activity, data: Result, type: Int, requestCode: Int){
         val intent = Intent(context, DetailActivity::class.java)
             .putExtra(Const.EXTRA_DETAIL, data)
-        context.startActivity(intent)
+            .putExtra(Const.EXTRA_TYPE, type)
+        context.startActivityForResult(intent, requestCode)
     }
 
     private fun setupDataToView(data: Result){
@@ -88,5 +116,28 @@ class DetailActivity : AppCompatActivity() {
         tv_language.text = data.original_language
         tv_popularity.text = data.popularity.toString()
         tv_overview.text = data.overview
+        setupFavourite(data)
+    }
+
+    private fun setupFavourite(data: Result){
+        if (data.favourite){
+            fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+            fab_fav.setImageDrawable(resources.getDrawable(R.drawable.ic_favourite_red_24dp))
+            fab_fav.setOnClickListener {this.onRemoveFavourite(data)}
+        }else{
+            fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+            fab_fav.setImageDrawable(resources.getDrawable(R.drawable.ic_favourite_gray_24dp))
+            fab_fav.setOnClickListener {this.onAddFavourite(data)}
+        }
+    }
+
+    override fun onAddFavourite(data: Result) {
+        Log.d("DETAIL_ACTIVITY", "add favourite type: ${data.type}")
+        Log.d("DETAIL_ACTIVITY", "add favourite title: ${data.title}")
+        detailViewModel.bulkInsertData(data.copy(favourite = true))
+    }
+
+    override fun onRemoveFavourite(data: Result) {
+        detailViewModel.deleteData(data)
     }
 }

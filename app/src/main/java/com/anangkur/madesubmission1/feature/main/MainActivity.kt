@@ -16,6 +16,7 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
+import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.custom.ImageSliderFragment
 import com.anangkur.madesubmission1.feature.custom.SliderTabAdapter
@@ -24,6 +25,7 @@ import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
+import com.anangkur.madesubmission1.utils.Const
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -70,8 +72,20 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
-            LocalDataSource(SharedPreferenceHelper(this)), RemoteDataSource))).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(
+            this,
+            ViewModelFactory(
+                application,
+                Repository(
+                    LocalDataSource(
+                        SharedPreferenceHelper(this),
+                        ResultDatabase.getInstance(this)?.getDao()!!
+                    ),
+                    RemoteDataSource
+                )
+            )
+        ).get(MainViewModel::class.java)
+
         viewModel.apply {
             sliderDataLive.observe(this@MainActivity, Observer {
                 for (item in it.results){

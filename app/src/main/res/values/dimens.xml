@@ -21,4 +21,5 @@
     <dimen name="size_24sp">24sp</dimen>
     <dimen name="dimens_100dp">100dp</dimen>
     <dimen name="dimens_150dp">150dp</dimen>
+    <dimen name="dimens_64dp">64dp</dimen>
 </resources>

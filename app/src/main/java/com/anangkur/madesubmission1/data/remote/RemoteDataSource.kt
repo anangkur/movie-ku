@@ -2,13 +2,30 @@ package com.anangkur.madesubmission1.data.remote
 
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.model.Response
+import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.utils.Const
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-object RemoteDataSource : DataSource{
+object RemoteDataSource: DataSource{
+    override fun getAllResult(callback: DataSource.GetResultRoomCallback, type: Int) {
+        // do nothing
+    }
+
+    override fun getResultById(id: Int, callback: DataSource.GetResultByIdRoomCallback) {
+        // do nothing
+    }
+
+    override fun bulkInsertResult(data: Result, callback: DataSource.RoomCallback) {
+        // do nothing
+    }
+
+    override fun deleteResult(data: Result, callback: DataSource.RoomCallback) {
+        // do nothing
+    }
+
     override fun getData(page: Int, urlType: String, urlFilter: String,  callback: DataSource.GetDataCallback) {
         ApiService.getApiService.getData(urlType, urlFilter, Const.apiKey, page)
             .subscribeOn(Schedulers.newThread())

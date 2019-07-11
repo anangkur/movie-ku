@@ -3,38 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         style="@style/AppBarCollapsing"
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             style="@style/CollapsingDefault"
             app:contentScrim="@color/black_60"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <ImageView
-                android:id="@+id/iv_movie"
-                style="@style/ImageViewWrapV"
-                android:layout_height="@dimen/dimens_320dp"
-                app:layout_collapseMode="parallax"
-                android:background="@color/colorPrimaryDark"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/black_40"/>
-            <LinearLayout
-                style="@style/LinearVerticalWrap"
-                android:layout_gravity="bottom"
-                android:layout_marginHorizontal="@dimen/dimens_32dp"
-                android:layout_marginBottom="@dimen/dimens_32dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/ConstraintDefault">
+                <ImageView
+                    android:id="@+id/iv_movie"
+                    style="@style/ImageViewWrapV"
+                    android:layout_height="@dimen/dimens_320dp"
+                    app:layout_collapseMode="parallax"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black_40"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/TextTitleSuperExtraBig"
                     android:text="@string/text_lorem_ipsum"
                     android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/dimens_16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread"
+                    app:layout_constraintVertical_bias="0.8"/>
                 <RatingBar
                     android:id="@+id/rating"
                     style="@style/RatingBarSmall"
-                    android:layout_marginTop="@dimen/dimens_10dp"/>
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/dimens_10dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -42,12 +57,22 @@
                 app:layout_collapseMode="pin"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_fav"
+        style="@style/FABDefault"
+        android:layout_marginEnd="@dimen/dimens_24dp"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/ic_favourite_gray_24dp"
+        android:backgroundTint="@color/white"/>
     <androidx.core.widget.NestedScrollView
         style="@style/NestedScrollDefault"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/ConstraintDefault"
-            android:layout_margin="@dimen/dimens_32dp">
+            android:layout_marginHorizontal="@dimen/dimens_32dp"
+            android:layout_marginTop="@dimen/dimens_64dp"
+            android:layout_marginBottom="@dimen/dimens_32dp">
             <TextView
                 android:id="@+id/tv_release_date_constraint"
                 style="@style/TextTitleNormal"
