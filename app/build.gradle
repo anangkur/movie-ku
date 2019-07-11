@@ -14,7 +14,27 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "baseImageUrl", '"https://image.tmdb.org/t/p/original"'
+            buildConfigField "String", "baseUrl", '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", "apiKey", '"4b9bfb0e83de2a4afb17c157ccb254f3"'
+            buildConfigField "String", "movieUrl", '"movie"'
+            buildConfigField "String", "tvUrl", '"tv"'
+            buildConfigField "String", "popularUrl", '"popular"'
+            buildConfigField "String", "nowPlayingUrl", '"now_playing"'
+            buildConfigField "String", "topRatedUrl", '"top_rated"'
+            buildConfigField "String", "onTheAirUrl", '"on_the_air"'
+        }
         release {
+            buildConfigField "String", "baseImageUrl", '"https://image.tmdb.org/t/p/original"'
+            buildConfigField "String", "baseUrl", '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", "apiKey", '"4b9bfb0e83de2a4afb17c157ccb254f3"'
+            buildConfigField "String", "movieUrl", '"movie"'
+            buildConfigField "String", "tvUrl", '"tv"'
+            buildConfigField "String", "popularUrl", '"popular"'
+            buildConfigField "String", "nowPlayingUrl", '"now_playing"'
+            buildConfigField "String", "topRatedUrl", '"top_rated"'
+            buildConfigField "String", "onTheAirUrl", '"on_the_air"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -21,7 +21,8 @@
         <RatingBar
             android:id="@+id/rating"
             style="@style/RatingBarSmall"
-            android:layout_marginVertical="@dimen/dimens_10dp"/>
+            android:layout_marginTop="@dimen/dimens_10dp"
+            android:layout_marginBottom="@dimen/dimens_10dp"/>
         <LinearLayout
             style="@style/LinearHorizontalWrap">
             <TextView

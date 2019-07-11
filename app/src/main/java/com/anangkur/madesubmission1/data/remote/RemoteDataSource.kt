@@ -1,9 +1,9 @@
 package com.anangkur.madesubmission1.data.remote
 
+import com.anangkur.madesubmission1.BuildConfig.apiKey
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.utils.Const
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -27,7 +27,7 @@ object RemoteDataSource: DataSource{
     }
 
     override fun getData(page: Int, urlType: String, urlFilter: String,  callback: DataSource.GetDataCallback) {
-        ApiService.getApiService.getData(urlType, urlFilter, Const.apiKey, page)
+        ApiService.getApiService.getData(urlType, urlFilter, apiKey, page)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.onShowProgressDialog() }

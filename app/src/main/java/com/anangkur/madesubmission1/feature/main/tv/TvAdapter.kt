@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.main.MainItemListener
-import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -40,7 +40,7 @@ class TvAdapter(private val mainItemListener: MainItemListener): RecyclerView.Ad
         fun bind(data: Result){
             itemView.tv_title.text = data.original_name?:data.original_title
             Glide.with(itemView.context)
-                .load("${Const.baseImageUrl}${data.backdrop_path}")
+                .load("$baseImageUrl${data.backdrop_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().transform(RoundedCorners(48)))
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))

@@ -1,14 +1,13 @@
 package com.anangkur.madesubmission1.data.remote
 
+import com.anangkur.madesubmission1.BuildConfig.baseUrl
 import com.anangkur.madesubmission1.data.model.Response
-import com.anangkur.madesubmission1.utils.Const
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -33,7 +32,7 @@ interface ApiService{
                     .build()
 
             val mRetrofit = Retrofit.Builder()
-                .baseUrl(Const.baseUrl)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(mClient)

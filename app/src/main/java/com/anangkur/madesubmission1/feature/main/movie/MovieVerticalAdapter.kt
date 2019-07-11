@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.main.MainItemListener
-import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -40,7 +40,7 @@ class MovieVerticalAdapter(val itemListener: MainItemListener): RecyclerView.Ada
         fun bind(data: Result){
             val newRating = Utils.nomalizeRating(data.vote_average)
             Glide.with(itemView.context)
-                .load("${Const.baseImageUrl}${data.poster_path}")
+                .load("$baseImageUrl${data.poster_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().transforms(RoundedCorners(54)))
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))

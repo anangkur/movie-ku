@@ -5,10 +5,10 @@
         android:id="@+id/menu_favourite"
         android:icon="@drawable/ic_favorite_white_24dp"
         android:title="@string/menu_favourite"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menu_change_language"
         android:title="@string/menu_change_language"
         android:icon="@drawable/ic_language"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 </menu>

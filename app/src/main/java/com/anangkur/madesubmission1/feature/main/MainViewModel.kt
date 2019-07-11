@@ -3,11 +3,11 @@ package com.anangkur.madesubmission1.feature.main
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.anangkur.madesubmission1.BuildConfig.*
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.utils.Const
 
 class MainViewModel(application: Application, private val repository: Repository): AndroidViewModel(application) {
 
@@ -38,7 +38,7 @@ class MainViewModel(application: Application, private val repository: Repository
     val showProgressRating = MutableLiveData<Boolean>()
 
     fun getTvPopular(page: Int){
-        repository.getData(page, Const.tvUrl, Const.popularUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, popularUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressPopular.value = true
             }
@@ -57,7 +57,7 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getTvNew(page: Int){
-        repository.getData(page, Const.tvUrl, Const.onTheAirUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, onTheAirUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressNew.value = true
             }
@@ -76,7 +76,7 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getTvRating(page: Int){
-        repository.getData(page, Const.tvUrl, Const.topRatedUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, topRatedUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressRating.value = true
             }
@@ -95,7 +95,7 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getHorizontalData(page: Int){
-        repository.getData(page, Const.movieUrl, Const.nowPlayingUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, nowPlayingUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressHorizontalLive.value = true
             }
@@ -114,7 +114,7 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getVerticalData(page: Int){
-        repository.getData(page, Const.movieUrl, Const.popularUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, popularUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressVerticalLive.value = true
             }
@@ -133,7 +133,7 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getSliderData(page: Int){
-        repository.getData(page, Const.movieUrl, Const.nowPlayingUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, nowPlayingUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
                 showProgressSliderLive.value = true
             }

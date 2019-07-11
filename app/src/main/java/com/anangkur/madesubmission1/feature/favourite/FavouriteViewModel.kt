@@ -1,7 +1,6 @@
 package com.anangkur.madesubmission1.feature.favourite
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.anangkur.madesubmission1.data.DataSource

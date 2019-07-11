@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.utils.Const
 
 class DetailViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
 
@@ -14,11 +13,11 @@ class DetailViewModel(application: Application, private val repository: Reposito
 
     val showProgressInsertResult = MutableLiveData<Boolean>()
     val showErrorInsertResult = MutableLiveData<String>()
-    val successInsertResult = MutableLiveData<String>()
+    val successInsertResult = MutableLiveData<Boolean>()
 
     val showProgressDeleteResult = MutableLiveData<Boolean>()
     val showErrorDeleteResult = MutableLiveData<String>()
-    val successDeleteResult = MutableLiveData<String>()
+    val successDeleteResult = MutableLiveData<Boolean>()
 
     val showProgressGetData = MutableLiveData<Boolean>()
     val showErrorGetData = MutableLiveData<String>()
@@ -37,7 +36,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
                 showProgressDeleteResult.value = false
             }
             override fun onSuccess() {
-                successDeleteResult.value = Const.SNACKBAR_DELETE_SUCCESS
+                successDeleteResult.value = true
             }
             override fun onFailed(errorMessage: String?) {
                 showErrorDeleteResult.value = errorMessage
@@ -54,7 +53,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
                 showProgressInsertResult.value = false
             }
             override fun onSuccess() {
-                successInsertResult.value = Const.SNACKBAR_INSERT_SUCCESS
+                successInsertResult.value = true
             }
             override fun onFailed(errorMessage: String?) {
                 showErrorInsertResult.value = errorMessage

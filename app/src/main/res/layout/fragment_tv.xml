@@ -12,7 +12,8 @@
                 android:text="@string/category_popular"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginEnd="@dimen/dimens_16dp"
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
@@ -39,7 +40,8 @@
                 android:text="@string/category_new"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginEnd="@dimen/dimens_16dp"
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
@@ -66,7 +68,8 @@
                 android:text="@string/category_rating"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="@dimen/dimens_16dp"
+                android:layout_marginStart="@dimen/dimens_16dp"
+                android:layout_marginEnd="@dimen/dimens_16dp"
                 android:layout_marginTop="@dimen/dimens_16dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">

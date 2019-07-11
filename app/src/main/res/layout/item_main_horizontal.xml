@@ -11,7 +11,8 @@
         android:elevation="@dimen/dimens_4dp"/>
     <LinearLayout
         style="@style/LinearVerticalWrap"
-        android:layout_marginVertical="@dimen/dimens_24dp">
+        android:layout_marginTop="@dimen/dimens_24dp"
+        android:layout_marginBottom="@dimen/dimens_24dp">
         <TextView
             android:id="@+id/tv_title"
             style="@style/TextTitleBig"

@@ -1,6 +1,5 @@
 package com.anangkur.madesubmission1.feature.main
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,7 +24,6 @@ import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
-import com.anangkur.madesubmission1.utils.Const
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -160,12 +158,5 @@ class MainActivity : AppCompatActivity(){
         for (i in 0 until tabLayout.tabCount){
             (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i).isEnabled = false
         }
-    }
-
-    fun startActivityClearBackToHome(context: Context) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
-        context.startActivity(intent)
     }
 }

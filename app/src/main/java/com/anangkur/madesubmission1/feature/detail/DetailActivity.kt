@@ -1,7 +1,6 @@
 package com.anangkur.madesubmission1.feature.detail
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
@@ -19,7 +19,6 @@ import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
-import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.anangkur.madesubmission1.utils.ViewModelFactory
@@ -86,12 +85,16 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
                 data?.let { data ->  setupDataToView(data.copy(favourite = false))}
             })
             successInsertResult.observe(this@DetailActivity, Observer {
-                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
-                data?.let { data -> getDataById(data.id) }
+                if (it){
+                    Snackbar.make(findViewById(android.R.id.content), resources.getString(R.string.message_success_insert), Snackbar.LENGTH_SHORT).show()
+                    data?.let { data -> getDataById(data.id) }
+                }
             })
             successDeleteResult.observe(this@DetailActivity, Observer {
-                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
-                data?.let { data -> getDataById(data.id) }
+                if (it){
+                    Snackbar.make(findViewById(android.R.id.content), resources.getString(R.string.message_success_delete), Snackbar.LENGTH_SHORT).show()
+                    data?.let { data -> getDataById(data.id) }
+                }
             })
         }
     }
@@ -105,7 +108,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private fun setupDataToView(data: Result){
         Glide.with(this)
-            .load("${Const.baseImageUrl}${data.backdrop_path}")
+            .load("$baseImageUrl${data.backdrop_path}")
             .apply(RequestOptions().centerCrop())
             .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(this)))
             .apply(RequestOptions().error(R.drawable.ic_broken_image))

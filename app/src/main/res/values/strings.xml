@@ -8,13 +8,10 @@
     <string name="text_language">Language</string>
     <string name="text_popularity">Popularity</string>
     <string name="text_overview">Overview</string>
-    <string name="text_bahasa_indonesia">Bahasa Indonesia</string>
-    <string name="text_english">English</string>
     <string name="text_refresh">tap to reload</string>
     <!--end of others-->
 
     <!--toolbar-->
-    <string name="toolbar_setting_language">Change Language</string>
     <string name="toolbar_favourite">Favourite</string>
     <!--end of toolbar-->
 
@@ -30,17 +27,13 @@
     <string name="category_now_playing">Now Playing</string>
     <!--end of tv categories-->
 
-    <!--language-->
-    <string name="language_english">en</string>
-    <string name="language_indonesian">in</string>
-    <!--end of language-->
-
-    <!--button-->
-    <string name="btn_simpan">Save</string>
-    <!--text button-->
-
     <!--menu-->
     <string name="menu_change_language">Change Language</string>
     <string name="menu_favourite">Favourite</string>
     <!--end of menu-->
+    
+    <!--message-->
+    <string name="message_success_insert">Insert data successfully</string>
+    <string name="message_success_delete">Delete data successfully</string>
+    <!--end of message-->
 </resources>

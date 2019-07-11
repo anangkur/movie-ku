@@ -23,9 +23,10 @@
         style="@style/TextTitleNormal"
         android:layout_width="@dimen/dimens_240dp"
         android:layout_below="@+id/tv_title"
-        android:layout_marginHorizontal="@dimen/dimens_24dp"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginEnd="@dimen/dimens_24dp"
         android:text="@string/text_lorem_ipsum_long"
         android:textColor="@color/white"
-        android:maxLength="80"
+        android:maxLines="3"
         android:ellipsize="end"/>
 </RelativeLayout>

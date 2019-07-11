@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
@@ -25,7 +26,7 @@ class ImageSliderFragment: Fragment(){
         val data = arguments?.getParcelable<Result>(Const.BUNDLE_RESULT)
         data?.let { result ->
             Glide.with(requireContext())
-                .load("${Const.baseImageUrl}${result.backdrop_path}")
+                .load("$baseImageUrl${result.backdrop_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(requireContext())))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))
