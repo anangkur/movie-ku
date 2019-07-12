@@ -1,6 +1,7 @@
 package com.anangkur.madesubmission1.feature.main
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -8,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -109,8 +111,12 @@ class MainActivity : AppCompatActivity(){
 
     private fun setupTabAdapter(){
         tabAdapter = TabAdapter(supportFragmentManager)
-        tabAdapter.addFragment(MovieFragment(), getString(R.string.tab_movie), resources.getDrawable(R.drawable.ic_movie_active), resources.getDrawable(R.drawable.ic_movie_inactive))
-        tabAdapter.addFragment(TvFragment(), getString(R.string.tab_tv), resources.getDrawable(R.drawable.ic_tv_active), resources.getDrawable(R.drawable.ic_tv_inactive))
+        val resourceMovieActive =  ContextCompat.getDrawable(this,R.drawable.ic_movie_active) as Drawable
+        val resourceMovieInActive =  ContextCompat.getDrawable(this,R.drawable.ic_movie_inactive) as Drawable
+        val resourceTvActive =  ContextCompat.getDrawable(this,R.drawable.ic_tv_active) as Drawable
+        val resourceTvInActive =  ContextCompat.getDrawable(this,R.drawable.ic_tv_inactive) as Drawable
+        tabAdapter.addFragment(MovieFragment(), getString(R.string.tab_movie), resourceMovieActive, resourceMovieInActive)
+        tabAdapter.addFragment(TvFragment(), getString(R.string.tab_tv), resourceTvActive, resourceTvInActive)
     }
 
     private fun setupViewPager(){

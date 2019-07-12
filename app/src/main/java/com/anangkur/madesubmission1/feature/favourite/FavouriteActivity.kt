@@ -2,10 +2,12 @@ package com.anangkur.madesubmission1.feature.favourite
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.madesubmission1.R
@@ -50,15 +52,19 @@ class FavouriteActivity : AppCompatActivity() {
 
     private fun setupToolbar(){
         setSupportActionBar(toolbar)
-        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_black_24dp)
+        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         title = resources.getString(R.string.toolbar_favourite)
     }
 
     private fun setupTabAdapter(){
         tabAdapter = TabAdapter(supportFragmentManager)
-        tabAdapter.addFragment(FavouriteMovieFragment(), getString(R.string.tab_movie), resources.getDrawable(R.drawable.ic_movie_active), resources.getDrawable(R.drawable.ic_movie_inactive))
-        tabAdapter.addFragment(FavouriteTvFragment(), getString(R.string.tab_tv), resources.getDrawable(R.drawable.ic_tv_active), resources.getDrawable(R.drawable.ic_tv_inactive))
+        val resourceMovieActive =  ContextCompat.getDrawable(this,R.drawable.ic_movie_active) as Drawable
+        val resourceMovieInActive =  ContextCompat.getDrawable(this,R.drawable.ic_movie_inactive) as Drawable
+        val resourceTvActive =  ContextCompat.getDrawable(this,R.drawable.ic_tv_active) as Drawable
+        val resourceTvInActive =  ContextCompat.getDrawable(this,R.drawable.ic_tv_inactive) as Drawable
+        tabAdapter.addFragment(FavouriteMovieFragment(), getString(R.string.tab_movie), resourceMovieActive, resourceMovieInActive)
+        tabAdapter.addFragment(FavouriteTvFragment(), getString(R.string.tab_tv), resourceTvActive, resourceTvInActive)
     }
 
     private fun setupViewPager(){

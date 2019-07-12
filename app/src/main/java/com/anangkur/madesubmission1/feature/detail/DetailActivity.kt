@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
@@ -65,7 +66,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     private fun setupToolbar(){
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
-        toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_white_24dp)
+        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
@@ -125,11 +126,11 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     private fun setupFavourite(data: Result){
         if (data.favourite){
             fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-            fab_fav.setImageDrawable(resources.getDrawable(R.drawable.ic_favourite_red_24dp))
+            fab_fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_red_24dp))
             fab_fav.setOnClickListener {this.onRemoveFavourite(data)}
         }else{
             fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-            fab_fav.setImageDrawable(resources.getDrawable(R.drawable.ic_favourite_gray_24dp))
+            fab_fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_gray_24dp))
             fab_fav.setOnClickListener {this.onAddFavourite(data)}
         }
     }
