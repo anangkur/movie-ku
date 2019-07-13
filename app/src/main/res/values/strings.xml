@@ -9,6 +9,7 @@
     <string name="text_popularity">Popularity</string>
     <string name="text_overview">Overview</string>
     <string name="text_refresh">tap to reload</string>
+    <string name="text_search">Search</string>
     <!--end of others-->
 
     <!--toolbar-->
@@ -30,8 +31,9 @@
     <!--menu-->
     <string name="menu_change_language">Change Language</string>
     <string name="menu_favourite">Favourite</string>
+    <string name="menu_search">Search</string>
     <!--end of menu-->
-    
+
     <!--message-->
     <string name="message_success_insert">Insert data successfully</string>
     <string name="message_success_delete">Delete data successfully</string>

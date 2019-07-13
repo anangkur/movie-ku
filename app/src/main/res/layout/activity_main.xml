@@ -25,17 +25,32 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/vp_slider"
                     style="@style/ViewPagerDefault"
-                    android:layout_height="@dimen/dimens_240dp"/>
+                    android:layout_height="@dimen/dimens_280dp"/>
             </RelativeLayout>
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:layout_collapseMode="pin"/>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_slider"
                 style="@style/TabLayoutSlider"
                 android:layout_gravity="bottom|center"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:layout_collapseMode="pin">
+                <LinearLayout
+                    android:id="@+id/search_bar"
+                    style="@style/LinearHorizontalWrap"
+                    android:background="@drawable/rect_rounded_10dp_solid_white"
+                    android:gravity="center|start">
+                    <ImageView
+                        style="@style/ImageViewWrapAll"
+                        android:src="@drawable/ic_search_gray"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        style="@style/TextTitleNormal"
+                        android:text="@string/text_search"
+                        android:layout_marginStart="@dimen/dimens_10dp"/>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_main"

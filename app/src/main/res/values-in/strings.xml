@@ -9,6 +9,7 @@
     <string name="text_popularity">Popularitas</string>
     <string name="text_overview">Ikhtisar</string>
     <string name="text_refresh">tekan untuk memuat ulang</string>
+    <string name="text_search">Mencari</string>
     <!--end of others-->
 
     <!--toolbar-->
@@ -29,7 +30,8 @@
 
     <!--menu-->
     <string name="menu_change_language">Ubah Bahasa</string>
-    <string name="menu_favourite">Favourite</string>
+    <string name="menu_favourite">Favorit</string>
+    <string name="menu_search">Mencari</string>
     <!--end of menu-->
 
     <!--message-->
