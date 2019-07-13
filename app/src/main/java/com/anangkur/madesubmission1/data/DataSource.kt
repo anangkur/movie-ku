@@ -6,6 +6,7 @@ import com.anangkur.madesubmission1.data.model.Result
 interface DataSource {
     // remote data
     fun getData(page: Int, urlType: String, urlFilter: String, callback: GetDataCallback)
+    fun getSearchData(urlType: String, query: String, callback: GetDataCallback)
 
     // local data
     fun saveLanguage(language: String)

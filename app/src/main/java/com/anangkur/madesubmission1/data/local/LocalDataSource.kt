@@ -12,6 +12,10 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val resultDao: ResultDao): DataSource{
+    override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
+        // do nothing
+    }
+
     override fun getAllResult(callback: DataSource.GetResultRoomCallback, type: Int) {
         resultDao.getAllResult(type)
             .subscribeOn(Schedulers.newThread())

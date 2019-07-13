@@ -21,6 +21,11 @@ interface ApiService{
                 @Query("api_key") apiKey: String,
                 @Query("page") page: Int): Observable<Response>
 
+    @GET("search/{urlType}")
+    fun getSearchData(@Path("urlType") urlType: String,
+                      @Query("api_key") apiKey: String,
+                      @Query("query") query: String): Observable<Response>
+
     companion object Factory{
         val getApiService: ApiService by lazy {
 

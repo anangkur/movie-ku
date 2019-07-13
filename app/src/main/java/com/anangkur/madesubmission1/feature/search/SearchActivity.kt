@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
@@ -20,9 +19,8 @@ import com.anangkur.madesubmission1.feature.search.movie.SearchMovieFragment
 import com.anangkur.madesubmission1.feature.search.tv.SearchTvFragment
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
-import android.widget.Toast
-import android.app.SearchManager
 import androidx.appcompat.widget.SearchView
+import kotlinx.android.synthetic.main.activity_search.toolbar
 
 
 class SearchActivity : AppCompatActivity() {
@@ -40,6 +38,7 @@ class SearchActivity : AppCompatActivity() {
         setupCustomTab()
         setupSelectedCustomTab(0)
         setupViewModel()
+        setupSearchView()
     }
 
     private fun setupToolbar(){
@@ -110,5 +109,20 @@ class SearchActivity : AppCompatActivity() {
         ).get(SearchViewModel::class.java)
 
         viewModel.apply {}
+    }
+
+    private fun setupSearchView(){
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    viewModel.getAllMovie(it)
+                    viewModel.getAllTv(it)
+                }
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 }

@@ -26,7 +26,7 @@ class ImageSliderFragment: Fragment(){
         val data = arguments?.getParcelable<Result>(Const.BUNDLE_RESULT)
         data?.let { result ->
             Glide.with(requireContext())
-                .load("$baseImageUrl${result.backdrop_path}")
+                .load("$baseImageUrl${result.backdrop_path?:data.poster_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(requireContext())))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))

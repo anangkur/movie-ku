@@ -6,6 +6,23 @@ import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 
 class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
+    override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
+        remoteDataSource.getSearchData(urlType, query, object : DataSource.GetDataCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+            override fun onSuccess(data: Response) {
+                callback.onSuccess(data)
+            }
+            override fun onFailed(errorMessage: String?) {
+                callback.onFailed(errorMessage)
+            }
+        })
+    }
+
     override fun getAllResult(callback: DataSource.GetResultRoomCallback, type: Int) {
         localDataSource.getAllResult(object : DataSource.GetResultRoomCallback{
             override fun onShowProgressDialog() {

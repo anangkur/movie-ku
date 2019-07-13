@@ -40,7 +40,7 @@ class TvAdapter(private val mainItemListener: MainItemListener): RecyclerView.Ad
         fun bind(data: Result){
             itemView.tv_title.text = data.original_name?:data.original_title
             Glide.with(itemView.context)
-                .load("$baseImageUrl${data.backdrop_path}")
+                .load("$baseImageUrl${data.backdrop_path?:data.poster_path}")
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().transform(RoundedCorners(48)))
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))

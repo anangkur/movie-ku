@@ -109,7 +109,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private fun setupDataToView(data: Result){
         Glide.with(this)
-            .load("$baseImageUrl${data.backdrop_path}")
+            .load("$baseImageUrl${data.backdrop_path?:data.poster_path}")
             .apply(RequestOptions().centerCrop())
             .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(this)))
             .apply(RequestOptions().error(R.drawable.ic_broken_image))
