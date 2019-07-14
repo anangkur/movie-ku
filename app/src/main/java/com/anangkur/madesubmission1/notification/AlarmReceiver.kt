@@ -31,11 +31,21 @@ class AlarmReceiver : BroadcastReceiver(){
         Log.d("ALARM_SETUP", "timeArray: ${timeArray[0]}, ${timeArray[1]}, ${timeArray[2]}")
 
         val calendar = Calendar.getInstance()
+
+        if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= timeArray[0].toInt()) {
+            Log.d("ALARM_SETUP", "Alarm will schedule for next day!")
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+        else{
+            Log.d("ALARM_SETUP", "Alarm will schedule for today!")
+        }
+
         calendar.set(Calendar.HOUR_OF_DAY, timeArray[0].toInt())
         calendar.set(Calendar.MINUTE, timeArray[1].toInt())
         calendar.set(Calendar.SECOND, timeArray[2].toInt())
 
         val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, 0)
+
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
 

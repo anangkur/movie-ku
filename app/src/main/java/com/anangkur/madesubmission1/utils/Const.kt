@@ -30,5 +30,5 @@ object Const {
     const val alarmStateInActive = "InActive"
 
     const val alarmDailyTime = "07:00:00"
-    const val alarmNewReleaseTime = "07:00:00"
+    const val alarmNewReleaseTime = "08:00:00"
 }
