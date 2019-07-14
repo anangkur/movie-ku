@@ -11,8 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.search.SearchActivity"
-            android:theme="@style/SearchTheme"/>
+        <receiver android:name="com.anangkur.madesubmission1.widget.FavouriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favourite_widget_info" />
+        </receiver>
+
+        <activity
+            android:name=".feature.search.SearchActivity"
+            android:theme="@style/SearchTheme" />
         <activity android:name=".feature.favourite.FavouriteActivity" />
         <activity android:name=".feature.main.MainActivity">
             <intent-filter>
@@ -22,6 +33,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.detail.DetailActivity" />
+
+        <service
+            android:name=".feature.custom.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service
+            android:name=".notification.MessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -27,7 +28,9 @@ import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
 import com.anangkur.madesubmission1.feature.search.SearchActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
 
         setupViewModel()
         viewModel.getSliderData(1)
+        generateFirebaseToken()
 
         setupTabAdapter()
         setupViewPager()
@@ -171,5 +175,20 @@ class MainActivity : AppCompatActivity(), MainActionListener{
 
     override fun onClickSearch() {
         SearchActivity().startActivity(this)
+    }
+
+    private fun generateFirebaseToken(){
+        FirebaseInstanceId.getInstance()
+            .instanceId.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@OnCompleteListener
+            }
+
+            val token = task.result?.token
+            token?.let {
+                viewModel.saveFirebaseMessagingToken(token)
+                Log.d("generateToken", token)
+            }
+        })
     }
 }

@@ -150,4 +150,8 @@ class MainViewModel(application: Application, private val repository: Repository
             }
         })
     }
+
+    fun saveFirebaseMessagingToken(token: String){
+        repository.saveFirebaseMessagingToken(token)
+    }
 }
