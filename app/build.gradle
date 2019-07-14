@@ -82,7 +82,13 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.1.0'
     androidTestImplementation 'androidx.room:room-testing:2.1.0'
 
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.0.1'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

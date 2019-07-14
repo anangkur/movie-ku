@@ -38,4 +38,13 @@
     <string name="message_success_insert">Insert data successfully</string>
     <string name="message_success_delete">Delete data successfully</string>
     <!--end of message-->
+
+    <!--alarm-->
+    <string name="alarm_daily_title">Daily Reminder</string>
+    <string name="alarm_release_title">New Release Reminder</string>
+    <string name="alarm_daily_message">We have something for you</string>
+    <string name="alarm_release_message">New release! Check it out</string>
+    <string name="alarm_daily_cancel">Daily Reminder Canceled</string>
+    <string name="alarm_release_cancel">Release Reminder Canceled</string>
+    <!--end of alarm-->
 </resources>

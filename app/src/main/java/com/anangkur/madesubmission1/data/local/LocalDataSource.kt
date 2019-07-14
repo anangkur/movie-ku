@@ -12,6 +12,22 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val resultDao: ResultDao): DataSource{
+    override fun saveAlarmState(alarmState: String) {
+        preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE, alarmState)
+    }
+
+    override fun loadAlarmState(): String? {
+        return preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE)
+    }
+
+    override fun deleteAlarmState() {
+        preferenceHelper.deleteStringPreferences(Const.PREF_ALARM_STATE)
+    }
+
+    override fun saveFirebaseMessagingToken(token: String) {
+        preferenceHelper.saveStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN, token)
+    }
+
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
         // do nothing
     }

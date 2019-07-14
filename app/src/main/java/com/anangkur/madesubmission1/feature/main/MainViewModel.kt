@@ -37,6 +37,8 @@ class MainViewModel(application: Application, private val repository: Repository
     val showProgressNew = MutableLiveData<Boolean>()
     val showProgressRating = MutableLiveData<Boolean>()
 
+    val alarmStateLive = MutableLiveData<String>()
+
     fun getTvPopular(page: Int){
         repository.getData(page, tvUrl, popularUrl, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {
@@ -149,5 +151,17 @@ class MainViewModel(application: Application, private val repository: Repository
                 onHideProgressDialog()
             }
         })
+    }
+
+    fun saveFirebaseMessagingToken(token: String){
+        repository.saveFirebaseMessagingToken(token)
+    }
+
+    fun saveAlarmState(state: String){
+        repository.saveAlarmState(state)
+    }
+
+    fun loadAlarmState(){
+        alarmStateLive.value = repository.loadAlarmState()
     }
 }

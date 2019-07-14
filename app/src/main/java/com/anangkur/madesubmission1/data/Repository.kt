@@ -6,6 +6,22 @@ import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 
 class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
+    override fun saveAlarmState(alarmState: String) {
+        localDataSource.saveAlarmState(alarmState)
+    }
+
+    override fun loadAlarmState(): String? {
+        return localDataSource.loadAlarmState()
+    }
+
+    override fun deleteAlarmState() {
+        localDataSource.deleteAlarmState()
+    }
+
+    override fun saveFirebaseMessagingToken(token: String) {
+        localDataSource.saveFirebaseMessagingToken(token)
+    }
+
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
         remoteDataSource.getSearchData(urlType, query, object : DataSource.GetDataCallback{
             override fun onShowProgressDialog() {

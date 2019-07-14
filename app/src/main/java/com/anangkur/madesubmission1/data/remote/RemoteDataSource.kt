@@ -10,6 +10,22 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 object RemoteDataSource: DataSource{
+    override fun saveAlarmState(alarmState: String) {
+        // do nothing
+    }
+
+    override fun loadAlarmState(): String? {
+        return null
+    }
+
+    override fun deleteAlarmState() {
+        // do nothing
+    }
+
+    override fun saveFirebaseMessagingToken(token: String) {
+        // do nothing
+    }
+
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
         ApiService.getApiService.getSearchData(urlType, apiKey, query)
             .subscribeOn(Schedulers.newThread())
