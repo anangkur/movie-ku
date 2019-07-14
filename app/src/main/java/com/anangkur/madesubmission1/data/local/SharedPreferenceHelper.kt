@@ -14,4 +14,8 @@ class SharedPreferenceHelper(context: Context){
     fun loadStringPreferences(key: String): String?{
         return sharedPreferences.getString(key, "")
     }
+
+    fun deleteStringPreferences(key: String){
+        sharedPreferences.edit().remove(key).apply()
+    }
 }

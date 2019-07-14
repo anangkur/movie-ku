@@ -24,9 +24,8 @@ class MessagingService: FirebaseMessagingService() {
         val tempMessage = remoteMessage.data?.get("body") ?: ""
         val tempItemId = remoteMessage.data?.get("id") ?: ""
         val tempType = remoteMessage.data?.get("type") ?: ""
-        val tempAdditional = remoteMessage.data?.get("additional") ?: ""
-        Log.d("MessagingService", "tempTitle: $tempTitle, tempMessage: $tempMessage, tempItemId: $tempItemId, tempType: $tempType, tempAdditional: $tempAdditional" )
+        Log.d("MessagingService", "tempTitle: $tempTitle, tempMessage: $tempMessage, tempItemId: $tempItemId, tempType: $tempType")
 
-        NotificationHelper(this).createNoticication(tempTitle, tempMessage, tempType, tempItemId)
+        NotificationHelper(this).createNoticication(tempTitle, tempMessage, tempItemId.toInt())
     }
 }

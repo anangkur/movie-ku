@@ -38,4 +38,13 @@
     <string name="message_success_insert">Input data berhasil</string>
     <string name="message_success_delete">Hapus data berhasil</string>
     <!--end of message-->
+
+    <!--alarm-->
+    <string name="alarm_daily_title">Pengingat Harian</string>
+    <string name="alarm_release_title">Pengingat Rilis Terbaru</string>
+    <string name="alarm_daily_message">Kami punya sesuatu untukmu</string>
+    <string name="alarm_release_message">Rilis Terbaru! cek sekarang</string>
+    <string name="alarm_daily_cancel">Pengingan Harian Dibatalkan</string>
+    <string name="alarm_release_cancel">Pengingat Rilis Dibatalkan</string>
+    <!--end of alarm-->
 </resources>

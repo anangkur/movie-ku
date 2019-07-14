@@ -15,11 +15,11 @@ import com.anangkur.madesubmission1.utils.Const
 
 class NotificationHelper(private val context: Context){
 
-    fun createNoticication(title: String, message: String, type: String, itemId: String) {
-        showNotification(title, itemId, buildNotification(createIntent(), type, title, message))
+    fun createNoticication(title: String, message: String, itemId: Int) {
+        showNotification(title, itemId, buildNotification(createIntent(), title, message))
     }
 
-    private fun showNotification(title: String, itemId: String, mBuilder: NotificationCompat.Builder){
+    private fun showNotification(title: String, itemId: Int, mBuilder: NotificationCompat.Builder){
         val mNotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationChannelId = Const.notificationChannelId
 
@@ -34,7 +34,7 @@ class NotificationHelper(private val context: Context){
             mNotificationManager.createNotificationChannel(notificationChannel)
         }
 
-        mNotificationManager.notify(itemId.length, mBuilder.build())
+        mNotificationManager.notify(itemId, mBuilder.build())
     }
 
     private fun createIntent(): PendingIntent {
@@ -49,8 +49,8 @@ class NotificationHelper(private val context: Context){
         }
     }
 
-    private fun buildNotification(pendingIntent: PendingIntent, type: String, title: String, message: String): NotificationCompat.Builder{
-        return NotificationCompat.Builder(context, type)
+    private fun buildNotification(pendingIntent: PendingIntent, title: String, message: String): NotificationCompat.Builder{
+        return NotificationCompat.Builder(context, Const.notificationChannelId)
             .setSmallIcon(R.drawable.ic_movie_filter_white_24dp)
             .setContentTitle(title)
             .setContentText(message)
