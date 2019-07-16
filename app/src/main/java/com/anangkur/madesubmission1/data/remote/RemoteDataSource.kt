@@ -10,15 +10,15 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 object RemoteDataSource: DataSource{
-    override fun saveAlarmState(alarmState: String) {
+    override fun saveAlarmState(alarmState: String, type: Int) {
         // do nothing
     }
 
-    override fun loadAlarmState(): String? {
+    override fun loadAlarmState(type: Int): String? {
         return null
     }
 
-    override fun deleteAlarmState() {
+    override fun deleteAlarmState(type: Int) {
         // do nothing
     }
 

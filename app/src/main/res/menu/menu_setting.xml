@@ -5,5 +5,10 @@
         android:id="@+id/menu_change_language"
         android:title="@string/menu_change_language"
         android:icon="@drawable/ic_language"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_notification_setting"
+        android:title="@string/menu_notification_setting"
+        android:icon="@drawable/ic_settings_white_24dp"
+        app:showAsAction="never"/>
 </menu>

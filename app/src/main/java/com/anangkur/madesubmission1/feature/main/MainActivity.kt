@@ -27,6 +27,7 @@ import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
+import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.madesubmission1.feature.search.SearchActivity
 import com.anangkur.madesubmission1.notification.AlarmReceiver
 import com.anangkur.madesubmission1.utils.Const
@@ -52,7 +53,6 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupViewModel()
         viewModel.getSliderData(1)
         generateFirebaseToken()
-        viewModel.loadAlarmState()
 
         setupTabAdapter()
         setupViewPager()
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         when (item.itemId){
             R.id.menu_change_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             R.id.menu_favourite -> FavouriteActivity().startActivity(this)
+            R.id.menu_notification_setting -> NotificationSettingActivity().startActivity(this)
         }
         return true
     }
@@ -114,15 +115,6 @@ class MainActivity : AppCompatActivity(), MainActionListener{
                     layout_error_slider.visibility = View.GONE
                 }else{
                     pb_slider.visibility = View.GONE
-                }
-            })
-            alarmStateLive.observe(this@MainActivity, Observer {
-                if (it.isEmpty()){
-                    setupAlarm()
-                    saveAlarmState(Const.alarmStateActive)
-                    Log.d("ALARM_SETUP", "Repeating alarm set, $it")
-                }else{
-                    Log.d("ALARM_SETUP", "Repeating alarm has been set, $it")
                 }
             })
         }
@@ -202,22 +194,5 @@ class MainActivity : AppCompatActivity(), MainActionListener{
                 Log.d("generateToken", token)
             }
         })
-    }
-
-    private fun setupAlarm(){
-        AlarmReceiver().setupAlarm(
-            context = this,
-            title = resources.getString(R.string.alarm_daily_title),
-            message = resources.getString(R.string.alarm_daily_message),
-            notifId = Const.typeAlarmDaily,
-            time = Const.alarmDailyTime
-        )
-        AlarmReceiver().setupAlarm(
-            context = this,
-            title = resources.getString(R.string.alarm_release_title),
-            message = resources.getString(R.string.alarm_release_message),
-            notifId = Const.typeAlarmRelease,
-            time = Const.alarmNewReleaseTime
-        )
     }
 }

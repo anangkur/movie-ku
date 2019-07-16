@@ -20,6 +20,7 @@ import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
 import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
+import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 import com.anangkur.madesubmission1.utils.ViewModelFactory
@@ -54,6 +55,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.menu_change_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            R.id.menu_notification_setting -> NotificationSettingActivity().startActivity(this)
         }
         return true
     }

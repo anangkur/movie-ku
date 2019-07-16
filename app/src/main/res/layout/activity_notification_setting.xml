@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LinearVerticalDefault"
+    tools:context=".feature.notificationSetting.NotificationSettingActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"/>
+
+    <!--daily notification section-->
+    <LinearLayout
+        style="@style/LinearHorizontalWrap"
+        android:padding="@dimen/dimens_10dp"
+        android:gravity="center">
+        <LinearLayout
+            style="@style/LinearVerticalWrapAll">
+            <TextView
+                style="@style/TextTitleBig"
+                android:text="@string/text_daily_notification"
+                android:textStyle="bold"/>
+            <TextView
+                style="@style/TextTitleNormal"
+                android:text="@string/text_daily_notification_description"/>
+        </LinearLayout>
+        <Switch
+            android:id="@+id/switch_daily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginTop="@dimen/dimens_10dp"
+        android:layout_marginBottom="@dimen/dimens_10dp"/>
+
+    <!--release notification section-->
+    <LinearLayout
+        style="@style/LinearHorizontalWrap"
+        android:padding="@dimen/dimens_10dp"
+        android:gravity="center">
+        <LinearLayout
+            style="@style/LinearVerticalWrapAll">
+            <TextView
+                style="@style/TextTitleBig"
+                android:text="@string/text_release_notification"
+                android:textStyle="bold"/>
+            <TextView
+                style="@style/TextTitleNormal"
+                android:text="@string/text_release_notification_description"/>
+        </LinearLayout>
+        <Switch
+            android:id="@+id/switch_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

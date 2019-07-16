@@ -16,9 +16,9 @@ interface DataSource {
     fun deleteResult(data: Result, callback: RoomCallback)
     fun getResultById(id: Int, callback: GetResultByIdRoomCallback)
     fun saveFirebaseMessagingToken(token: String)
-    fun saveAlarmState(alarmState: String)
-    fun loadAlarmState(): String?
-    fun deleteAlarmState()
+    fun saveAlarmState(alarmState: String, type: Int)
+    fun loadAlarmState(type: Int): String?
+    fun deleteAlarmState(type: Int)
 
     // response callback
     interface GetDataCallback: ResponseCallback<Response>

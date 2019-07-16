@@ -10,6 +10,10 @@
     <string name="text_overview">Overview</string>
     <string name="text_refresh">tap to reload</string>
     <string name="text_search">Search</string>
+    <string name="text_daily_notification">Daily Notification</string>
+    <string name="text_daily_notification_description">Daily Notification is a</string>
+    <string name="text_release_notification">New Release Notification</string>
+    <string name="text_release_notification_description">New Release Notification is a</string>
     <!--end of others-->
 
     <!--toolbar-->
@@ -32,6 +36,7 @@
     <string name="menu_change_language">Change Language</string>
     <string name="menu_favourite">Favourite</string>
     <string name="menu_search">Search</string>
+    <string name="menu_notification_setting">Notification Setting</string>
     <!--end of menu-->
 
     <!--message-->

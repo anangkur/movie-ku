@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name="com.anangkur.madesubmission1.widget.FavouriteWidget">
+        <activity android:name=".feature.notificationSetting.NotificationSettingActivity"></activity>
+
+        <receiver android:name=".widget.FavouriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -37,7 +39,6 @@
         <service
             android:name=".feature.custom.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
         <service
             android:name=".notification.MessagingService"
             android:permission="com.google.android.c2dm.permission.SEND"

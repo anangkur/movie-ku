@@ -323,6 +323,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/notificationSetting/NotifiationSettingViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/notificationSetting/NotificationSettingActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/search/SearchActivity.kt">
           <value>
             <set />
@@ -428,6 +438,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_notification_setting.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml">
           <value>
             <set />
@@ -469,6 +484,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/menu/menu_search.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/menu_setting.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/menu_setting_favourite.xml">
           <value>
             <set />
           </value>
@@ -543,6 +568,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_d2/lib/main.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_d2/lib/test.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../flutter_eudeka_d2/test/widget_test.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../flutter_eudeka_finaltask/lib/detail.dart">
           <value>
             <set />
@@ -554,6 +594,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../flutter_eudeka_finaltask/lib/model/response.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/flutter_app_eudeka/lib/main.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/flutter_app_eudeka/lib/textinput.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../submissionmade3/flutter_app_eudeka/pubspec.yaml">
           <value>
             <set />
           </value>

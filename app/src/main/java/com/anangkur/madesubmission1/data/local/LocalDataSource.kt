@@ -12,16 +12,26 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val resultDao: ResultDao): DataSource{
-    override fun saveAlarmState(alarmState: String) {
-        preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE, alarmState)
+    override fun saveAlarmState(alarmState: String, type: Int) {
+        when(type){
+            Const.typeAlarmDaily -> preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE_DAILY, alarmState)
+            Const.typeAlarmRelease -> preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE_RELEASE, alarmState)
+        }
     }
 
-    override fun loadAlarmState(): String? {
-        return preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE)
+    override fun loadAlarmState(type: Int): String? {
+        return when(type){
+            Const.typeAlarmDaily -> preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_DAILY)
+            Const.typeAlarmRelease -> preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_RELEASE)
+            else -> return null
+        }
     }
 
-    override fun deleteAlarmState() {
-        preferenceHelper.deleteStringPreferences(Const.PREF_ALARM_STATE)
+    override fun deleteAlarmState(type: Int) {
+        when (type){
+            Const.typeAlarmDaily -> preferenceHelper.deleteStringPreferences(Const.PREF_ALARM_STATE_DAILY)
+            Const.typeAlarmRelease -> preferenceHelper.deleteStringPreferences(Const.PREF_ALARM_STATE_RELEASE)
+        }
     }
 
     override fun saveFirebaseMessagingToken(token: String) {

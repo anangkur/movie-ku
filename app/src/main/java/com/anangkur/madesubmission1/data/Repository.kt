@@ -6,16 +6,16 @@ import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 
 class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
-    override fun saveAlarmState(alarmState: String) {
-        localDataSource.saveAlarmState(alarmState)
+    override fun saveAlarmState(alarmState: String, type: Int) {
+        localDataSource.saveAlarmState(alarmState, type)
     }
 
-    override fun loadAlarmState(): String? {
-        return localDataSource.loadAlarmState()
+    override fun loadAlarmState(type: Int): String? {
+        return localDataSource.loadAlarmState(type)
     }
 
-    override fun deleteAlarmState() {
-        localDataSource.deleteAlarmState()
+    override fun deleteAlarmState(type: Int) {
+        localDataSource.deleteAlarmState(type)
     }
 
     override fun saveFirebaseMessagingToken(token: String) {
