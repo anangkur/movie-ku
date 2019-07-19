@@ -47,19 +47,19 @@ object RemoteDataSource: DataSource{
             })
     }
 
-    override fun getAllResult(callback: DataSource.GetResultRoomCallback, type: Int) {
+    override fun getAllResult(callback: DataSource.ProviderCallback) {
         // do nothing
     }
 
-    override fun getResultById(id: Int, callback: DataSource.GetResultByIdRoomCallback) {
+    override fun getResultById(id: Int, callback: DataSource.ProviderCallback) {
         // do nothing
     }
 
-    override fun bulkInsertResult(data: Result, callback: DataSource.RoomCallback) {
+    override fun bulkInsertResult(data: Result, callback: DataSource.ProviderCallback) {
         // do nothing
     }
 
-    override fun deleteResult(data: Result, callback: DataSource.RoomCallback) {
+    override fun deleteResult(data: Result, callback: DataSource.ProviderCallback) {
         // do nothing
     }
 

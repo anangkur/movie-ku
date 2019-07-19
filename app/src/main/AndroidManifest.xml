@@ -53,6 +53,13 @@
             android:name=".notification.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
+
+        <provider
+            android:name=".data.MovieProvider"
+            android:authorities="com.anangkur.madesubmission1.provider"
+            android:exported="true"
+            android:permission="com.anangkur.madesubmission1.provider.READ_WRITE"/>
+
     </application>
 
 </manifest>

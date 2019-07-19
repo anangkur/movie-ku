@@ -110,7 +110,8 @@ class FavouriteActivity : AppCompatActivity() {
                 Repository(
                     LocalDataSource(
                         SharedPreferenceHelper(this),
-                        ResultDatabase.getInstance(this)?.getDao()!!
+                        ResultDatabase.getInstance(this)?.getDao()!!,
+                        this
                     ),
                     RemoteDataSource
                 )

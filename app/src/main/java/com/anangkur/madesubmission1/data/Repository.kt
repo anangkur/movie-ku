@@ -1,5 +1,6 @@
 package com.anangkur.madesubmission1.data
 
+import android.database.Cursor
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
@@ -39,70 +40,60 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
         })
     }
 
-    override fun getAllResult(callback: DataSource.GetResultRoomCallback, type: Int) {
-        localDataSource.getAllResult(object : DataSource.GetResultRoomCallback{
-            override fun onShowProgressDialog() {
-                callback.onShowProgressDialog()
+    override fun getAllResult(callback: DataSource.ProviderCallback) {
+        localDataSource.getAllResult(object : DataSource.ProviderCallback{
+            override fun onPostExcecute() {
+                callback.onPostExcecute()
             }
-            override fun onHideProgressDialog() {
-                callback.onHideProgressDialog()
-            }
-            override fun onSuccess(data: List<Result>) {
-                callback.onSuccess(data)
-            }
-            override fun onFailed(errorMessage: String?) {
-                callback.onFailed(errorMessage)
-            }
-        }, type)
-    }
 
-    override fun getResultById(id: Int, callback: DataSource.GetResultByIdRoomCallback) {
-        localDataSource.getResultById(id, object : DataSource.GetResultByIdRoomCallback{
-            override fun onShowProgressDialog() {
-                callback.onShowProgressDialog()
+            override fun onPreExcecute() {
+                callback.onPreExcecute()
             }
-            override fun onHideProgressDialog() {
-                callback.onHideProgressDialog()
-            }
-            override fun onSuccess(data: Result) {
-                callback.onSuccess(data)
-            }
-            override fun onFailed(errorMessage: String?) {
-                callback.onFailed(errorMessage)
+            override fun onPostExcecute(data: Cursor?) {
+                callback.onPostExcecute(data)
             }
         })
     }
 
-    override fun bulkInsertResult(data: Result, callback: DataSource.RoomCallback) {
-        localDataSource.bulkInsertResult(data, object : DataSource.RoomCallback{
-            override fun onShowProgressDialog() {
-                callback.onShowProgressDialog()
+    override fun getResultById(id: Int, callback: DataSource.ProviderCallback) {
+        localDataSource.getResultById(id, object : DataSource.ProviderCallback{
+            override fun onPostExcecute() {
+                callback.onPostExcecute()
             }
-            override fun onHideProgressDialog() {
-                callback.onHideProgressDialog()
+
+            override fun onPreExcecute() {
+                callback.onPreExcecute()
             }
-            override fun onSuccess() {
-                callback.onSuccess()
-            }
-            override fun onFailed(errorMessage: String?) {
-                callback.onFailed(errorMessage)
+            override fun onPostExcecute(data: Cursor?) {
+                callback.onPostExcecute(data)
             }
         })
     }
 
-    override fun deleteResult(data: Result, callback: DataSource.RoomCallback) {
-        localDataSource.deleteResult(data, object : DataSource.RoomCallback{
-            override fun onShowProgressDialog() {
-                callback.onShowProgressDialog()
+    override fun bulkInsertResult(data: Result, callback: DataSource.ProviderCallback) {
+        localDataSource.bulkInsertResult(data, object : DataSource.ProviderCallback{
+            override fun onPreExcecute() {
+                callback.onPreExcecute()
             }
-            override fun onHideProgressDialog() {
-                callback.onHideProgressDialog()
+            override fun onPostExcecute(data: Cursor?) {
+                callback.onPostExcecute(data)
             }
-            override fun onSuccess() {
-                callback.onSuccess()
+            override fun onPostExcecute() {
+                callback.onPostExcecute()
             }
-            override fun onFailed(errorMessage: String?) {
-                callback.onFailed(errorMessage)
+        })
+    }
+
+    override fun deleteResult(data: Result, callback: DataSource.ProviderCallback) {
+        localDataSource.deleteResult(data, object : DataSource.ProviderCallback{
+            override fun onPreExcecute() {
+                callback.onPreExcecute()
+            }
+            override fun onPostExcecute(data: Cursor?) {
+                callback.onPostExcecute(data)
+            }
+            override fun onPostExcecute() {
+                callback.onPostExcecute()
             }
         })
     }

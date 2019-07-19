@@ -74,7 +74,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private fun setupViewModel(){
         detailViewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
-            LocalDataSource(SharedPreferenceHelper(this), ResultDatabase.getInstance(this)?.getDao()!!), RemoteDataSource)))
+            LocalDataSource(SharedPreferenceHelper(this), ResultDatabase.getInstance(this)?.getDao()!!, this), RemoteDataSource)))
             .get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
@@ -82,7 +82,11 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
                 data?.let { data -> getDataById(data.id) }
             })
             successGetData.observe(this@DetailActivity, Observer {
-                setupDataToView(it)
+                if (it != null){
+                    setupDataToView(it)
+                }else{
+                    data?.let { setupDataToView(it) }
+                }
             })
             showErrorGetData.observe(this@DetailActivity, Observer {
                 data?.let { data ->  setupDataToView(data.copy(favourite = false))}
