@@ -36,11 +36,6 @@ class FavouriteTvFragment : Fragment(), MainItemListener{
         setupAdapter()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getAllTv()
-    }
-
     private fun setupViewModel(){
         viewModel = (requireActivity() as FavouriteActivity).viewModel
         viewModel.apply {
@@ -50,7 +45,6 @@ class FavouriteTvFragment : Fragment(), MainItemListener{
             })
             showErrorGetTv.observe(this@FavouriteTvFragment, Observer {
                 layout_error_fav.visibility = View.VISIBLE
-                layout_error_fav.setOnClickListener { getAllMovie() }
             })
             showProgressGetTv.observe(this@FavouriteTvFragment, Observer {
                 if (it){
@@ -78,10 +72,8 @@ class FavouriteTvFragment : Fragment(), MainItemListener{
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("ACTIVITY_RESULT", "FavouriteTvFragment requestCode: $requestCode, resultCode: $resultCode")
         if (requestCode == Const.requestCodeFavTv && resultCode == Const.resultCodeDetail){
-            Log.d("ACTIVITY_RESULT", "get all tv")
-            viewModel.getAllTv()
+            viewModel.getAllData()
         }
     }
 }

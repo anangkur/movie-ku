@@ -1,21 +1,32 @@
 package com.anangkur.madesubmission1.data.local.room
 
+import android.database.Cursor
 import androidx.room.*
 import com.anangkur.madesubmission1.data.model.Result
+import com.anangkur.madesubmission1.utils.Const
 import io.reactivex.Single
 
 @Dao
 interface ResultDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun bulkInsert(data: Result)
+    fun bulkInsert(data: Result): Long
 
-    @Query("SELECT * FROM DATABASE_RESULT WHERE type == :type")
+    @Query("SELECT * FROM DATABASE_RESULT WHERE COLUMN_TYPE == :type")
     fun getAllResult(type: Int): Single<List<Result>>
 
     @Delete
     fun deleteData(data: Result)
 
-    @Query("SELECT * FROM DATABASE_RESULT WHERE id == :id")
+    @Query("DELETE FROM DATABASE_RESULT WHERE COLUMN_ID == :id")
+    fun deleteById(id: Long): Int
+
+    @Query("SELECT * FROM DATABASE_RESULT WHERE COLUMN_ID == :id")
     fun getResultById(id: Int): Single<Result>
+
+    @Query("SELECT * FROM DATABASE_RESULT")
+    fun getAllResultProvider(): Cursor
+
+    @Query("SELECT * FROM DATABASE_RESULT WHERE COLUMN_ID == :id")
+    fun getResultByIdProvider(id: Long): Cursor
 }

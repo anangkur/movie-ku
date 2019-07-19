@@ -10,6 +10,10 @@
     <string name="text_overview">Ikhtisar</string>
     <string name="text_refresh">tekan untuk memuat ulang</string>
     <string name="text_search">Mencari</string>
+    <string name="text_daily_notification">Notifikasi Harian</string>
+    <string name="text_daily_notification_description">Notifikasi harian adalah</string>
+    <string name="text_release_notification">Notifikasi Rilis Terbaru</string>
+    <string name="text_release_notification_description">Notifikasi rilis terbaru adalah</string>
     <!--end of others-->
 
     <!--toolbar-->
@@ -32,6 +36,7 @@
     <string name="menu_change_language">Ubah Bahasa</string>
     <string name="menu_favourite">Favorit</string>
     <string name="menu_search">Mencari</string>
+    <string name="menu_notification_setting">Pengaturan Notifikasi</string>
     <!--end of menu-->
 
     <!--message-->

@@ -35,11 +35,6 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
         setupAdapter()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getAllMovie()
-    }
-
     private fun setupViewModel(){
         viewModel = (requireActivity() as FavouriteActivity).viewModel
         viewModel.apply {
@@ -49,7 +44,6 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
             })
             showErrorGetMovie.observe(this@FavouriteMovieFragment, Observer {
                 layout_error_fav.visibility = View.VISIBLE
-                layout_error_fav.setOnClickListener { getAllMovie() }
             })
             showProgressGetMovie.observe(this@FavouriteMovieFragment, Observer {
                 if (it){
@@ -78,7 +72,7 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Const.requestCodeFavMovie && resultCode == Const.resultCodeDetail){
-            viewModel.getAllMovie()
+            viewModel.getAllData()
         }
     }
 }
