@@ -50,4 +50,7 @@ object Const {
 
     const val alarmDailyTime = "07:00:00"
     const val alarmNewReleaseTime = "08:00:00"
+
+    const val favouriteStateTrue = "TRUE"
+    const val favouriteStateFalse = "FALSE"
 }

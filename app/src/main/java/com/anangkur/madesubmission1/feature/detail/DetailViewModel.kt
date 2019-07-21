@@ -2,30 +2,31 @@ package com.anangkur.madesubmission1.feature.detail
 
 import android.app.Application
 import android.database.Cursor
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Result
+import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 
 class DetailViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
 
     val resultLive = MutableLiveData<Result>()
+    lateinit var result: Result
 
     val showProgressInsertResult = MutableLiveData<Boolean>()
-    val showErrorInsertResult = MutableLiveData<String>()
     val successInsertResult = MutableLiveData<Boolean>()
 
     val showProgressDeleteResult = MutableLiveData<Boolean>()
-    val showErrorDeleteResult = MutableLiveData<String>()
     val successDeleteResult = MutableLiveData<Boolean>()
 
     val showProgressGetData = MutableLiveData<Boolean>()
-    val showErrorGetData = MutableLiveData<String>()
     val successGetData = MutableLiveData<Result>()
 
     fun getDataFromIntent(data: Result, type: Int){
+        Log.d("INTENT_DATA", "data: ${data.title?:data.name}, type: $type")
         resultLive.value = data.copy(type = type)
     }
 
@@ -39,8 +40,10 @@ class DetailViewModel(application: Application, private val repository: Reposito
             }
             override fun onPostExcecute() {
                 showProgressDeleteResult.value = false
+                successDeleteResult.value = true
             }
         })
+        result = data
     }
 
     fun bulkInsertData(data: Result){
@@ -59,6 +62,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
     }
 
     fun getDataById(id: Int){
+        Log.d("GET_DATA", "Id: $id")
         repository.getResultById(id, object : DataSource.ProviderCallback{
             override fun onPostExcecute() {
                 showProgressGetData.value = false

@@ -33,8 +33,6 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private lateinit var detailViewModel: DetailViewModel
 
-    private var data: Result? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -74,33 +72,32 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
 
     private fun setupViewModel(){
         detailViewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
-            LocalDataSource(SharedPreferenceHelper(this), ResultDatabase.getInstance(this)?.getDao()!!, this), RemoteDataSource)))
+            LocalDataSource(SharedPreferenceHelper(this), this), RemoteDataSource)))
             .get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
-                data = it
-                data?.let { data -> getDataById(data.id) }
+                result = it
+                getDataById(result.id)
             })
             successGetData.observe(this@DetailActivity, Observer {
                 if (it != null){
+                    Log.d("GET_DATA", "it Id: ${it.id}, favourite: ${it.favourite}")
                     setupDataToView(it)
                 }else{
-                    data?.let { setupDataToView(it) }
+                    Log.d("GET_DATA", "result Id: ${result.id}, favourite: ${result.favourite}")
+                    setupDataToView(result)
                 }
-            })
-            showErrorGetData.observe(this@DetailActivity, Observer {
-                data?.let { data ->  setupDataToView(data.copy(favourite = false))}
             })
             successInsertResult.observe(this@DetailActivity, Observer {
                 if (it){
-                    Snackbar.make(findViewById(android.R.id.content), resources.getString(R.string.message_success_insert), Snackbar.LENGTH_SHORT).show()
-                    data?.let { data -> getDataById(data.id) }
+                    Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_insert)}", Snackbar.LENGTH_SHORT).show()
+                    getDataById(result.id)
                 }
             })
             successDeleteResult.observe(this@DetailActivity, Observer {
                 if (it){
-                    Snackbar.make(findViewById(android.R.id.content), resources.getString(R.string.message_success_delete), Snackbar.LENGTH_SHORT).show()
-                    data?.let { data -> getDataById(data.id) }
+                    Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_delete)}", Snackbar.LENGTH_SHORT).show()
+                    getDataById(result.id)
                 }
             })
         }
@@ -130,7 +127,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     }
 
     private fun setupFavourite(data: Result){
-        if (data.favourite){
+        if (data.favourite == Const.favouriteStateTrue){
             fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
             fab_fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_red_24dp))
             fab_fav.setOnClickListener {this.onRemoveFavourite(data)}
@@ -144,10 +141,12 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     override fun onAddFavourite(data: Result) {
         Log.d("DETAIL_ACTIVITY", "add favourite type: ${data.type}")
         Log.d("DETAIL_ACTIVITY", "add favourite title: ${data.title}")
-        detailViewModel.bulkInsertData(data.copy(favourite = true))
+        detailViewModel.bulkInsertData(data.copy(favourite = Const.favouriteStateTrue))
     }
 
     override fun onRemoveFavourite(data: Result) {
-        detailViewModel.deleteData(data)
+        Log.d("DETAIL_ACTIVITY", "delete favourite type: ${data.type}")
+        Log.d("DETAIL_ACTIVITY", "delete favourite title: ${data.title}")
+        detailViewModel.deleteData(data.copy(favourite = Const.favouriteStateFalse))
     }
 }

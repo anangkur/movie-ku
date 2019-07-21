@@ -40,8 +40,8 @@
     <!--end of menu-->
 
     <!--message-->
-    <string name="message_success_insert">Input data berhasil</string>
-    <string name="message_success_delete">Hapus data berhasil</string>
+    <string name="message_success_insert">Ditambahkan ke Favorit</string>
+    <string name="message_success_delete">Dihapus dari Favorit</string>
     <!--end of message-->
 
     <!--alarm-->
