@@ -40,8 +40,8 @@
     <!--end of menu-->
 
     <!--message-->
-    <string name="message_success_insert">Insert data successfully</string>
-    <string name="message_success_delete">Delete data successfully</string>
+    <string name="message_success_insert">Added to Favourite</string>
+    <string name="message_success_delete">Deleted from Favourite</string>
     <!--end of message-->
 
     <!--alarm-->

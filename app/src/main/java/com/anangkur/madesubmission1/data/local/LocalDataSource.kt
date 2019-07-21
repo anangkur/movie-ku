@@ -17,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val resultDao: ResultDao, private val context: Context): DataSource{
+class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val context: Context): DataSource{
     override fun saveAlarmState(alarmState: String, type: Int) {
         when(type){
             Const.typeAlarmDaily -> preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE_DAILY, alarmState)
@@ -61,22 +61,6 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
             }
         }
         Task().execute()
-//        context.contentResolver.query(MovieProvider().URI_MOVIE, null, null, null, null)
-//        resultDao.getAllResult(type)
-//            .subscribeOn(Schedulers.newThread())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe { callback.onShowProgressDialog() }
-//            .subscribe(object : SingleObserver<List<Result>>{
-//                override fun onSuccess(t: List<Result>) {
-//                    callback.onSuccess(t)
-//                }
-//                override fun onSubscribe(d: Disposable) {
-//                    // do nothing
-//                }
-//                override fun onError(e: Throwable) {
-//                    callback.onFailed(e.message)
-//                }
-//            })
     }
 
     override fun getResultById(id: Int, callback: DataSource.ProviderCallback) {
@@ -92,21 +76,6 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
             }
         }
         Task().execute()
-//        resultDao.getResultById(id)
-//            .subscribeOn(Schedulers.newThread())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe { callback.onShowProgressDialog() }
-//            .subscribe(object : SingleObserver<Result>{
-//                override fun onSuccess(t: Result) {
-//                    callback.onSuccess(t)
-//                }
-//                override fun onSubscribe(d: Disposable) {
-//                    // do nothing
-//                }
-//                override fun onError(e: Throwable) {
-//                    callback.onFailed(e.message)
-//                }
-//            })
     }
 
     override fun bulkInsertResult(data: Result, callback: DataSource.ProviderCallback) {
@@ -122,27 +91,12 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
             }
         }
         Task().execute()
-//        Completable.fromAction{resultDao.bulkInsert(data)}
-//            .subscribeOn(Schedulers.newThread())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe { callback.onShowProgressDialog() }
-//            .subscribe(object : CompletableObserver{
-//                override fun onComplete() {
-//                    callback.onSuccess()
-//                }
-//                override fun onSubscribe(d: Disposable) {
-//                    // do nothing
-//                }
-//                override fun onError(e: Throwable) {
-//                    callback.onFailed(e.message)
-//                }
-//            })
     }
 
     override fun deleteResult(data: Result, callback: DataSource.ProviderCallback) {
         class Task : AsyncTask<Void, Void, Int>(){
             override fun doInBackground(vararg p0: Void?): Int? {
-                return context.contentResolver.delete(MovieProvider().URI_MOVIE, "${Const.COLUMN_ID}=${data.id}", null)
+                return context.contentResolver.delete(Uri.parse("${MovieProvider().URI_MOVIE}/${data.id}"), "${Const.COLUMN_ID}=${data.id}", null)
             }
             override fun onPostExecute(result: Int?) {
                 callback.onPostExcecute()
@@ -152,21 +106,6 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
             }
         }
         Task().execute()
-//        Completable.fromAction { resultDao.deleteData(data) }
-//            .subscribeOn(Schedulers.newThread())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnSubscribe { callback.onShowProgressDialog() }
-//            .subscribe(object : CompletableObserver{
-//                override fun onComplete() {
-//                    callback.onSuccess()
-//                }
-//                override fun onSubscribe(d: Disposable) {
-//                    // do nothing
-//                }
-//                override fun onError(e: Throwable) {
-//                    callback.onFailed(e.message)
-//                }
-//            })
     }
 
     override fun getData(page: Int, urlType: String, urlFilter: String, callback: DataSource.GetDataCallback) {

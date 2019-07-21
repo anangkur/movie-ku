@@ -37,6 +37,7 @@ class FavouriteActivity : AppCompatActivity() {
         setupCustomTab()
         setupSelectedCustomTab(0)
         setupViewModel()
+        viewModel.getAllData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,7 +48,7 @@ class FavouriteActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("ACTIVITY_RESULT", "FavouriteActivity requestCode: $requestCode, resultCode: $resultCode")
-        supportFragmentManager.findFragmentById(R.id.vp_fav)?.onActivityResult(requestCode, resultCode, data)
+        viewModel.getAllData()
     }
 
     private fun setupToolbar(){
@@ -110,7 +111,6 @@ class FavouriteActivity : AppCompatActivity() {
                 Repository(
                     LocalDataSource(
                         SharedPreferenceHelper(this),
-                        ResultDatabase.getInstance(this)?.getDao()!!,
                         this
                     ),
                     RemoteDataSource
@@ -118,8 +118,6 @@ class FavouriteActivity : AppCompatActivity() {
             )
         ).get(FavouriteViewModel::class.java)
 
-        viewModel.apply {
-
-        }
+        viewModel.apply {}
     }
 }

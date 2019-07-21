@@ -12,15 +12,9 @@
 
     <TextView
         android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
-        android:text="@string/text_lorem_ipsum"
+        style="@style/TextTitleNormal"
+        android:text="Tidak ada data dalam widget"
         android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        android:layout_gravity="center"/>
 
 </FrameLayout>

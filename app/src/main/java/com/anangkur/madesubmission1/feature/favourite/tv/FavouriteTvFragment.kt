@@ -69,11 +69,4 @@ class FavouriteTvFragment : Fragment(), MainItemListener{
     override fun onClickItem(data: Result) {
         DetailActivity().startActivity(requireActivity(), data, Const.TYPE_TV, Const.requestCodeFavTv)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Const.requestCodeFavTv && resultCode == Const.resultCodeDetail){
-            viewModel.getAllData()
-        }
-    }
 }

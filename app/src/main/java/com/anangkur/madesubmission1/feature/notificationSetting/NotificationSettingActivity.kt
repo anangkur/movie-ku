@@ -53,7 +53,6 @@ class NotificationSettingActivity : AppCompatActivity() {
                 Repository(
                     LocalDataSource(
                         SharedPreferenceHelper(this),
-                        ResultDatabase.getInstance(this)?.getDao()!!,
                         this
                     ),
                     RemoteDataSource

@@ -19,7 +19,7 @@ data class Result(
     var type: Int,
 
     @ColumnInfo(name = Const.COLUMN_FAVOURITE)
-    var favourite: Boolean,
+    var favourite: String?,
 
     @ColumnInfo(name = Const.COLUMN_ADULT)
     var adult: Boolean,

@@ -29,26 +29,35 @@ class MovieProvider : ContentProvider(){
     }
 
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
+        Log.d("MOVIE_PROVIDER", "insert")
         when (MATCHER.match(p0)) {
             CODE_MOVIE_DIR -> {
+                Log.d("MOVIE_PROVIDER", "insert movie dir")
                 val context = context ?: return null
                 val result = fromContentValues(p1!!)
                 val id = resultDao.bulkInsert(result)
                 context.contentResolver.notifyChange(p0, null)
                 return ContentUris.withAppendedId(p0, id.toLong())
             }
-            CODE_MOVIE_ITEM -> throw IllegalArgumentException("Invalid URI, cannot insert with ID: $p0")
+            CODE_MOVIE_ITEM -> {
+                Log.d("MOVIE_PROVIDER", "insert movie item $p0")
+                throw IllegalArgumentException("Invalid URI, cannot insert with ID: $p0")
+            }
             else -> throw IllegalArgumentException("Unknown URI: $p0")
         }
     }
 
     override fun query(p0: Uri, p1: Array<out String>?, p2: String?, p3: Array<out String>?, p4: String?): Cursor? {
         val code = MATCHER.match(p0)
+        Log.d("MOVIE_PROVIDER", "query")
         if (code == CODE_MOVIE_DIR || code == CODE_MOVIE_ITEM) {
+            Log.d("MOVIE_PROVIDER", "query enter")
             val context = context ?: return null
             val cursor = if (code == CODE_MOVIE_DIR) {
+                Log.d("MOVIE_PROVIDER", "query movie dir")
                 resultDao.getAllResultProvider()
             } else {
+                Log.d("MOVIE_PROVIDER", "query movie item")
                 resultDao.getResultByIdProvider(ContentUris.parseId(p0))
             }
             cursor.setNotificationUri(context.contentResolver, p0)
@@ -65,9 +74,14 @@ class MovieProvider : ContentProvider(){
     }
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
+        Log.d("MOVIE_PROVIDER", "update")
         when (MATCHER.match(p0)) {
-            CODE_MOVIE_DIR -> throw IllegalArgumentException("Invalid URI, cannot update without ID$p0")
+            CODE_MOVIE_DIR -> {
+                Log.d("MOVIE_PROVIDER", "update movie dir")
+                throw IllegalArgumentException("Invalid URI, cannot update without ID$p0")
+            }
             CODE_MOVIE_ITEM -> {
+                Log.d("MOVIE_PROVIDER", "update movie item")
                 val context = context ?: return 0
                 val result = fromContentValues(p1!!)
                 result.id = ContentUris.parseId(p0).toInt()
@@ -80,9 +94,14 @@ class MovieProvider : ContentProvider(){
     }
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
+        Log.d("MOVIE_PROVIDER", "delete")
         when (MATCHER.match(p0)) {
-            CODE_MOVIE_DIR -> throw IllegalArgumentException("Invalid URI, cannot update without ID$p0")
+            CODE_MOVIE_DIR -> {
+                Log.d("MOVIE_PROVIDER", "delete movie dir")
+                throw IllegalArgumentException("Invalid URI, cannot update without ID $p0")
+            }
             CODE_MOVIE_ITEM -> {
+                Log.d("MOVIE_PROVIDER", "delete movie item")
                 val context = context ?: return 0
                 val count = resultDao.deleteById(ContentUris.parseId(p0))
                 context.contentResolver.notifyChange(p0, null)
@@ -106,7 +125,7 @@ class MovieProvider : ContentProvider(){
             name = values.getAsString(Const.COLUMN_NAME),
             title = values.getAsString(Const.COLUMN_TITLE),
             type = values.getAsInteger(Const.COLUMN_TYPE),
-            favourite = values.getAsBoolean(Const.COLUMN_FAVOURITE),
+            favourite = values.getAsString(Const.COLUMN_FAVOURITE),
             adult = values.getAsBoolean(Const.COLUMN_ADULT),
             backdrop_path = values.getAsString(Const.COLUMN_BACKDROP_PATH),
             genre_ids = null,

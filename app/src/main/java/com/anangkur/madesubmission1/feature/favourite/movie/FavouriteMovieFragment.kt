@@ -68,11 +68,4 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
     override fun onClickItem(data: Result) {
         DetailActivity().startActivity(requireActivity(), data, Const.TYPE_MOVIE, Const.requestCodeFavMovie)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Const.requestCodeFavMovie && resultCode == Const.resultCodeDetail){
-            viewModel.getAllData()
-        }
-    }
 }

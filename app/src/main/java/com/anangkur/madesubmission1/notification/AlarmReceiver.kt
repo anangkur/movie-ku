@@ -36,6 +36,10 @@ class AlarmReceiver : BroadcastReceiver(){
         calendar.set(Calendar.MINUTE, timeArray[1].toInt())
         calendar.set(Calendar.SECOND, timeArray[2].toInt())
 
+        if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= 7) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+
         val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, 0)
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
