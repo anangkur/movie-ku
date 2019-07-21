@@ -12,8 +12,8 @@ interface ResultDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun bulkInsert(data: Result): Long
 
-    @Query("SELECT * FROM DATABASE_RESULT WHERE COLUMN_TYPE == :type")
-    fun getAllResult(type: Int): Single<List<Result>>
+    @Query("SELECT * FROM DATABASE_RESULT")
+    fun getAllResult(): Single<List<Result>>
 
     @Delete
     fun deleteData(data: Result)
