@@ -8,9 +8,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.os.Binder
 import android.os.Bundle
-import android.util.Log
 import com.anangkur.madesubmission1.BuildConfig.baseImageUrl
-import com.anangkur.madesubmission1.data.MovieProvider
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
@@ -42,7 +40,7 @@ class StackRemoteViewsFactory(private val context: Context): RemoteViewsService.
 
         val identityToken = Binder.clearCallingIdentity()
 
-        cursor = context.contentResolver.query(MovieProvider().URI_MOVIE, null, null, null, null);
+        cursor = context.contentResolver.query(Const.URI_MOVIE, null, null, null, null)
         val listResult = Utils.convertCursorIntoList(cursor!!)
         mWidgetItems.addAll(listResult)
 

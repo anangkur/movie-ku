@@ -35,7 +35,6 @@
     <!--menu-->
     <string name="menu_change_language">Change Language</string>
     <string name="menu_favourite">Favourite</string>
-    <string name="menu_search">Search</string>
     <string name="menu_notification_setting">Notification Setting</string>
     <!--end of menu-->
 
@@ -49,8 +48,6 @@
     <string name="alarm_release_title">New Release Reminder</string>
     <string name="alarm_daily_message">We have something for you</string>
     <string name="alarm_release_message">New release! Check it out</string>
-    <string name="alarm_daily_cancel">Daily Reminder Canceled</string>
-    <string name="alarm_release_cancel">Release Reminder Canceled</string>
     <!--end of alarm-->
 
     <!--error-->

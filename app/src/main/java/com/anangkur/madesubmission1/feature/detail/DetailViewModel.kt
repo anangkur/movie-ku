@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 
 class DetailViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){

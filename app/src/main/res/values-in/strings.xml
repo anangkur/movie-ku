@@ -35,7 +35,6 @@
     <!--menu-->
     <string name="menu_change_language">Ubah Bahasa</string>
     <string name="menu_favourite">Favorit</string>
-    <string name="menu_search">Mencari</string>
     <string name="menu_notification_setting">Pengaturan Notifikasi</string>
     <!--end of menu-->
 
@@ -49,8 +48,6 @@
     <string name="alarm_release_title">Pengingat Rilis Terbaru</string>
     <string name="alarm_daily_message">Kami punya sesuatu untukmu</string>
     <string name="alarm_release_message">Rilis Terbaru! cek sekarang</string>
-    <string name="alarm_daily_cancel">Pengingan Harian Dibatalkan</string>
-    <string name="alarm_release_cancel">Pengingat Rilis Dibatalkan</string>
     <!--end of alarm-->
 
     <!--error-->

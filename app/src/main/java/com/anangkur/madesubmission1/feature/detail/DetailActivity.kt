@@ -17,7 +17,6 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
-import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
