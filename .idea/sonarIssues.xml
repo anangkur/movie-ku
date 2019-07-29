@@ -568,7 +568,132 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/custom/StackWidgetService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/custom/TabAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/detail/DetailActionListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/detail/DetailActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/detail/DetailViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/FavouriteViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/MainItemListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/movie/FavouriteMovieFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/tv/FavouriteTvFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/feature/main/tv/TvAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/utils/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/widget/FavouriteWidget.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/widget/StackRemoteViewsFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/res/values-in/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../aiwa-apps/app/src/main/java/com/birutekno/aiwa/fragment/EditKalkulasiFragmentNew.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/feature_autoreksadana/src/main/java/id/pamoyanan_dev/autoreksadana/AutoReksadanaActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/feature_myfuturehouse/src/main/java/id/pamoyanan_dev/myfuturehouse/MyFutureHouseActionListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/feature_myfuturehouse/src/main/java/id/pamoyanan_dev/myfuturehouse/MyFutureHouseFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/feature_myfuturehouse/src/main/res/layout/fragment_my_future_house.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/feature_myfuturehouse/src/main/res/layout/my_future_house_compare.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/gitsutils/src/main/java/id/co/gits/gitsutils/GitsBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-bb8/gitsutils/src/main/java/id/co/gits/gitsutils/GitsHelper.kt">
           <value>
             <set />
           </value>
@@ -759,6 +884,111 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../submissionmade3/submissionmade3/app/src/main/res/layout/view_progress.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/DataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/MovieProvider.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/local/LocalDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/local/room/ListConverter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/local/room/ResultDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/local/room/ResultDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/model/Dates.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/model/Response.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/model/Result.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/remote/ApiService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/data/remote/RemoteDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/utils/Const.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/utils/Utils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/java/com/anangkur/madesubmission2/utils/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/res/values-in/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/MyConstraintView/MADESubmission2/build.gradle">
           <value>
             <set />
           </value>

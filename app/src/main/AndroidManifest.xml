@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <permission android:name="com.anangkur.madesubmission1.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.anangkur.madesubmission1.WRITE_DATABASE" android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -12,18 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.notificationSetting.NotificationSettingActivity"></activity>
-
-        <receiver android:name=".widget.FavouriteWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/favourite_widget_info" />
-        </receiver>
-
+        <activity android:name=".feature.notificationSetting.NotificationSettingActivity"/>
         <activity
             android:name=".feature.search.SearchActivity"
             android:theme="@style/SearchTheme" />
@@ -36,6 +27,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.detail.DetailActivity" />
+
+        <receiver android:name=".widget.FavouriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favourite_widget_info" />
+        </receiver>
 
         <service
             android:name=".feature.custom.StackWidgetService"
@@ -59,7 +60,8 @@
             android:name=".data.MovieProvider"
             android:authorities="com.anangkur.madesubmission1.provider"
             android:exported="true"
-            android:permission="com.anangkur.madesubmission1.provider.READ_WRITE"/>
+            android:readPermission="com.anangkur.madesubmission1.READ_DATABASE"
+            android:writePermission="com.anangkur.madesubmission1.WRITE_DATABASE"/>
 
     </application>
 
