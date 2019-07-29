@@ -18,7 +18,6 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
-import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.custom.ImageSliderFragment
 import com.anangkur.madesubmission1.feature.custom.SliderTabAdapter
@@ -29,8 +28,6 @@ import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
 import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.madesubmission1.feature.search.SearchActivity
-import com.anangkur.madesubmission1.notification.AlarmReceiver
-import com.anangkur.madesubmission1.utils.Const
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.iid.FirebaseInstanceId

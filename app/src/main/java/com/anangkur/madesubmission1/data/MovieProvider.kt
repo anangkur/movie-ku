@@ -11,33 +11,30 @@ import com.anangkur.madesubmission1.data.local.room.ResultDao
 import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.utils.Const
+import com.anangkur.madesubmission1.utils.Const.AUTHORITY
+import com.anangkur.madesubmission1.utils.Const.CODE_MOVIE_DIR
+import com.anangkur.madesubmission1.utils.Const.CODE_MOVIE_ITEM
 
 class MovieProvider : ContentProvider(){
-
-    val AUTHORITY = "com.anangkur.madesubmission1.provider"
-    val URI_MOVIE = Uri.parse("content://$AUTHORITY/${Const.DATABASE_RESULT}")
 
     private lateinit var resultDatabase: ResultDatabase
     private lateinit var resultDao: ResultDao
 
-    private val CODE_MOVIE_DIR = 1
-    private val CODE_MOVIE_ITEM = 2
-
-    private val MATCHER = UriMatcher(UriMatcher.NO_MATCH).apply {
+    private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
         addURI(AUTHORITY, Const.DATABASE_RESULT, CODE_MOVIE_DIR)
         addURI(AUTHORITY, Const.DATABASE_RESULT + "/*", CODE_MOVIE_ITEM)
     }
 
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
         Log.d("MOVIE_PROVIDER", "insert")
-        when (MATCHER.match(p0)) {
+        when (uriMatcher.match(p0)) {
             CODE_MOVIE_DIR -> {
                 Log.d("MOVIE_PROVIDER", "insert movie dir")
                 val context = context ?: return null
                 val result = fromContentValues(p1!!)
                 val id = resultDao.bulkInsert(result)
                 context.contentResolver.notifyChange(p0, null)
-                return ContentUris.withAppendedId(p0, id.toLong())
+                return ContentUris.withAppendedId(p0, id)
             }
             CODE_MOVIE_ITEM -> {
                 Log.d("MOVIE_PROVIDER", "insert movie item $p0")
@@ -48,7 +45,7 @@ class MovieProvider : ContentProvider(){
     }
 
     override fun query(p0: Uri, p1: Array<out String>?, p2: String?, p3: Array<out String>?, p4: String?): Cursor? {
-        val code = MATCHER.match(p0)
+        val code = uriMatcher.match(p0)
         Log.d("MOVIE_PROVIDER", "query")
         if (code == CODE_MOVIE_DIR || code == CODE_MOVIE_ITEM) {
             Log.d("MOVIE_PROVIDER", "query enter")
@@ -75,7 +72,7 @@ class MovieProvider : ContentProvider(){
 
     override fun update(p0: Uri, p1: ContentValues?, p2: String?, p3: Array<out String>?): Int {
         Log.d("MOVIE_PROVIDER", "update")
-        when (MATCHER.match(p0)) {
+        when (uriMatcher.match(p0)) {
             CODE_MOVIE_DIR -> {
                 Log.d("MOVIE_PROVIDER", "update movie dir")
                 throw IllegalArgumentException("Invalid URI, cannot update without ID$p0")
@@ -95,7 +92,7 @@ class MovieProvider : ContentProvider(){
 
     override fun delete(p0: Uri, p1: String?, p2: Array<out String>?): Int {
         Log.d("MOVIE_PROVIDER", "delete")
-        when (MATCHER.match(p0)) {
+        when (uriMatcher.match(p0)) {
             CODE_MOVIE_DIR -> {
                 Log.d("MOVIE_PROVIDER", "delete movie dir")
                 throw IllegalArgumentException("Invalid URI, cannot update without ID $p0")
@@ -112,7 +109,7 @@ class MovieProvider : ContentProvider(){
     }
 
     override fun getType(p0: Uri): String? {
-        return when (MATCHER.match(p0)) {
+        return when (uriMatcher.match(p0)) {
             CODE_MOVIE_DIR -> "vnd.android.cursor.dir/" + AUTHORITY + "." + Const.DATABASE_RESULT
             CODE_MOVIE_ITEM -> "vnd.android.cursor.item/" + AUTHORITY + "." + Const.DATABASE_RESULT
             else -> throw IllegalArgumentException("Unknown URI: $p0")

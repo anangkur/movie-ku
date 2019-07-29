@@ -10,15 +10,13 @@ import android.net.Uri
 import android.widget.Toast
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.feature.custom.StackWidgetService
+import com.anangkur.madesubmission1.utils.Const
 
 
 /**
  * Implementation of App Widget functionality.
  */
 class FavouriteWidget : AppWidgetProvider() {
-
-    private val toastAction = "com.dicoding.picodiploma.toastAction"
-    val extraItem = "com.dicoding.picodiploma.extraItem"
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         // There may be multiple widgets active, so update all of them
@@ -46,7 +44,7 @@ class FavouriteWidget : AppWidgetProvider() {
             views.setEmptyView(R.id.stack_view, R.id.empty_view)
 
             val toastIntent = Intent(context, FavouriteWidget::class.java)
-            toastIntent.action = FavouriteWidget().toastAction
+            toastIntent.action = Const.ACTION_TOAST
             toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
 
             intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
@@ -66,9 +64,9 @@ class FavouriteWidget : AppWidgetProvider() {
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         if (intent.action != null) {
-            if (intent.action.equals(toastAction)) {
-                val viewIndex = intent.getIntExtra(extraItem, 0)
-                Toast.makeText(context, "Touched view $viewIndex", Toast.LENGTH_SHORT).show()
+            if (intent.action.equals(Const.ACTION_TOAST)) {
+                val data = intent.getStringExtra(Const.EXTRA_WIDGET)
+                Toast.makeText(context, data, Toast.LENGTH_SHORT).show()
             }
         }
     }

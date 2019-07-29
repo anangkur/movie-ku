@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CompoundButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -12,9 +11,7 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.local.SharedPreferenceHelper
-import com.anangkur.madesubmission1.data.local.room.ResultDatabase
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
-import com.anangkur.madesubmission1.feature.main.MainViewModel
 import com.anangkur.madesubmission1.notification.AlarmReceiver
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.ViewModelFactory

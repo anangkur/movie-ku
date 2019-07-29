@@ -3,7 +3,6 @@ package com.anangkur.madesubmission1.data.local.room
 import android.database.Cursor
 import androidx.room.*
 import com.anangkur.madesubmission1.data.model.Result
-import com.anangkur.madesubmission1.utils.Const
 import io.reactivex.Single
 
 @Dao

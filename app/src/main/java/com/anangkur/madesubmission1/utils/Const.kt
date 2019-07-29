@@ -1,11 +1,17 @@
 package com.anangkur.madesubmission1.utils
 
+import android.net.Uri
+
 object Const {
+
+    const val ACTION_TOAST = "ACTION_TOAST"
+
     const val EXTRA_DETAIL = "EXTRA_DETAIL"
     const val EXTRA_TYPE = "EXTRA_TYPE"
     const val EXTRA_ALARM_MESSAGE = "EXTRA_ALARM_MESSAGE"
     const val EXTRA_NOTIF_ID = "EXTRA_NOTIF_ID"
     const val EXTRA_ALARM_TITLE = "EXTRA_ALARM_TITLE"
+    const val EXTRA_WIDGET = "EXTRA_WIDGET"
 
     const val PREF_LANGUAGE = "PREF_LANGUAGE"
     const val PREF_FIREBASE_MESSAGING_TOKEN = "PREF_FIREBASE_MESSAGING_TOKEN"
@@ -53,4 +59,9 @@ object Const {
 
     const val favouriteStateTrue = "TRUE"
     const val favouriteStateFalse = "FALSE"
+
+    const val AUTHORITY = "com.anangkur.madesubmission1.provider"
+    val URI_MOVIE = Uri.parse("content://$AUTHORITY/$DATABASE_RESULT")!!
+    const val CODE_MOVIE_DIR = 1
+    const val CODE_MOVIE_ITEM = 2
 }
