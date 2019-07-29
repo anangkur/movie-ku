@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/FrameLayoutDefault">
 
     <StackView
         android:id="@+id/stack_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9"
+        style="@style/StackViewDefault"
         android:loopViews="true" />
 
     <TextView
         android:id="@+id/empty_view"
         style="@style/TextTitleNormal"
-        android:text="Tidak ada data dalam widget"
+        android:text="@string/error_widget_no_data"
         android:textAlignment="center"
         android:layout_gravity="center"/>
 

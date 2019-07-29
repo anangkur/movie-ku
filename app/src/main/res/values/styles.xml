@@ -177,4 +177,14 @@
         <item name="queryHint">@string/text_search</item>
         <item name="searchIcon">@null</item>
     </style>
+
+    <style name="FrameLayoutDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="StackViewDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>

@@ -52,4 +52,8 @@
     <string name="alarm_daily_cancel">Pengingan Harian Dibatalkan</string>
     <string name="alarm_release_cancel">Pengingat Rilis Dibatalkan</string>
     <!--end of alarm-->
+
+    <!--error-->
+    <string name="error_widget_no_data">There is no data on widget</string>
+    <!--end of error-->
 </resources>

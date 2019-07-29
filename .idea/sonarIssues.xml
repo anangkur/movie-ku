@@ -438,6 +438,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/widget/MovieWidget.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/widget/StackRemoteViewsFactory.kt">
           <value>
             <set />
@@ -554,6 +559,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/xml/favourite_widget_info.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/xml/movie_widget_info.xml">
           <value>
             <set />
           </value>
