@@ -21,9 +21,6 @@ class NotificationSettingActivity : AppCompatActivity() {
 
     lateinit var viewModel: NotifiationSettingViewModel
 
-    private var isFirstOpenDaily = true
-    private var isFirstOpenRelease = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification_setting)
@@ -38,6 +35,7 @@ class NotificationSettingActivity : AppCompatActivity() {
 
     private fun setupToolbar(){
         setSupportActionBar(toolbar)
+        title = resources.getString(R.string.toolbar_notification_setting)
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
@@ -61,20 +59,14 @@ class NotificationSettingActivity : AppCompatActivity() {
             alarmStateDailyLive.observe(this@NotificationSettingActivity, Observer {
                 when(it){
                     Const.alarmStateActive -> switch_daily.isChecked = true
-                    Const.alarmStateInActive -> {
-                        switch_daily.isChecked = false
-                        isFirstOpenDaily = false
-                    }
+                    Const.alarmStateInActive -> switch_daily.isChecked = false
                     else -> switch_daily.isChecked = false
                 }
             })
             alarmStateReleaseLive.observe(this@NotificationSettingActivity, Observer {
                 when(it){
                     Const.alarmStateActive -> switch_release.isChecked = true
-                    Const.alarmStateInActive -> {
-                        switch_release.isChecked = false
-                        isFirstOpenRelease = false
-                    }
+                    Const.alarmStateInActive -> switch_release.isChecked = false
                     else -> switch_release.isChecked = false
                 }
             })
@@ -83,32 +75,24 @@ class NotificationSettingActivity : AppCompatActivity() {
 
     private fun setupSwitchDaily(){
         switch_daily.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isFirstOpenDaily){
-                isFirstOpenDaily = false
+            if (isChecked){
+                AlarmReceiver().setupAlarm(this, resources.getString(R.string.alarm_daily_title), resources.getString(R.string.alarm_daily_message), Const.typeAlarmDaily, Const.alarmDailyTime)
+                viewModel.saveAlarmStateDaily(Const.alarmStateActive)
             }else{
-                if (isChecked){
-                    AlarmReceiver().setupAlarm(this, resources.getString(R.string.alarm_daily_title), resources.getString(R.string.alarm_daily_message), Const.typeAlarmDaily, Const.alarmDailyTime)
-                    viewModel.saveAlarmStateDaily(Const.alarmStateActive)
-                }else{
-                    AlarmReceiver().cancelAlarm(this, Const.typeAlarmDaily)
-                    viewModel.saveAlarmStateDaily(Const.alarmStateInActive)
-                }
+                AlarmReceiver().cancelAlarm(this, Const.typeAlarmDaily)
+                viewModel.saveAlarmStateDaily(Const.alarmStateInActive)
             }
         }
     }
 
     private fun setupSwitchRelease(){
         switch_release.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isFirstOpenRelease){
-                isFirstOpenRelease = false
+            if (isChecked){
+                AlarmReceiver().setupAlarm(this, resources.getString(R.string.alarm_release_title), resources.getString(R.string.alarm_release_message), Const.typeAlarmRelease, Const.alarmNewReleaseTime)
+                viewModel.saveAlarmStateRelease(Const.alarmStateActive)
             }else{
-                if (isChecked){
-                    AlarmReceiver().setupAlarm(this, resources.getString(R.string.alarm_release_title), resources.getString(R.string.alarm_release_message), Const.typeAlarmRelease, Const.alarmNewReleaseTime)
-                    viewModel.saveAlarmStateRelease(Const.alarmStateActive)
-                }else{
-                    AlarmReceiver().cancelAlarm(this, Const.typeAlarmRelease)
-                    viewModel.saveAlarmStateRelease(Const.alarmStateInActive)
-                }
+                AlarmReceiver().cancelAlarm(this, Const.typeAlarmRelease)
+                viewModel.saveAlarmStateRelease(Const.alarmStateInActive)
             }
         }
     }

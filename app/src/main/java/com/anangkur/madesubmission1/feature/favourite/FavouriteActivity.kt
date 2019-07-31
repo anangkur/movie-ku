@@ -46,7 +46,6 @@ class FavouriteActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("ACTIVITY_RESULT", "FavouriteActivity requestCode: $requestCode, resultCode: $resultCode")
         viewModel.getAllData()
     }
 

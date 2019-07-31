@@ -18,6 +18,7 @@
 
     <!--toolbar-->
     <string name="toolbar_favourite">Favorit</string>
+    <string name="toolbar_notification_setting">Pengaturan Notifikasi</string>
     <!--end of toolbar-->
 
     <!--tab-->
@@ -41,6 +42,8 @@
     <!--message-->
     <string name="message_success_insert">Ditambahkan ke Favorit</string>
     <string name="message_success_delete">Dihapus dari Favorit</string>
+    <string name="message_alarm_activated">Alarm Berulang Diaktifkan</string>
+    <string name="message_alarm_deactivated">Alarm Berulang Dinonaktifkan</string>
     <!--end of message-->
 
     <!--alarm-->
