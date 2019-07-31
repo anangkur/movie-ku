@@ -32,11 +32,7 @@ class AlarmReceiver : BroadcastReceiver(){
 
         calendar.set(Calendar.HOUR_OF_DAY, timeArray[0].toInt())
         calendar.set(Calendar.MINUTE, timeArray[1].toInt())
-        calendar.set(Calendar.SECOND, timeArray[2].toInt())
-
-        if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= 7) {
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-        }
+        calendar.set(Calendar.SECOND, 0)
 
         val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, 0)
 
