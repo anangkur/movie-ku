@@ -26,6 +26,11 @@ interface ApiService{
                       @Query("api_key") apiKey: String,
                       @Query("query") query: String): Observable<Response>
 
+    @GET("discover/movie")
+    fun getTodayReleaseMovie(@Query("api_key") apiKey: String,
+                             @Query("primary_release_date.gte") gteDate: String,
+                             @Query("primary_release_date.lte") lteDate: String): Observable<Response>
+
     companion object Factory{
         val getApiService: ApiService by lazy {
 

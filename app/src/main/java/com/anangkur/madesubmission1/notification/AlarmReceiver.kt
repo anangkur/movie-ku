@@ -6,8 +6,18 @@ import android.content.Intent
 import android.widget.Toast
 import android.app.AlarmManager
 import android.app.PendingIntent
+import com.anangkur.madesubmission1.BuildConfig
 import com.anangkur.madesubmission1.R
+import com.anangkur.madesubmission1.data.model.Response
+import com.anangkur.madesubmission1.data.remote.ApiService
 import com.anangkur.madesubmission1.utils.Const
+import com.anangkur.madesubmission1.utils.Utils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver(){
@@ -16,7 +26,36 @@ class AlarmReceiver : BroadcastReceiver(){
         val tempTitle = p1.getStringExtra(Const.EXTRA_ALARM_TITLE)
         val tempMessage = p1.getStringExtra(Const.EXTRA_ALARM_MESSAGE)
         val tempItemId = p1.getIntExtra(Const.EXTRA_NOTIF_ID, 0)
-        NotificationHelper(p0).createNoticication(tempTitle, tempMessage, tempItemId)
+        if (tempItemId == Const.typeAlarmRelease){
+            showNotifNewRelease(p0, tempTitle, tempMessage, tempItemId)
+        }else{
+            NotificationHelper(p0).createNoticication(tempTitle, tempMessage, tempItemId, null, null)
+        }
+    }
+
+    private fun showNotifNewRelease(context: Context, title: String, message: String, itemId: Int){
+        ApiService.getApiService.getTodayReleaseMovie(BuildConfig.apiKey, Utils.formatDateStandard(Utils.getTime()), Utils.formatDateStandard(Utils.getTime()))
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(Schedulers.newThread())
+            .subscribe(object: Observer<Response>{
+                override fun onComplete() {}
+                override fun onSubscribe(d: Disposable) {}
+                override fun onNext(t: Response) {
+                    if (t.results.isNotEmpty()){
+                        val data = t.results[0]
+                        val imageUrl = "${BuildConfig.baseImageUrl}${data.backdrop_path}"
+                        val bitmap = Glide.with(context)
+                            .asBitmap()
+                            .load(imageUrl)
+                            .apply(RequestOptions().centerCrop())
+                            .apply(RequestOptions().transform(RoundedCorners(48)))
+                            .submit()
+                            .get()
+                        NotificationHelper(context).createNoticication(title, data.original_title?:"", itemId, bitmap, data)
+                    }
+                }
+                override fun onError(e: Throwable) {}
+            })
     }
 
     fun setupAlarm(context: Context, title: String, message: String, notifId: Int, time: String) {
