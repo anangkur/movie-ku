@@ -5,8 +5,22 @@ import android.content.Context
 import android.database.Cursor
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.madesubmission1.data.model.Result
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 object Utils{
+
+    fun getTime(): Date {
+        val c = Calendar.getInstance()
+        c.timeZone = TimeZone.getTimeZone("GMT+07:00")
+        return c.time
+    }
+
+    fun formatDateStandard(date: Date): String{
+        return SimpleDateFormat(Const.FORMAT_DATE_STANDARD).format(date)
+    }
+
     fun nomalizeRating(oldValue: Float): Float{
         return ((oldValue-0)/10-0)*((5-0)+0)
     }

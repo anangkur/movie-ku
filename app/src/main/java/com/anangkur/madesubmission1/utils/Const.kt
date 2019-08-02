@@ -64,4 +64,6 @@ object Const {
     val URI_MOVIE = Uri.parse("content://$AUTHORITY/$DATABASE_RESULT")!!
     const val CODE_MOVIE_DIR = 1
     const val CODE_MOVIE_ITEM = 2
+
+    const val FORMAT_DATE_STANDARD = "yyyy-MM-dd" // 2018-10-02
 }
