@@ -12,16 +12,16 @@ import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
 import com.anangkur.madesubmission1.feature.favourite.FavouriteActivity
+import com.anangkur.madesubmission1.feature.favourite.FavouriteAdapter
 import com.anangkur.madesubmission1.feature.favourite.FavouriteViewModel
 import com.anangkur.madesubmission1.feature.main.MainItemListener
-import com.anangkur.madesubmission1.feature.main.tv.TvAdapter
 import com.anangkur.madesubmission1.utils.Const
 import kotlinx.android.synthetic.main.fragment_favourite_movie.*
 
 class FavouriteMovieFragment : Fragment(), MainItemListener{
 
     private lateinit var viewModel: FavouriteViewModel
-    private lateinit var favMovieAdapter: TvAdapter
+    private lateinit var favMovieAdapter: FavouriteAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_favourite_movie, container, false)
@@ -56,7 +56,7 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
     }
 
     private fun setupAdapter(){
-        favMovieAdapter = TvAdapter(this)
+        favMovieAdapter = FavouriteAdapter(this)
         recycler_fav.apply {
             adapter = favMovieAdapter
             itemAnimator = DefaultItemAnimator()

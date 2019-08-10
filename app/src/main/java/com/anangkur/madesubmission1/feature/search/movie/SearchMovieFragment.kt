@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
+import com.anangkur.madesubmission1.feature.favourite.FavouriteAdapter
 import com.anangkur.madesubmission1.feature.main.MainItemListener
-import com.anangkur.madesubmission1.feature.main.tv.TvAdapter
 import com.anangkur.madesubmission1.feature.search.SearchActivity
 import com.anangkur.madesubmission1.feature.search.SearchViewModel
 import com.anangkur.madesubmission1.utils.Const
@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_favourite_movie.*
 class SearchMovieFragment : Fragment(), MainItemListener{
 
     private lateinit var viewModel: SearchViewModel
-    private lateinit var adapter: TvAdapter
+    private lateinit var adapter: FavouriteAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_favourite_movie, container, false)
@@ -56,7 +56,7 @@ class SearchMovieFragment : Fragment(), MainItemListener{
     }
 
     private fun setupAdapter(){
-        adapter = TvAdapter(this)
+        adapter = FavouriteAdapter(this)
         recycler_fav.apply {
             adapter = this@SearchMovieFragment.adapter
             itemAnimator = DefaultItemAnimator()
