@@ -13,8 +13,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/dimens_16dp"
-                android:layout_marginEnd="@dimen/dimens_16dp"
-                android:layout_marginTop="@dimen/dimens_16dp"/>
+                android:layout_marginEnd="@dimen/dimens_16dp" />
             <RelativeLayout
                 style="@style/RelativeWrap">
                 <ProgressBar
@@ -30,7 +29,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_tv_popular"
                     style="@style/RecyclerWrap"
-                    android:background="@color/white"/>
+                    android:background="@color/white"
+                    android:paddingEnd="@dimen/dimens_16dp"
+                    android:clipToPadding="false"/>
             </RelativeLayout>
         </LinearLayout>
         <!--new-->
@@ -42,7 +43,7 @@
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/dimens_16dp"
                 android:layout_marginEnd="@dimen/dimens_16dp"
-                android:layout_marginTop="@dimen/dimens_16dp"/>
+                android:layout_marginTop="@dimen/dimens_10dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
                 <ProgressBar
@@ -58,7 +59,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_tv_new"
                     style="@style/RecyclerWrap"
-                    android:background="@color/white"/>
+                    android:background="@color/white"
+                    android:paddingEnd="@dimen/dimens_16dp"
+                    android:clipToPadding="false"/>
             </RelativeLayout>
         </LinearLayout>
         <!--highest rating-->
@@ -70,7 +73,7 @@
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/dimens_16dp"
                 android:layout_marginEnd="@dimen/dimens_16dp"
-                android:layout_marginTop="@dimen/dimens_16dp"/>
+                android:layout_marginTop="@dimen/dimens_10dp"/>
             <RelativeLayout
                 style="@style/RelativeWrap">
                 <ProgressBar
@@ -86,7 +89,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_tv_rating"
                     style="@style/RecyclerWrap"
-                    android:background="@color/white"/>
+                    android:background="@color/white"
+                    android:paddingEnd="@dimen/dimens_16dp"
+                    android:clipToPadding="false"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
