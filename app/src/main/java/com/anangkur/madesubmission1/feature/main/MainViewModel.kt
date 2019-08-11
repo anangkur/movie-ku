@@ -8,8 +8,12 @@ import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 class MainViewModel(application: Application, private val repository: Repository): AndroidViewModel(application) {
+
+    val compositeDisposable = CompositeDisposable()
 
     val sliderDataLive = MutableLiveData<Response>()
 
@@ -38,7 +42,10 @@ class MainViewModel(application: Application, private val repository: Repository
     val showProgressRating = MutableLiveData<Boolean>()
 
     fun getTvPopular(page: Int){
-        repository.getData(page, tvUrl, popularUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, popularUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressPopular.value = true
             }
@@ -57,7 +64,10 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getTvNew(page: Int){
-        repository.getData(page, tvUrl, onTheAirUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, onTheAirUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressNew.value = true
             }
@@ -76,7 +86,10 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getTvRating(page: Int){
-        repository.getData(page, tvUrl, topRatedUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, tvUrl, topRatedUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressRating.value = true
             }
@@ -95,7 +108,10 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getHorizontalData(page: Int){
-        repository.getData(page, movieUrl, nowPlayingUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, nowPlayingUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressHorizontalLive.value = true
             }
@@ -114,7 +130,10 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getVerticalData(page: Int){
-        repository.getData(page, movieUrl, popularUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, popularUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressVerticalLive.value = true
             }
@@ -133,7 +152,10 @@ class MainViewModel(application: Application, private val repository: Repository
     }
 
     fun getSliderData(page: Int){
-        repository.getData(page, movieUrl, nowPlayingUrl, object : DataSource.GetDataCallback{
+        repository.getData(page, movieUrl, nowPlayingUrl, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressSliderLive.value = true
             }
@@ -153,5 +175,9 @@ class MainViewModel(application: Application, private val repository: Repository
 
     fun saveFirebaseMessagingToken(token: String){
         repository.saveFirebaseMessagingToken(token)
+    }
+
+    fun loadFirebaseMessagingToken(): String?{
+        return repository.loadFirebaseMessagingToken()
     }
 }

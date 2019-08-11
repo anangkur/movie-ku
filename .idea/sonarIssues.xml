@@ -33,12 +33,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/DataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/Injection.kt">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/ResponseCallback.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/local/LocalDataSource.kt">
           <value>
             <set />
           </value>
@@ -69,6 +84,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/remote/DataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/remote/RemoteDataSource.kt">
           <value>
             <set />
           </value>
@@ -173,6 +193,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/MainHorizontalAdapter.kt">
           <value>
             <set />
@@ -189,6 +214,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/MainView.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/MainViewModel.kt">
           <value>
             <set />
           </value>
@@ -219,6 +249,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/movie/MainFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/main/movie/MovieFragment.kt">
           <value>
             <set />
           </value>
@@ -274,6 +309,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/notificationSetting/NotificationSettingActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/search/SearchActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/feature/search/SearchViewModel.kt">
           <value>
             <set />
           </value>
@@ -348,7 +393,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_favourite.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_language_setting.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml">
           <value>
             <set />
           </value>
@@ -414,6 +474,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <value>
             <set />
           </value>

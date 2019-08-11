@@ -19,6 +19,7 @@ import com.anangkur.madesubmission1.feature.search.tv.SearchTvFragment
 import com.anangkur.madesubmission1.utils.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
 import androidx.appcompat.widget.SearchView
+import com.anangkur.madesubmission1.utils.Utils
 import kotlinx.android.synthetic.main.activity_search.toolbar
 
 
@@ -38,6 +39,11 @@ class SearchActivity : AppCompatActivity() {
         setupSelectedCustomTab(0)
         setupViewModel()
         setupSearchView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.compositeDisposable.clear()
     }
 
     private fun setupToolbar(){
@@ -117,6 +123,7 @@ class SearchActivity : AppCompatActivity() {
                     viewModel.getAllMovie(it)
                     viewModel.getAllTv(it)
                 }
+                Utils.hideSoftKeyboard(this@SearchActivity)
                 return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {

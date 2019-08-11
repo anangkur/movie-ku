@@ -28,6 +28,7 @@ import com.anangkur.madesubmission1.feature.main.movie.MovieFragment
 import com.anangkur.madesubmission1.feature.main.tv.TvFragment
 import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.madesubmission1.feature.search.SearchActivity
+import com.anangkur.madesubmission1.utils.Const
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.iid.FirebaseInstanceId
@@ -48,8 +49,13 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupToolbar()
 
         setupViewModel()
-        viewModel.getSliderData(1)
-        generateFirebaseToken()
+        if (savedInstanceState == null){
+            viewModel.getSliderData(1)
+        }
+
+        if (viewModel.loadFirebaseMessagingToken() == null){
+            generateFirebaseToken()
+        }
 
         setupTabAdapter()
         setupViewPager()
@@ -58,6 +64,16 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupViewPagerSlider()
 
         search_bar.setOnClickListener { this.onClickSearch() }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.compositeDisposable.clear()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(Const.EXTRA_STATE_ROTATE, Const.STATE_ROTATE)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -184,7 +200,6 @@ class MainActivity : AppCompatActivity(), MainActionListener{
             if (!task.isSuccessful) {
                 return@OnCompleteListener
             }
-
             val token = task.result?.token
             token?.let {
                 viewModel.saveFirebaseMessagingToken(token)

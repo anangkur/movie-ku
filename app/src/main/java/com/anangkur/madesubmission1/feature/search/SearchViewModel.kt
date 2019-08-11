@@ -8,8 +8,13 @@ import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.BuildConfig.*
 import com.anangkur.madesubmission1.data.model.Response
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 class SearchViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
+
+    val compositeDisposable = CompositeDisposable()
+
     val movieLive = MutableLiveData<List<Result>>()
     val showProgressGetMovie = MutableLiveData<Boolean>()
     val showErrorGetMovie = MutableLiveData<String>()
@@ -19,7 +24,10 @@ class SearchViewModel(application: Application, private val repository: Reposito
     val showErrorGetTv = MutableLiveData<String>()
 
     fun getAllMovie(query: String){
-        repository.getSearchData(movieUrl, query, object : DataSource.GetDataCallback{
+        repository.getSearchData(movieUrl, query, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressGetMovie.value = true
             }
@@ -38,7 +46,10 @@ class SearchViewModel(application: Application, private val repository: Reposito
     }
 
     fun getAllTv(query: String){
-        repository.getSearchData(tvUrl, query, object : DataSource.GetDataCallback{
+        repository.getSearchData(tvUrl, query, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
             override fun onShowProgressDialog() {
                 showProgressGetTv.value = true
             }

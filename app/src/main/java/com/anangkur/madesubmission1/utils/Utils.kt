@@ -8,8 +8,18 @@ import com.anangkur.madesubmission1.data.model.Result
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
+
 
 object Utils{
+
+    fun hideSoftKeyboard(activity: Activity) {
+        val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            activity.currentFocus!!.windowToken, 0
+        )
+    }
 
     fun getTime(): Date {
         val c = Calendar.getInstance()

@@ -15,6 +15,9 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_search"
         style="@style/TabLayoutDefault"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         app:tabIndicatorColor="@color/black"/>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_search"

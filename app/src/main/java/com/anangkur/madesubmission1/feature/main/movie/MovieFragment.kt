@@ -33,8 +33,15 @@ class MovieFragment : Fragment(), MainItemListener {
         setupHorizontalAdapter()
         setupVerticalAdapter()
         setupViewModel()
-        movieViewModel.getHorizontalData(1)
-        movieViewModel.getVerticalData(1)
+        if (savedInstanceState == null){
+            movieViewModel.getHorizontalData(1)
+            movieViewModel.getVerticalData(1)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(Const.EXTRA_STATE_ROTATE, Const.STATE_ROTATE)
     }
 
     private fun setupViewModel(){
