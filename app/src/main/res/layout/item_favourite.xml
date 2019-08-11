@@ -9,7 +9,8 @@
         android:id="@+id/iv_item"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimens_100dp"
-        android:elevation="@dimen/dimens_4dp"/>
+        android:elevation="@dimen/dimens_4dp"
+        android:scaleType="centerCrop"/>
     <RatingBar
         android:id="@+id/rating"
         style="@style/RatingBarSmall"

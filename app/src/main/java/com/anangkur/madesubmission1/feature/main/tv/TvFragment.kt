@@ -35,9 +35,17 @@ class TvFragment : Fragment(), MainItemListener {
         setupTvPopularAdapter()
         setupTvRatingAdapter()
         setupViewModel()
-        tvViewModel.getTvNew(1)
-        tvViewModel.getTvPopular(1)
-        tvViewModel.getTvRating(1)
+
+        if (savedInstanceState == null){
+            tvViewModel.getTvNew(1)
+            tvViewModel.getTvPopular(1)
+            tvViewModel.getTvRating(1)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(Const.EXTRA_STATE_ROTATE, Const.STATE_ROTATE)
     }
 
     private fun setupViewModel(){

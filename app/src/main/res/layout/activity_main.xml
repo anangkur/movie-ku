@@ -11,7 +11,7 @@
             app:contentScrim="@color/black_60"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <RelativeLayout
-                style="@style/RelativeWrap">
+                style="@style/RelativeDefault">
                 <ProgressBar
                     android:id="@+id/pb_slider"
                     android:layout_width="wrap_content"
@@ -19,7 +19,8 @@
                     style="?android:progressBarStyleSmall"
                     android:layout_centerInParent="true"
                     android:visibility="gone"/>
-                <include layout="@layout/layout_error"
+                <include
+                    layout="@layout/layout_error"
                     android:id="@+id/layout_error_slider"
                     android:visibility="gone"/>
                 <androidx.viewpager.widget.ViewPager
@@ -55,6 +56,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_main"
             style="@style/TabLayoutDefault"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabIndicatorColor="@color/black"
             android:minHeight="?actionBarSize"/>

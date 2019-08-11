@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 object RemoteDataSource: DataSource{
+
     override fun saveAlarmState(alarmState: String, type: Int) {
         // do nothing
     }
@@ -26,6 +27,11 @@ object RemoteDataSource: DataSource{
         // do nothing
     }
 
+    override fun loadFirebaseMessagingToken(): String? {
+        // do nothing
+        return null
+    }
+
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
         ApiService.getApiService.getSearchData(urlType, apiKey, query)
             .subscribeOn(Schedulers.newThread())
@@ -36,7 +42,7 @@ object RemoteDataSource: DataSource{
                     callback.onHideProgressDialog()
                 }
                 override fun onSubscribe(d: Disposable) {
-                    // do nothing
+                    callback.onSubscribe(d)
                 }
                 override fun onNext(t: Response) {
                     callback.onSuccess(t)
@@ -73,7 +79,7 @@ object RemoteDataSource: DataSource{
                     callback.onHideProgressDialog()
                 }
                 override fun onSubscribe(d: Disposable) {
-                    // do nothing
+                    callback.onSubscribe(d)
                 }
                 override fun onNext(t: Response) {
                     callback.onSuccess(t)

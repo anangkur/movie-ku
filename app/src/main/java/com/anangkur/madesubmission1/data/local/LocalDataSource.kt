@@ -10,6 +10,7 @@ import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
 
 class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val context: Context): DataSource{
+
     override fun saveAlarmState(alarmState: String, type: Int) {
         when(type){
             Const.typeAlarmDaily -> preferenceHelper.saveStringPreferences(Const.PREF_ALARM_STATE_DAILY, alarmState)
@@ -34,6 +35,10 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
 
     override fun saveFirebaseMessagingToken(token: String) {
         preferenceHelper.saveStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN, token)
+    }
+
+    override fun loadFirebaseMessagingToken(): String? {
+        return preferenceHelper.loadStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN)
     }
 
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {

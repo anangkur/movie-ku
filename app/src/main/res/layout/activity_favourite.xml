@@ -10,7 +10,10 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_fav"
         style="@style/TabLayoutDefault"
-        app:tabIndicatorColor="@color/black"/>
+        app:tabIndicatorColor="@color/black"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"/>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_fav"
         style="@style/ViewPagerDefault" />

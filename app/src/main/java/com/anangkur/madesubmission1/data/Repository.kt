@@ -5,8 +5,10 @@ import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
+import io.reactivex.disposables.Disposable
 
 class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
+
     override fun saveAlarmState(alarmState: String, type: Int) {
         localDataSource.saveAlarmState(alarmState, type)
     }
@@ -23,8 +25,15 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
         localDataSource.saveFirebaseMessagingToken(token)
     }
 
+    override fun loadFirebaseMessagingToken(): String? {
+        return localDataSource.loadFirebaseMessagingToken()
+    }
+
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
-        remoteDataSource.getSearchData(urlType, query, object : DataSource.GetDataCallback{
+        remoteDataSource.getSearchData(urlType, query, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                callback.onSubscribe(disposable)
+            }
             override fun onShowProgressDialog() {
                 callback.onShowProgressDialog()
             }
@@ -99,7 +108,10 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
     }
 
     override fun getData(page: Int, urlType: String, urlFilter: String,  callback: DataSource.GetDataCallback) {
-        remoteDataSource.getData(page, urlType, urlFilter, object : DataSource.GetDataCallback{
+        remoteDataSource.getData(page, urlType, urlFilter, object: DataSource.GetDataCallback{
+            override fun onSubscribe(disposable: Disposable) {
+                callback.onSubscribe(disposable)
+            }
             override fun onShowProgressDialog() {
                 callback.onShowProgressDialog()
             }
