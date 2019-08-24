@@ -33,11 +33,6 @@ interface DataSource {
         fun onSuccess(data: T)
         fun onFailed(errorMessage: String? = "")
     }
-    interface ProviderCallback{
-        fun onPreExcecute()
-        fun onPostExcecute(data: Cursor?)
-        fun onPostExcecute()
-    }
     interface PreferencesCallback{
         fun onSuccess(data: String?)
     }
