@@ -51,10 +51,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupViewModel()
         if (savedInstanceState == null){
             viewModel.getSliderData(1)
-        }
-
-        if (viewModel.loadFirebaseMessagingToken() == null){
-            generateFirebaseToken()
+            viewModel.loadFirebaseMessagingToken()
         }
 
         setupTabAdapter()
@@ -64,11 +61,6 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupViewPagerSlider()
 
         search_bar.setOnClickListener { this.onClickSearch() }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.compositeDisposable.clear()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -112,7 +104,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
 
         viewModel.apply {
             sliderDataLive.observe(this@MainActivity, Observer {
-                for (item in it.results){
+                for (item in it){
                     pagerAdapter.addFragment(ImageSliderFragment.getInstance(item))
                 }
                 setupSliderPage(pagerAdapter)
@@ -128,6 +120,11 @@ class MainActivity : AppCompatActivity(), MainActionListener{
                     layout_error_slider.visibility = View.GONE
                 }else{
                     pb_slider.visibility = View.GONE
+                }
+            })
+            firebaseToken.observe(this@MainActivity, Observer {
+                if (it == null){
+                    generateFirebaseToken()
                 }
             })
         }

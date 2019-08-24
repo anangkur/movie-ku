@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import android.app.Activity
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 
 
@@ -94,6 +95,7 @@ object Utils{
                 vote_count = data.getInt(data.getColumnIndexOrThrow(Const.COLUMN_VOTE_COUNT))
             )
         }else{
+            Log.d("GET_DATA", "null")
             null
         }
     }

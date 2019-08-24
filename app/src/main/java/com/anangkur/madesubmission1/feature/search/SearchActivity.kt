@@ -41,11 +41,6 @@ class SearchActivity : AppCompatActivity() {
         setupSearchView()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.compositeDisposable.clear()
-    }
-
     private fun setupToolbar(){
         setSupportActionBar(toolbar)
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)

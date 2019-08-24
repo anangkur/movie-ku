@@ -76,27 +76,25 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
                 result = it
-                getDataById(result.id)
+                getDataById(result)
             })
             successGetData.observe(this@DetailActivity, Observer {
                 if (it != null){
-                    Log.d("GET_DATA", "it Id: ${it.id}, favourite: ${it.favourite}")
                     setupDataToView(it)
                 }else{
-                    Log.d("GET_DATA", "result Id: ${result.id}, favourite: ${result.favourite}")
                     setupDataToView(result)
                 }
             })
             successInsertResult.observe(this@DetailActivity, Observer {
                 if (it){
                     Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_insert)}", Snackbar.LENGTH_SHORT).show()
-                    getDataById(result.id)
+                    getDataById(result)
                 }
             })
             successDeleteResult.observe(this@DetailActivity, Observer {
                 if (it){
                     Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_delete)}", Snackbar.LENGTH_SHORT).show()
-                    getDataById(result.id)
+                    getDataById(result)
                 }
             })
         }
@@ -138,14 +136,10 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     }
 
     override fun onAddFavourite(data: Result) {
-        Log.d("DETAIL_ACTIVITY", "add favourite type: ${data.type}")
-        Log.d("DETAIL_ACTIVITY", "add favourite title: ${data.title}")
         detailViewModel.bulkInsertData(data.copy(favourite = Const.favouriteStateTrue))
     }
 
     override fun onRemoveFavourite(data: Result) {
-        Log.d("DETAIL_ACTIVITY", "delete favourite type: ${data.type}")
-        Log.d("DETAIL_ACTIVITY", "delete favourite title: ${data.title}")
         detailViewModel.deleteData(data.copy(favourite = Const.favouriteStateFalse))
     }
 }

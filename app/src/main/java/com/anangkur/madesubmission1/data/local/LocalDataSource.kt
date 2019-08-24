@@ -1,13 +1,16 @@
 package com.anangkur.madesubmission1.data.local
 
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
-import android.os.AsyncTask
 import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, private val context: Context): DataSource{
 
@@ -18,11 +21,10 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
         }
     }
 
-    override fun loadAlarmState(type: Int): String? {
-        return when(type){
-            Const.typeAlarmDaily -> preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_DAILY)
-            Const.typeAlarmRelease -> preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_RELEASE)
-            else -> return null
+    override fun loadAlarmState(type: Int, callback: DataSource.PreferencesCallback){
+        when(type){
+            Const.typeAlarmDaily -> callback.onSuccess(preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_DAILY))
+            Const.typeAlarmRelease -> callback.onSuccess(preferenceHelper.loadStringPreferences(Const.PREF_ALARM_STATE_RELEASE))
         }
     }
 
@@ -37,84 +39,75 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
         preferenceHelper.saveStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN, token)
     }
 
-    override fun loadFirebaseMessagingToken(): String? {
-        return preferenceHelper.loadStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN)
+    override fun loadFirebaseMessagingToken(callback: DataSource.PreferencesCallback){
+        callback.onSuccess(preferenceHelper.loadStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN))
     }
 
-    override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
-        // do nothing
-    }
-
-    override fun getAllResult(callback: DataSource.ProviderCallback) {
-        class Task : AsyncTask<Void, Void, Cursor>(){
-            override fun doInBackground(vararg p0: Void?): Cursor? {
-                return context.contentResolver.query(Const.URI_MOVIE, null, null, null, null)
-            }
-            override fun onPostExecute(result: Cursor?) {
-                callback.onPostExcecute(result)
-            }
-            override fun onPreExecute() {
-                callback.onPreExcecute()
+    override fun getAllResult(callback: DataSource.GetDataProviderCallback) {
+        callback.onShowProgressDialog()
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = context.contentResolver.query(Const.URI_MOVIE, null, null, null, null)
+            withContext(Dispatchers.Main){
+                try {
+                    callback.onSuccess(data)
+                }catch (e: Exception){
+                    callback.onFailed(e.message)
+                }
+                callback.onHideProgressDialog()
             }
         }
-        Task().execute()
     }
 
-    override fun getResultById(id: Int, callback: DataSource.ProviderCallback) {
-        class Task : AsyncTask<Void, Void, Cursor>(){
-            override fun doInBackground(vararg p0: Void?): Cursor? {
-                return context.contentResolver.query(Uri.parse("${Const.URI_MOVIE}/$id"), null, null, null, null)
-            }
-            override fun onPostExecute(result: Cursor?) {
-                callback.onPostExcecute(result)
-            }
-            override fun onPreExecute() {
-                callback.onPreExcecute()
+    override fun getResultById(id: Int, callback: DataSource.GetDataProviderCallback) {
+        callback.onShowProgressDialog()
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = context.contentResolver.query(Uri.parse("${Const.URI_MOVIE}/$id"), null, null, null, null)
+            withContext(Dispatchers.Main){
+                try {
+                    callback.onSuccess(data)
+                }catch (e: Exception){
+                    callback.onFailed(e.message)
+                }
+                callback.onHideProgressDialog()
             }
         }
-        Task().execute()
     }
 
-    override fun bulkInsertResult(data: Result, callback: DataSource.ProviderCallback) {
-        class Task : AsyncTask<Void, Void, Uri>(){
-            override fun doInBackground(vararg p0: Void?): Uri? {
-                return context.contentResolver.insert(Const.URI_MOVIE, Utils.convertResultToContentValue(data))
-            }
-            override fun onPostExecute(result: Uri?) {
-                callback.onPostExcecute()
-            }
-            override fun onPreExecute() {
-                callback.onPreExcecute()
+    override fun bulkInsertResult(data: Result, callback: DataSource.PostDataProfiderCallback) {
+        callback.onShowProgressDialog()
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = context.contentResolver.insert(Const.URI_MOVIE, Utils.convertResultToContentValue(data))
+            withContext(Dispatchers.Main){
+                try {
+                    callback.onSuccess(data)
+                }catch (e: Exception){
+                    callback.onFailed(e.message)
+                }
+                callback.onHideProgressDialog()
             }
         }
-        Task().execute()
     }
 
-    override fun deleteResult(data: Result, callback: DataSource.ProviderCallback) {
-        class Task : AsyncTask<Void, Void, Int>(){
-            override fun doInBackground(vararg p0: Void?): Int? {
-                return context.contentResolver.delete(Uri.parse("${Const.URI_MOVIE}/${data.id}"), "${Const.COLUMN_ID}=${data.id}", null)
-            }
-            override fun onPostExecute(result: Int?) {
-                callback.onPostExcecute()
-            }
-            override fun onPreExecute() {
-                callback.onPreExcecute()
+    override fun deleteResult(data: Result, callback: DataSource.DeleteDataProviderCallback) {
+        callback.onShowProgressDialog()
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = context.contentResolver.delete(Uri.parse("${Const.URI_MOVIE}/${data.id}"), "${Const.COLUMN_ID}=${data.id}", null)
+            withContext(Dispatchers.Main){
+                try {
+                    callback.onSuccess(data)
+                }catch (e: Exception){
+                    callback.onFailed(e.message)
+                }
+                callback.onHideProgressDialog()
             }
         }
-        Task().execute()
-    }
-
-    override fun getData(page: Int, urlType: String, urlFilter: String, callback: DataSource.GetDataCallback) {
-        // do nothing
     }
 
     override fun saveLanguage(language: String) {
         preferenceHelper.saveStringPreferences(Const.PREF_LANGUAGE, language)
     }
 
-    override fun loadLanguage(): String? {
-        return preferenceHelper.loadStringPreferences(Const.PREF_LANGUAGE)
+    override fun loadLanguage(callback: DataSource.PreferencesCallback){
+        callback.onSuccess(preferenceHelper.loadStringPreferences(Const.PREF_LANGUAGE))
     }
-
 }

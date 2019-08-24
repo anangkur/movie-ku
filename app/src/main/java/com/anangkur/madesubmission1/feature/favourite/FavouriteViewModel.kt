@@ -21,19 +21,16 @@ class FavouriteViewModel(application: Application, private val repository: Repos
     val showErrorGetTv = MutableLiveData<String>()
 
     fun getAllData(){
-        repository.getAllResult(object : DataSource.ProviderCallback{
-            override fun onPostExcecute() {
-                showProgressGetTv.value = false
-                showProgressGetMovie.value = false
-            }
-
-            override fun onPreExcecute() {
+        repository.getAllResult(object: DataSource.GetDataProviderCallback{
+            override fun onShowProgressDialog() {
                 showProgressGetTv.value = true
                 showProgressGetMovie.value = true
             }
-            override fun onPostExcecute(data: Cursor?) {
+            override fun onHideProgressDialog() {
                 showProgressGetTv.value = false
                 showProgressGetMovie.value = false
+            }
+            override fun onSuccess(data: Cursor?) {
                 val movieDatas = ArrayList<Result>()
                 val tvDatas = ArrayList<Result>()
                 data?.let {
@@ -48,6 +45,10 @@ class FavouriteViewModel(application: Application, private val repository: Repos
                     movieLive.value = movieDatas
                     tvLive.value = tvDatas
                 }
+            }
+            override fun onFailed(errorMessage: String?) {
+                showErrorGetMovie.value = errorMessage
+                showErrorGetTv.value = errorMessage
             }
         })
     }

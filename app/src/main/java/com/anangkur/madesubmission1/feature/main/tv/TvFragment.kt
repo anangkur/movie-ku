@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.madesubmission1.R
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.feature.detail.DetailActivity
@@ -107,7 +108,7 @@ class TvFragment : Fragment(), MainItemListener {
         recycler_tv_new.apply {
             adapter = tvNewAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         }
     }
 
@@ -116,7 +117,7 @@ class TvFragment : Fragment(), MainItemListener {
         recycler_tv_popular.apply {
             adapter = tvPopularAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         }
     }
 
@@ -125,7 +126,7 @@ class TvFragment : Fragment(), MainItemListener {
         recycler_tv_rating.apply {
             adapter = tvRatingAdapter
             itemAnimator = DefaultItemAnimator()
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         }
     }
 
