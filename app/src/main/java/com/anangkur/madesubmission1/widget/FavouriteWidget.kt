@@ -9,9 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import com.anangkur.madesubmission1.R
-import com.anangkur.madesubmission1.feature.custom.StackWidgetService
 import com.anangkur.madesubmission1.utils.Const
-
 
 /**
  * Implementation of App Widget functionality.

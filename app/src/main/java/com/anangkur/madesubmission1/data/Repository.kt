@@ -1,20 +1,23 @@
 package com.anangkur.madesubmission1.data
 
 import android.database.Cursor
+import android.net.Uri
 import com.anangkur.madesubmission1.data.local.LocalDataSource
-import com.anangkur.madesubmission1.data.model.Response
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
-import io.reactivex.disposables.Disposable
 
-class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
+open class Repository(val localDataSource: LocalDataSource, val remoteDataSource: RemoteDataSource): DataSource{
 
     override fun saveAlarmState(alarmState: String, type: Int) {
         localDataSource.saveAlarmState(alarmState, type)
     }
 
-    override fun loadAlarmState(type: Int): String? {
-        return localDataSource.loadAlarmState(type)
+    override fun loadAlarmState(type: Int, callback: DataSource.PreferencesCallback){
+        localDataSource.loadAlarmState(type, object: DataSource.PreferencesCallback{
+            override fun onSuccess(data: String?) {
+                callback.onSuccess(data)
+            }
+        })
     }
 
     override fun deleteAlarmState(type: Int) {
@@ -25,22 +28,23 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
         localDataSource.saveFirebaseMessagingToken(token)
     }
 
-    override fun loadFirebaseMessagingToken(): String? {
-        return localDataSource.loadFirebaseMessagingToken()
+    override fun loadFirebaseMessagingToken(callback: DataSource.PreferencesCallback){
+        localDataSource.loadFirebaseMessagingToken(object: DataSource.PreferencesCallback{
+            override fun onSuccess(data: String?) {
+                callback.onSuccess(data)
+            }
+        })
     }
 
-    override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback) {
+    override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback){
         remoteDataSource.getSearchData(urlType, query, object: DataSource.GetDataCallback{
-            override fun onSubscribe(disposable: Disposable) {
-                callback.onSubscribe(disposable)
-            }
             override fun onShowProgressDialog() {
                 callback.onShowProgressDialog()
             }
             override fun onHideProgressDialog() {
                 callback.onHideProgressDialog()
             }
-            override fun onSuccess(data: Response) {
+            override fun onSuccess(data: List<Result>) {
                 callback.onSuccess(data)
             }
             override fun onFailed(errorMessage: String?) {
@@ -49,76 +53,83 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
         })
     }
 
-    override fun getAllResult(callback: DataSource.ProviderCallback) {
-        localDataSource.getAllResult(object : DataSource.ProviderCallback{
-            override fun onPostExcecute() {
-                callback.onPostExcecute()
-            }
-
-            override fun onPreExcecute() {
-                callback.onPreExcecute()
-            }
-            override fun onPostExcecute(data: Cursor?) {
-                callback.onPostExcecute(data)
-            }
-        })
-    }
-
-    override fun getResultById(id: Int, callback: DataSource.ProviderCallback) {
-        localDataSource.getResultById(id, object : DataSource.ProviderCallback{
-            override fun onPostExcecute() {
-                callback.onPostExcecute()
-            }
-
-            override fun onPreExcecute() {
-                callback.onPreExcecute()
-            }
-            override fun onPostExcecute(data: Cursor?) {
-                callback.onPostExcecute(data)
-            }
-        })
-    }
-
-    override fun bulkInsertResult(data: Result, callback: DataSource.ProviderCallback) {
-        localDataSource.bulkInsertResult(data, object : DataSource.ProviderCallback{
-            override fun onPreExcecute() {
-                callback.onPreExcecute()
-            }
-            override fun onPostExcecute(data: Cursor?) {
-                callback.onPostExcecute(data)
-            }
-            override fun onPostExcecute() {
-                callback.onPostExcecute()
-            }
-        })
-    }
-
-    override fun deleteResult(data: Result, callback: DataSource.ProviderCallback) {
-        localDataSource.deleteResult(data, object : DataSource.ProviderCallback{
-            override fun onPreExcecute() {
-                callback.onPreExcecute()
-            }
-            override fun onPostExcecute(data: Cursor?) {
-                callback.onPostExcecute(data)
-            }
-            override fun onPostExcecute() {
-                callback.onPostExcecute()
-            }
-        })
-    }
-
-    override fun getData(page: Int, urlType: String, urlFilter: String,  callback: DataSource.GetDataCallback) {
-        remoteDataSource.getData(page, urlType, urlFilter, object: DataSource.GetDataCallback{
-            override fun onSubscribe(disposable: Disposable) {
-                callback.onSubscribe(disposable)
-            }
+    override fun getAllResult(callback: DataSource.GetDataProviderCallback) {
+        localDataSource.getAllResult(object: DataSource.GetDataProviderCallback{
             override fun onShowProgressDialog() {
                 callback.onShowProgressDialog()
             }
             override fun onHideProgressDialog() {
                 callback.onHideProgressDialog()
             }
-            override fun onSuccess(data: Response) {
+            override fun onSuccess(data: Cursor?) {
+                callback.onSuccess(data)
+            }
+            override fun onFailed(errorMessage: String?) {
+                callback.onFailed(errorMessage)
+            }
+        })
+    }
+
+    override fun getResultById(id: Int, callback: DataSource.GetDataProviderCallback) {
+        localDataSource.getResultById(id, object: DataSource.GetDataProviderCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+            override fun onSuccess(data: Cursor?) {
+                callback.onSuccess(data)
+            }
+            override fun onFailed(errorMessage: String?) {
+                callback.onFailed(errorMessage)
+            }
+        })
+    }
+
+    override fun bulkInsertResult(data: Result, callback: DataSource.PostDataProfiderCallback) {
+        localDataSource.bulkInsertResult(data, object: DataSource.PostDataProfiderCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+            override fun onSuccess(data: Uri?) {
+                callback.onSuccess(data)
+            }
+            override fun onFailed(errorMessage: String?) {
+                callback.onFailed(errorMessage)
+            }
+        })
+    }
+
+    override fun deleteResult(data: Result, callback: DataSource.DeleteDataProviderCallback) {
+        localDataSource.deleteResult(data, object: DataSource.DeleteDataProviderCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+            override fun onSuccess(data: Int) {
+                callback.onSuccess(data)
+            }
+            override fun onFailed(errorMessage: String?) {
+                callback.onFailed(errorMessage)
+            }
+        })
+    }
+
+    override fun getData(page: Int, urlType: String, urlFilter: String, callback: DataSource.GetDataCallback){
+        remoteDataSource.getData(page, urlType, urlFilter, object: DataSource.GetDataCallback{
+            override fun onShowProgressDialog() {
+                callback.onShowProgressDialog()
+            }
+            override fun onHideProgressDialog() {
+                callback.onHideProgressDialog()
+            }
+            override fun onSuccess(data: List<Result>) {
                 callback.onSuccess(data)
             }
             override fun onFailed(errorMessage: String?) {
@@ -131,7 +142,11 @@ class Repository(private val localDataSource: LocalDataSource, private val remot
         localDataSource.saveLanguage(language)
     }
 
-    override fun loadLanguage(): String? {
-        return localDataSource.loadLanguage()
+    override fun loadLanguage(callback: DataSource.PreferencesCallback){
+        localDataSource.loadLanguage(object: DataSource.PreferencesCallback{
+            override fun onSuccess(data: String?) {
+                callback.onSuccess(data)
+            }
+        })
     }
 }

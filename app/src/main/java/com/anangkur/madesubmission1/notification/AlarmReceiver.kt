@@ -18,6 +18,11 @@ import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver(){
@@ -34,15 +39,12 @@ class AlarmReceiver : BroadcastReceiver(){
     }
 
     private fun showNotifNewRelease(context: Context, title: String, message: String, itemId: Int){
-        ApiService.getApiService.getTodayReleaseMovie(BuildConfig.apiKey, Utils.formatDateStandard(Utils.getTime()), Utils.formatDateStandard(Utils.getTime()))
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(Schedulers.newThread())
-            .subscribe(object: Observer<Response>{
-                override fun onComplete() {}
-                override fun onSubscribe(d: Disposable) {}
-                override fun onNext(t: Response) {
-                    if (t.results.isNotEmpty()){
-                        val data = t.results[0]
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = ApiService.getApiService.getTodayReleaseMovie(BuildConfig.apiKey, Utils.formatDateStandard(Utils.getTime()), Utils.formatDateStandard(Utils.getTime()))
+            withContext(Dispatchers.Main){
+                try {
+                    if (response.results.isNotEmpty()){
+                        val data = response.results[0]
                         val imageUrl = "${BuildConfig.baseImageUrl}${data.backdrop_path}"
                         val bitmap = Glide.with(context)
                             .asBitmap()
@@ -53,9 +55,11 @@ class AlarmReceiver : BroadcastReceiver(){
                             .get()
                         NotificationHelper(context).createNoticication(title, data.original_title?:"", itemId, bitmap, data)
                     }
+                }catch (e: Exception){
+
                 }
-                override fun onError(e: Throwable) {}
-            })
+            }
+        }
     }
 
     fun setupAlarm(context: Context, title: String, message: String, notifId: Int, time: String) {

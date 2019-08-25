@@ -49,11 +49,11 @@ class MovieFragment : Fragment(), MainItemListener {
         movieViewModel.apply {
             horizontalDataLive.observe(this@MovieFragment, Observer {
                 layout_error_horizontal.visibility = View.GONE
-                movieHorizontalAdapter.setRecyclerData(it.results)
+                movieHorizontalAdapter.setRecyclerData(it)
             })
             verticalLiveData.observe(this@MovieFragment, Observer {
                 layout_error_vertical.visibility = View.GONE
-                movieVerticalAdapter.setRecyclerData(it.results)
+                movieVerticalAdapter.setRecyclerData(it)
             })
             showProgressHorizontalLive.observe(this@MovieFragment, Observer {
                 if (it){

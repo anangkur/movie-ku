@@ -45,7 +45,7 @@
         </receiver>
 
         <service
-            android:name=".feature.custom.StackWidgetService"
+            android:name=".widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         <service
             android:name=".notification.MessagingService"

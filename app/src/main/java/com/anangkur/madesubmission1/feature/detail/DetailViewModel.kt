@@ -2,6 +2,7 @@ package com.anangkur.madesubmission1.feature.detail
 
 import android.app.Application
 import android.database.Cursor
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -25,56 +26,59 @@ class DetailViewModel(application: Application, private val repository: Reposito
     val successGetData = MutableLiveData<Result>()
 
     fun getDataFromIntent(data: Result, type: Int){
-        Log.d("INTENT_DATA", "data: ${data.title?:data.name}, type: $type")
         resultLive.value = data.copy(type = type)
     }
 
     fun deleteData(data: Result){
-        repository.deleteResult(data, object : DataSource.ProviderCallback{
-            override fun onPreExcecute() {
+        repository.deleteResult(data, object: DataSource.DeleteDataProviderCallback{
+            override fun onShowProgressDialog() {
                 showProgressDeleteResult.value = true
             }
-            override fun onPostExcecute(data: Cursor?) {
+            override fun onHideProgressDialog() {
                 showProgressDeleteResult.value = false
             }
-            override fun onPostExcecute() {
-                showProgressDeleteResult.value = false
+            override fun onSuccess(data: Int) {
                 successDeleteResult.value = true
+            }
+            override fun onFailed(errorMessage: String?) {
+                // do nothing
             }
         })
         result = data
     }
 
     fun bulkInsertData(data: Result){
-        repository.bulkInsertResult(data, object : DataSource.ProviderCallback{
-            override fun onPreExcecute() {
+        repository.bulkInsertResult(data, object: DataSource.PostDataProfiderCallback{
+            override fun onShowProgressDialog() {
                 showProgressInsertResult.value = true
             }
-            override fun onPostExcecute(data: Cursor?) {
+            override fun onHideProgressDialog() {
                 showProgressInsertResult.value = false
             }
-            override fun onPostExcecute() {
-                showProgressInsertResult.value = false
+            override fun onSuccess(data: Uri?) {
                 successInsertResult.value = true
+            }
+            override fun onFailed(errorMessage: String?) {
+                // do nothing
             }
         })
     }
 
-    fun getDataById(id: Int){
-        Log.d("GET_DATA", "Id: $id")
-        repository.getResultById(id, object : DataSource.ProviderCallback{
-            override fun onPostExcecute() {
+    fun getDataById(result: Result){
+        repository.getResultById(result.id, object: DataSource.GetDataProviderCallback{
+            override fun onShowProgressDialog() {
                 showProgressGetData.value = false
             }
-
-            override fun onPreExcecute() {
+            override fun onHideProgressDialog() {
                 showProgressGetData.value = true
             }
-            override fun onPostExcecute(data: Cursor?) {
-                showProgressGetData.value = false
+            override fun onSuccess(data: Cursor?) {
                 if (data != null){
                     successGetData.value = Utils.convertCursorIntoResult(data)
                 }
+            }
+            override fun onFailed(errorMessage: String?) {
+                // do nothing
             }
         })
     }

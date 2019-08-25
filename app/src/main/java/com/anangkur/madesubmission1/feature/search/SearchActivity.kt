@@ -16,7 +16,7 @@ import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.custom.TabAdapter
 import com.anangkur.madesubmission1.feature.search.movie.SearchMovieFragment
 import com.anangkur.madesubmission1.feature.search.tv.SearchTvFragment
-import com.anangkur.madesubmission1.utils.ViewModelFactory
+import com.anangkur.madesubmission1.data.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
 import androidx.appcompat.widget.SearchView
 import com.anangkur.madesubmission1.utils.Utils
@@ -39,11 +39,6 @@ class SearchActivity : AppCompatActivity() {
         setupSelectedCustomTab(0)
         setupViewModel()
         setupSearchView()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.compositeDisposable.clear()
     }
 
     private fun setupToolbar(){
@@ -99,20 +94,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(
-                application,
-                Repository(
-                    LocalDataSource(
-                        SharedPreferenceHelper(this),
-                        this
-                    ),
-                    RemoteDataSource
-                )
-            )
-        ).get(SearchViewModel::class.java)
-
+        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(SearchViewModel::class.java)
         viewModel.apply {}
     }
 
