@@ -7,7 +7,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MessagingService: FirebaseMessagingService() {
-    override fun onNewToken(p0: String?) {
+    override fun onNewToken(p0: String) {
         super.onNewToken(p0)
 
         SharedPreferenceHelper(this).saveStringPreferences(Const.PREF_FIREBASE_MESSAGING_TOKEN, p0.toString())

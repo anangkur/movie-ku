@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
@@ -18,7 +17,7 @@ import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.custom.TabAdapter
 import com.anangkur.madesubmission1.feature.favourite.movie.FavouriteMovieFragment
 import com.anangkur.madesubmission1.feature.favourite.tv.FavouriteTvFragment
-import com.anangkur.madesubmission1.utils.ViewModelFactory
+import com.anangkur.madesubmission1.data.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_favourite.*
 
 class FavouriteActivity : AppCompatActivity() {
@@ -102,19 +101,7 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel(){
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(
-                application,
-                Repository(
-                    LocalDataSource(
-                        SharedPreferenceHelper(this),
-                        this
-                    ),
-                    RemoteDataSource
-                )
-            )
-        ).get(FavouriteViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(FavouriteViewModel::class.java)
 
         viewModel.apply {}
     }

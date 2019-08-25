@@ -6,7 +6,7 @@ import com.anangkur.madesubmission1.data.local.LocalDataSource
 import com.anangkur.madesubmission1.data.model.Result
 import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 
-class Repository(private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource): DataSource{
+open class Repository(val localDataSource: LocalDataSource, val remoteDataSource: RemoteDataSource): DataSource{
 
     override fun saveAlarmState(alarmState: String, type: Int) {
         localDataSource.saveAlarmState(alarmState, type)

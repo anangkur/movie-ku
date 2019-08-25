@@ -8,7 +8,7 @@ import com.anangkur.madesubmission1.data.DataSource
 import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.data.model.Result
 
-class MainViewModel(application: Application, private val repository: Repository): AndroidViewModel(application) {
+class MainViewModel(application: Application, val repository: Repository): AndroidViewModel(application) {
 
     val sliderDataLive = MutableLiveData<List<Result>>()
     val showProgressSliderLive = MutableLiveData<Boolean>()

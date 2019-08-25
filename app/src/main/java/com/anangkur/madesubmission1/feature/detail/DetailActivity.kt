@@ -6,7 +6,6 @@ import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
@@ -22,7 +21,7 @@ import com.anangkur.madesubmission1.data.remote.RemoteDataSource
 import com.anangkur.madesubmission1.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.madesubmission1.utils.Const
 import com.anangkur.madesubmission1.utils.Utils
-import com.anangkur.madesubmission1.utils.ViewModelFactory
+import com.anangkur.madesubmission1.data.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -70,9 +69,7 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     }
 
     private fun setupViewModel(){
-        detailViewModel = ViewModelProviders.of(this, ViewModelFactory(application, Repository(
-            LocalDataSource(SharedPreferenceHelper(this), this), RemoteDataSource)))
-            .get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(DetailViewModel::class.java)
         detailViewModel.apply {
             resultLive.observe(this@DetailActivity, Observer {
                 result = it

@@ -58,6 +58,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/anangkur/madesubmission1/data/local/LocalDataSource.kt">
           <value>
             <set />
@@ -528,6 +533,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/anangkur/madesubmission1/MockitoKotlinHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/anangkur/madesubmission1/feature/main/MainViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../MADESubmission2/app/src/main/AndroidManifest.xml">
           <value>
             <set />
@@ -869,6 +884,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../android-nutricell/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../antaraqua-android/app/src/main/java/id/gits/antaraqua/data/Injection.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../antaraqua-android/app/src/sharedTest/java/id/gits/antaraqua/mvvm/products/ProductsActivityTest.kt">
           <value>
             <set />
           </value>

@@ -1,9 +1,10 @@
-package com.anangkur.madesubmission1.utils
+package com.anangkur.madesubmission1.data
 
+import android.annotation.SuppressLint
 import android.app.Application
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.anangkur.madesubmission1.data.Repository
 import com.anangkur.madesubmission1.feature.detail.DetailViewModel
 import com.anangkur.madesubmission1.feature.favourite.FavouriteViewModel
 import com.anangkur.madesubmission1.feature.main.MainViewModel
@@ -23,4 +24,20 @@ class ViewModelFactory (private val application: Application, private val reposi
                     else -> throw IllegalArgumentException("Unknown ViewModel kelas: ${modelClass.name}")
                 }
             } as T
+
+    companion object{
+        @SuppressLint("StaticFieldLeak")
+        @Volatile private var INSTANCE: ViewModelFactory? = null
+
+        fun getInstance(application: Application) =
+            INSTANCE ?: synchronized(ViewModelFactory::class.java) {
+                INSTANCE ?: ViewModelFactory(application, Injection.provideRepository(application.applicationContext)).also { INSTANCE = it }
+            }
+
+
+        @VisibleForTesting
+        fun destroyInstance() {
+            INSTANCE = null
+        }
+    }
 }
