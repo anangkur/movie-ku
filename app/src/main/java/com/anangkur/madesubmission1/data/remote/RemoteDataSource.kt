@@ -13,16 +13,18 @@ object RemoteDataSource: DataSource{
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback){
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = ApiService.getApiService.getSearchData(urlType, apiKey, query)
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val response = ApiService.getApiService.getSearchData(urlType, apiKey, query)
+                withContext(Dispatchers.Main){
                     if (response.results.isNotEmpty()){
                         callback.onSuccess(response.results)
                     }else{
                         callback.onFailed(response.status_message)
                     }
                     callback.onHideProgressDialog()
-                }catch (e: Exception){
+                }
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
                     callback.onFailed(e.message)
                     callback.onHideProgressDialog()
                 }
@@ -33,16 +35,18 @@ object RemoteDataSource: DataSource{
     override fun getData(page: Int, urlType: String, urlFilter: String, callback: DataSource.GetDataCallback){
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = ApiService.getApiService.getData(urlType, urlFilter, apiKey, page)
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val response = ApiService.getApiService.getData(urlType, urlFilter, apiKey, page)
+                withContext(Dispatchers.Main){
                     if (response.results.isNotEmpty()){
                         callback.onSuccess(response.results)
                     }else{
                         callback.onFailed(response.status_message)
                     }
                     callback.onHideProgressDialog()
-                }catch (e: Exception){
+                }
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
                     callback.onFailed(e.message)
                     callback.onHideProgressDialog()
                 }

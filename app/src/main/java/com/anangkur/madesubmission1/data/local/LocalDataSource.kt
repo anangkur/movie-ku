@@ -46,14 +46,17 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
     override fun getAllResult(callback: DataSource.GetDataProviderCallback) {
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val data = context.contentResolver.query(Const.URI_MOVIE, null, null, null, null)
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val data = context.contentResolver.query(Const.URI_MOVIE, null, null, null, null)
+                withContext(Dispatchers.Main){
                     callback.onSuccess(data)
-                }catch (e: Exception){
-                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
                 }
-                callback.onHideProgressDialog()
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
+                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
+                }
             }
         }
     }
@@ -61,14 +64,17 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
     override fun getResultById(id: Int, callback: DataSource.GetDataProviderCallback) {
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val data = context.contentResolver.query(Uri.parse("${Const.URI_MOVIE}/$id"), null, null, null, null)
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val data = context.contentResolver.query(Uri.parse("${Const.URI_MOVIE}/$id"), null, null, null, null)
+                withContext(Dispatchers.Main){
                     callback.onSuccess(data)
-                }catch (e: Exception){
-                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
                 }
-                callback.onHideProgressDialog()
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
+                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
+                }
             }
         }
     }
@@ -76,14 +82,17 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
     override fun bulkInsertResult(data: Result, callback: DataSource.PostDataProfiderCallback) {
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val data = context.contentResolver.insert(Const.URI_MOVIE, Utils.convertResultToContentValue(data))
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val data = context.contentResolver.insert(Const.URI_MOVIE, Utils.convertResultToContentValue(data))
+                withContext(Dispatchers.Main){
                     callback.onSuccess(data)
-                }catch (e: Exception){
-                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
                 }
-                callback.onHideProgressDialog()
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
+                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
+                }
             }
         }
     }
@@ -91,14 +100,17 @@ class LocalDataSource(private val preferenceHelper: SharedPreferenceHelper, priv
     override fun deleteResult(data: Result, callback: DataSource.DeleteDataProviderCallback) {
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
-            val data = context.contentResolver.delete(Uri.parse("${Const.URI_MOVIE}/${data.id}"), "${Const.COLUMN_ID}=${data.id}", null)
-            withContext(Dispatchers.Main){
-                try {
+            try {
+                val data = context.contentResolver.delete(Uri.parse("${Const.URI_MOVIE}/${data.id}"), "${Const.COLUMN_ID}=${data.id}", null)
+                withContext(Dispatchers.Main){
                     callback.onSuccess(data)
-                }catch (e: Exception){
-                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
                 }
-                callback.onHideProgressDialog()
+            }catch (e: Exception){
+                withContext(Dispatchers.Main){
+                    callback.onFailed(e.message)
+                    callback.onHideProgressDialog()
+                }
             }
         }
     }
