@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.anangkur.madesubmission1">
+    package="com.anangkur.movieku">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <permission
-        android:name="com.anangkur.madesubmission1.READ_DATABASE"
+        android:name="com.anangkur.movieku.READ_DATABASE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.anangkur.madesubmission1.WRITE_DATABASE"
+        android:name="com.anangkur.movieku.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application
@@ -20,21 +20,21 @@
         android:roundIcon="@drawable/ic_movie_active"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.notificationSetting.NotificationSettingActivity" />
+        <activity android:name="com.anangkur.movieku.feature.notificationSetting.NotificationSettingActivity" />
         <activity
-            android:name=".feature.search.SearchActivity"
+            android:name="com.anangkur.movieku.feature.search.SearchActivity"
             android:theme="@style/SearchTheme" />
-        <activity android:name=".feature.favourite.FavouriteActivity" />
-        <activity android:name=".feature.main.MainActivity">
+        <activity android:name="com.anangkur.movieku.feature.favourite.FavouriteActivity" />
+        <activity android:name="com.anangkur.movieku.feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.detail.DetailActivity" />
+        <activity android:name="com.anangkur.movieku.feature.detail.DetailActivity" />
 
-        <receiver android:name=".widget.FavouriteWidget">
+        <receiver android:name="com.anangkur.movieku.widget.FavouriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -45,10 +45,10 @@
         </receiver>
 
         <service
-            android:name=".widget.StackWidgetService"
+            android:name="com.anangkur.movieku.widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
         <service
-            android:name=".notification.MessagingService"
+            android:name="com.anangkur.movieku.notification.MessagingService"
             android:permission="com.google.android.c2dm.permission.SEND"
             android:stopWithTask="false">
             <intent-filter>
@@ -58,13 +58,13 @@
         </service>
 
         <receiver
-            android:name=".notification.AlarmReceiver"
+            android:name="com.anangkur.movieku.notification.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 
         <provider
-            android:name=".data.MovieProvider"
-            android:authorities="com.anangkur.madesubmission1.provider"
+            android:name="com.anangkur.movieku.data.MovieProvider"
+            android:authorities="com.anangkur.movieku.provider"
             android:exported="true"
             android:readPermission="com.anangkur.madesubmission1.READ_DATABASE"
             android:writePermission="com.anangkur.madesubmission1.WRITE_DATABASE" />

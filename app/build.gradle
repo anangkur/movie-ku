@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.anangkur.madesubmission1"
+        applicationId "com.anangkur.movieku"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
