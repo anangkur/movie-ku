@@ -84,7 +84,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:704836944830:android:4f268bacae27fc6e",
         "android_client_info": {
-          "package_name": "com.anangkur.madesubmission1"
+          "package_name": "com.anangkur.movieku"
         }
       },
       "oauth_client": [
@@ -92,7 +92,7 @@
           "client_id": "704836944830-42h96lhgkkfcqsolbfpl8h1811mnnonl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.anangkur.madesubmission1",
+            "package_name": "com.anangkur.movieku",
             "certificate_hash": "70c8e26fa1d867e6112bf7178e3c161693ca8b08"
           }
         },

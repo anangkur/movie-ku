@@ -1,0 +1,55 @@
+package com.anangkur.movieku.feature.favourite
+
+import android.app.Application
+import android.database.Cursor
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.anangkur.movieku.data.DataSource
+import com.anangkur.movieku.data.Repository
+import com.anangkur.movieku.data.model.Result
+import com.anangkur.movieku.utils.Const
+import com.anangkur.movieku.utils.Utils
+
+class FavouriteViewModel(application: Application, private val repository: Repository): AndroidViewModel(application){
+
+    val movieLive = MutableLiveData<List<Result>>()
+    val showProgressGetMovie = MutableLiveData<Boolean>()
+    val showErrorGetMovie = MutableLiveData<String>()
+
+    val tvLive = MutableLiveData<List<Result>>()
+    val showProgressGetTv = MutableLiveData<Boolean>()
+    val showErrorGetTv = MutableLiveData<String>()
+
+    fun getAllData(){
+        repository.getAllResult(object: DataSource.GetDataProviderCallback{
+            override fun onShowProgressDialog() {
+                showProgressGetTv.value = true
+                showProgressGetMovie.value = true
+            }
+            override fun onHideProgressDialog() {
+                showProgressGetTv.value = false
+                showProgressGetMovie.value = false
+            }
+            override fun onSuccess(data: Cursor?) {
+                val movieDatas = ArrayList<Result>()
+                val tvDatas = ArrayList<Result>()
+                data?.let {
+                    val listResult = Utils.convertCursorIntoList(it)
+                    for (result in listResult){
+                        if (result.type == Const.TYPE_MOVIE){
+                            movieDatas.add(result)
+                        }else{
+                            tvDatas.add(result)
+                        }
+                    }
+                    movieLive.value = movieDatas
+                    tvLive.value = tvDatas
+                }
+            }
+            override fun onFailed(errorMessage: String?) {
+                showErrorGetMovie.value = errorMessage
+                showErrorGetTv.value = errorMessage
+            }
+        })
+    }
+}
