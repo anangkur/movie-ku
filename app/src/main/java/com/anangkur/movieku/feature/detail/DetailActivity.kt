@@ -25,6 +25,15 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity: AppCompatActivity(), DetailActionListener {
 
+    companion object{
+        fun startActivity(context: Activity, data: Result, type: Int, requestCode: Int){
+            val intent = Intent(context, DetailActivity::class.java)
+                .putExtra(Const.EXTRA_DETAIL, data)
+                .putExtra(Const.EXTRA_TYPE, type)
+            context.startActivityForResult(intent, requestCode)
+        }
+    }
+
     private lateinit var detailViewModel: DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +45,10 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
         super.onStart()
         setupToolbar()
         setupViewModel()
-        detailViewModel.getDataFromIntent(intent.getParcelableExtra(Const.EXTRA_DETAIL), intent.getIntExtra(Const.EXTRA_TYPE, 1))
+        detailViewModel.getDataFromIntent(
+            intent.getParcelableExtra(Const.EXTRA_DETAIL),
+            intent.getIntExtra(Const.EXTRA_TYPE, 1)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -80,24 +92,26 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
             })
             successInsertResult.observe(this@DetailActivity, Observer {
                 if (it){
-                    Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_insert)}", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "${result.title?:result.name} ${resources.getString(R.string.message_success_insert)}",
+                        Snackbar.LENGTH_SHORT).show()
                     getDataById(result)
                 }
             })
             successDeleteResult.observe(this@DetailActivity, Observer {
                 if (it){
-                    Snackbar.make(findViewById(android.R.id.content), "${result.title?:result.name} ${resources.getString(R.string.message_success_delete)}", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "${result.title?:result.name} ${resources.getString(R.string.message_success_delete)}",
+                        Snackbar.LENGTH_SHORT).show()
                     getDataById(result)
                 }
             })
+            errorMessageLive.observe(this@DetailActivity, Observer {
+                Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            })
         }
-    }
-
-    fun startActivity(context: Activity, data: Result, type: Int, requestCode: Int){
-        val intent = Intent(context, DetailActivity::class.java)
-            .putExtra(Const.EXTRA_DETAIL, data)
-            .putExtra(Const.EXTRA_TYPE, type)
-        context.startActivityForResult(intent, requestCode)
     }
 
     private fun setupDataToView(data: Result){

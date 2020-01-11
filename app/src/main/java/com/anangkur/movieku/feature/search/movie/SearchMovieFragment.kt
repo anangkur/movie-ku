@@ -65,6 +65,6 @@ class SearchMovieFragment : Fragment(), MainItemListener{
     }
 
     override fun onClickItem(data: Result) {
-        DetailActivity().startActivity(requireActivity(), data, Const.TYPE_MOVIE, Const.requestCodeFavTv)
+        DetailActivity.startActivity(requireActivity(), data, Const.TYPE_MOVIE, Const.requestCodeFavTv)
     }
 }

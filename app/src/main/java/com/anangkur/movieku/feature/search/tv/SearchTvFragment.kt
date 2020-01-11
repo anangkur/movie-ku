@@ -65,6 +65,6 @@ class SearchTvFragment : Fragment(), MainItemListener{
     }
 
     override fun onClickItem(data: Result) {
-        DetailActivity().startActivity(requireActivity(), data, Const.TYPE_TV, Const.requestCodeFavTv)
+        DetailActivity.startActivity(requireActivity(), data, Const.TYPE_TV, Const.requestCodeFavTv)
     }
 }

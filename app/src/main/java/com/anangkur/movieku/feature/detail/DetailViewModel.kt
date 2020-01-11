@@ -24,8 +24,10 @@ class DetailViewModel(application: Application, private val repository: Reposito
     val showProgressGetData = MutableLiveData<Boolean>()
     val successGetData = MutableLiveData<Result>()
 
-    fun getDataFromIntent(data: Result, type: Int){
-        resultLive.value = data.copy(type = type)
+    val errorMessageLive = MutableLiveData<String>()
+
+    fun getDataFromIntent(data: Result?, type: Int){
+        resultLive.value = data?.copy(type = type)
     }
 
     fun deleteData(data: Result){
@@ -40,7 +42,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
                 successDeleteResult.value = true
             }
             override fun onFailed(errorMessage: String?) {
-                // do nothing
+                errorMessageLive.value = errorMessage
             }
         })
         result = data
@@ -58,7 +60,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
                 successInsertResult.value = true
             }
             override fun onFailed(errorMessage: String?) {
-                // do nothing
+                errorMessageLive.value = errorMessage
             }
         })
     }
@@ -66,10 +68,10 @@ class DetailViewModel(application: Application, private val repository: Reposito
     fun getDataById(result: Result){
         repository.getResultById(result.id, object: DataSource.GetDataProviderCallback{
             override fun onShowProgressDialog() {
-                showProgressGetData.value = false
+                showProgressGetData.value = true
             }
             override fun onHideProgressDialog() {
-                showProgressGetData.value = true
+                showProgressGetData.value = false
             }
             override fun onSuccess(data: Cursor?) {
                 if (data != null){
@@ -77,7 +79,7 @@ class DetailViewModel(application: Application, private val repository: Reposito
                 }
             }
             override fun onFailed(errorMessage: String?) {
-                // do nothing
+                errorMessageLive.value = errorMessage
             }
         })
     }

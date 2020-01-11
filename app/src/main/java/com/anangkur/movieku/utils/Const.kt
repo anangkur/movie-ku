@@ -63,7 +63,7 @@ object Const {
     const val favouriteStateTrue = "TRUE"
     const val favouriteStateFalse = "FALSE"
 
-    const val AUTHORITY = "com.anangkur.madesubmission1.provider"
+    const val AUTHORITY = "com.anangkur.movieku.provider"
     val URI_MOVIE = Uri.parse("content://$AUTHORITY/$DATABASE_RESULT")!!
     const val CODE_MOVIE_DIR = 1
     const val CODE_MOVIE_ITEM = 2

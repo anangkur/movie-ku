@@ -33,7 +33,7 @@ class ImageSliderFragment: Fragment(){
                 .into(view.iv_slider)
             view.tv_title.text = result.title
             view.tv_overview.text = result.overview
-            view.setOnClickListener { DetailActivity().startActivity(requireActivity(), result, Const.TYPE_MOVIE, Const.requestCodeFavMovie) }
+            view.setOnClickListener { DetailActivity.startActivity(requireActivity(), result, Const.TYPE_MOVIE, Const.requestCodeFavMovie) }
         }
     }
 
