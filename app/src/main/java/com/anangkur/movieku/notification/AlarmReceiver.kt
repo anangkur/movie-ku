@@ -8,7 +8,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import com.anangkur.movieku.BuildConfig
 import com.anangkur.movieku.R
-import com.anangkur.movieku.data.remote.ApiService
+import com.anangkur.movieku.data.Injection
 import com.anangkur.movieku.utils.Const
 import com.anangkur.movieku.utils.Utils
 import com.bumptech.glide.Glide
@@ -36,7 +36,11 @@ class AlarmReceiver : BroadcastReceiver(){
 
     private fun showNotifNewRelease(context: Context, title: String, message: String, itemId: Int){
         CoroutineScope(Dispatchers.IO).launch {
-            val response = ApiService.getApiService.getTodayReleaseMovie(BuildConfig.apiKey, Utils.formatDateStandard(Utils.getTime()), Utils.formatDateStandard(Utils.getTime()))
+            val response = Injection.provideApiService(context).getTodayReleaseMovie(
+                BuildConfig.apiKey,
+                Utils.formatDateStandard(Utils.getTime()),
+                Utils.formatDateStandard(Utils.getTime())
+            )
             withContext(Dispatchers.Main){
                 try {
                     if (response.results.isNotEmpty()){
@@ -52,7 +56,7 @@ class AlarmReceiver : BroadcastReceiver(){
                         NotificationHelper(context).createNoticication(title, data.original_title?:"", itemId, bitmap, data)
                     }
                 }catch (e: Exception){
-
+                    e.printStackTrace()
                 }
             }
         }
