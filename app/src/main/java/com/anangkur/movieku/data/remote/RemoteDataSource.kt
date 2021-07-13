@@ -8,13 +8,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-object RemoteDataSource: DataSource{
+class RemoteDataSource(private val apiService: ApiService): DataSource{
 
     override fun getSearchData(urlType: String, query: String, callback: DataSource.GetDataCallback){
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = ApiService.getApiService.getSearchData(urlType, apiKey, query)
+                val response = apiService.getSearchData(urlType, apiKey, query)
                 withContext(Dispatchers.Main){
                     if (response.results.isNotEmpty()){
                         callback.onSuccess(response.results)
@@ -36,7 +36,7 @@ object RemoteDataSource: DataSource{
         callback.onShowProgressDialog()
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = ApiService.getApiService.getData(urlType, urlFilter, apiKey, page)
+                val response = apiService.getData(urlType, urlFilter, apiKey, page)
                 withContext(Dispatchers.Main){
                     if (response.results.isNotEmpty()){
                         callback.onSuccess(response.results)
