@@ -25,14 +25,15 @@
             android:name="com.anangkur.movieku.feature.search.SearchActivity"
             android:theme="@style/SearchTheme" />
         <activity android:name="com.anangkur.movieku.feature.favourite.FavouriteActivity" />
-        <activity android:name="com.anangkur.movieku.feature.main.MainActivity">
+        <activity android:name="com.anangkur.movieku.feature.main.MainActivity"/>
+        <activity android:name="com.anangkur.movieku.feature.detail.DetailActivity" />
+        <activity android:name=".feature.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.anangkur.movieku.feature.detail.DetailActivity" />
 
         <receiver android:name="com.anangkur.movieku.widget.FavouriteWidget">
             <intent-filter>
