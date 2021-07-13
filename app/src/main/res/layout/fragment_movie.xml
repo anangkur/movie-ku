@@ -23,13 +23,11 @@
             <include layout="@layout/layout_error"
                 android:id="@+id/layout_error_horizontal"
                 android:visibility="gone"/>
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/recycler_horizontal"
-                style="@style/RecyclerWrap"
-                android:nestedScrollingEnabled="false"
-                android:background="@color/white"
-                android:paddingEnd="@dimen/dimens_16dp"
-                android:clipToPadding="false"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            />
         </RelativeLayout>
         <TextView
             style="@style/TextTitleBig"

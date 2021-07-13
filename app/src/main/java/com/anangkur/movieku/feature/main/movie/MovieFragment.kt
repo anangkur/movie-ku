@@ -4,22 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anangkur.movieku.BuildConfig
 import com.anangkur.movieku.data.model.Result
 import com.anangkur.movieku.databinding.FragmentMovieBinding
 import com.anangkur.movieku.feature.detail.DetailActivity
+import com.anangkur.movieku.feature.main.ItemMainHorizontal
 import com.anangkur.movieku.feature.main.MainActivity
 import com.anangkur.movieku.feature.main.MainItemListener
 import com.anangkur.movieku.feature.main.MainViewModel
 import com.anangkur.movieku.utils.Const
+import com.anangkur.movieku.utils.Utils
 
 class MovieFragment : Fragment(), MainItemListener {
 
     private lateinit var movieViewModel: MainViewModel
     private lateinit var movieVerticalAdapter: MovieVerticalAdapter
-    private lateinit var movieHorizontalAdapter: MovieHorizontalAdapter
     private lateinit var binding: FragmentMovieBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -50,7 +60,6 @@ class MovieFragment : Fragment(), MainItemListener {
         movieViewModel.apply {
             horizontalDataLive.observe(viewLifecycleOwner) {
                 binding.layoutErrorHorizontal.root.visibility = View.GONE
-                movieHorizontalAdapter.setRecyclerData(it)
             }
             verticalLiveData.observe(viewLifecycleOwner) {
                 binding.layoutErrorVertical.root.visibility = View.GONE
@@ -93,15 +102,37 @@ class MovieFragment : Fragment(), MainItemListener {
     }
 
     private fun setupHorizontalAdapter(){
-        movieHorizontalAdapter = MovieHorizontalAdapter(this)
-        binding.recyclerHorizontal.apply {
-            adapter = movieHorizontalAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            itemAnimator = DefaultItemAnimator()
+        binding.recyclerHorizontal.setContent {
+            MaterialTheme {
+                val movies by movieViewModel.horizontalDataLive.observeAsState()
+                LazyRow {
+                    items(movies.orEmpty()) { movie ->
+                        ItemMainHorizontal(
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                            imageUrl = "${BuildConfig.baseImageUrl}${movie.poster_path}",
+                            title = movie.original_title.orEmpty().ifEmpty { "-" },
+                            rating = Utils.nomalizeRating(movie.vote_average),
+                            onCLick = {
+                                DetailActivity.startActivity(
+                                    requireActivity(),
+                                    movie,
+                                    Const.TYPE_MOVIE,
+                                    Const.requestCodeFavMovie
+                                )
+                            }
+                        )
+                    }
+                }
+            }
         }
     }
 
     override fun onClickItem(data: Result) {
-        DetailActivity.startActivity(requireActivity(), data, Const.TYPE_MOVIE, Const.requestCodeFavMovie)
+        DetailActivity.startActivity(
+            requireActivity(),
+            data,
+            Const.TYPE_MOVIE,
+            Const.requestCodeFavMovie
+        )
     }
 }
