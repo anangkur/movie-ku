@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
                 ) {
                     Image(
                         modifier = Modifier.size(100.dp),
-                        painter = painterResource(R.drawable.ic_tv_active),
+                        painter = painterResource(R.drawable.ic_movie_active),
                         contentDescription = null
                     )
                     Text(
