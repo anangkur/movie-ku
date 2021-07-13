@@ -14,16 +14,17 @@ import com.anangkur.movieku.feature.custom.TabAdapter
 import com.anangkur.movieku.feature.favourite.movie.FavouriteMovieFragment
 import com.anangkur.movieku.feature.favourite.tv.FavouriteTvFragment
 import com.anangkur.movieku.data.ViewModelFactory
-import kotlinx.android.synthetic.main.activity_favourite.*
+import com.anangkur.movieku.databinding.ActivityFavouriteBinding
 
 class FavouriteActivity : AppCompatActivity() {
 
     private lateinit var tabAdapter: TabAdapter
     lateinit var viewModel: FavouriteViewModel
+    private lateinit var binding: ActivityFavouriteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favourite)
+        setContentView(ActivityFavouriteBinding.inflate(layoutInflater).also { binding = it }.root)
 
         setupToolbar()
         setupTabAdapter()
@@ -45,9 +46,9 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar(){
-        setSupportActionBar(toolbar)
-        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         title = resources.getString(R.string.toolbar_favourite)
     }
 
@@ -62,9 +63,9 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager(){
-        vp_fav.adapter = tabAdapter
-        tab_fav.setupWithViewPager(vp_fav)
-        vp_fav.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        binding.vpFav.adapter = tabAdapter
+        binding.tabFav.setupWithViewPager(binding.vpFav)
+        binding.vpFav.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
                 // do nothing
             }
@@ -79,15 +80,15 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun setupCustomTab(){
-        for (i in 0 until tab_fav.tabCount) {
-            val tab = tab_fav.getTabAt(i)
+        for (i in 0 until binding.tabFav.tabCount) {
+            val tab = binding.tabFav.getTabAt(i)
             tab?.customView = null
             tab?.customView = tabAdapter.getTabView(i, this)
         }
     }
 
     private fun setupSelectedCustomTab(position: Int){
-        val tab = tab_fav.getTabAt(position)
+        val tab = binding.tabFav.getTabAt(position)
         tab?.customView = null
         tab?.customView = tabAdapter.getSelectedTabView(position, this)
     }

@@ -24,8 +24,8 @@ import java.util.*
 class AlarmReceiver : BroadcastReceiver(){
 
     override fun onReceive(p0: Context, p1: Intent) {
-        val tempTitle = p1.getStringExtra(Const.EXTRA_ALARM_TITLE)
-        val tempMessage = p1.getStringExtra(Const.EXTRA_ALARM_MESSAGE)
+        val tempTitle = p1.getStringExtra(Const.EXTRA_ALARM_TITLE).orEmpty()
+        val tempMessage = p1.getStringExtra(Const.EXTRA_ALARM_MESSAGE).orEmpty()
         val tempItemId = p1.getIntExtra(Const.EXTRA_NOTIF_ID, 0)
         if (tempItemId == Const.typeAlarmRelease){
             showNotifNewRelease(p0, tempTitle, tempMessage, tempItemId)

@@ -9,7 +9,6 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.anangkur.movieku.BuildConfig.baseImageUrl
 import com.anangkur.movieku.R
@@ -18,10 +17,10 @@ import com.anangkur.movieku.feature.notificationSetting.NotificationSettingActiv
 import com.anangkur.movieku.utils.Const
 import com.anangkur.movieku.utils.Utils
 import com.anangkur.movieku.data.ViewModelFactory
+import com.anangkur.movieku.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity: AppCompatActivity(), DetailActionListener {
 
@@ -35,10 +34,11 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     }
 
     private lateinit var detailViewModel: DetailViewModel
+    private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        setContentView(ActivityDetailBinding.inflate(layoutInflater).also { binding = it }.root)
     }
 
     override fun onStart() {
@@ -70,47 +70,49 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
     }
 
     private fun setupToolbar(){
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.title = ""
-        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun setupViewModel(){
         detailViewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(DetailViewModel::class.java)
         detailViewModel.apply {
-            resultLive.observe(this@DetailActivity, Observer {
+            resultLive.observe(this@DetailActivity) {
                 result = it
                 getDataById(result)
-            })
-            successGetData.observe(this@DetailActivity, Observer {
-                if (it != null){
+            }
+            successGetData.observe(this@DetailActivity) {
+                if (it != null) {
                     setupDataToView(it)
-                }else{
+                } else {
                     setupDataToView(result)
                 }
-            })
-            successInsertResult.observe(this@DetailActivity, Observer {
-                if (it){
+            }
+            successInsertResult.observe(this@DetailActivity) {
+                if (it) {
                     Snackbar.make(
                         findViewById(android.R.id.content),
-                        "${result.title?:result.name} ${resources.getString(R.string.message_success_insert)}",
-                        Snackbar.LENGTH_SHORT).show()
+                        "${result.title ?: result.name} ${resources.getString(R.string.message_success_insert)}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     getDataById(result)
                 }
-            })
-            successDeleteResult.observe(this@DetailActivity, Observer {
-                if (it){
+            }
+            successDeleteResult.observe(this@DetailActivity) {
+                if (it) {
                     Snackbar.make(
                         findViewById(android.R.id.content),
-                        "${result.title?:result.name} ${resources.getString(R.string.message_success_delete)}",
-                        Snackbar.LENGTH_SHORT).show()
+                        "${result.title ?: result.name} ${resources.getString(R.string.message_success_delete)}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     getDataById(result)
                 }
-            })
-            errorMessageLive.observe(this@DetailActivity, Observer {
+            }
+            errorMessageLive.observe(this@DetailActivity) {
                 Snackbar.make(findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
-            })
+            }
         }
     }
 
@@ -120,25 +122,25 @@ class DetailActivity: AppCompatActivity(), DetailActionListener {
             .apply(RequestOptions().centerCrop())
             .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(this)))
             .apply(RequestOptions().error(R.drawable.ic_broken_image))
-            .into(iv_movie)
-        tv_title.text = data.original_title?:data.original_name
-        rating.rating = Utils.nomalizeRating(data.vote_average)
-        tv_release_date.text = data.release_date?:"-"
-        tv_language.text = data.original_language
-        tv_popularity.text = data.popularity.toString()
-        tv_overview.text = data.overview
+            .into(binding.ivMovie)
+        binding.tvTitle.text = data.original_title?:data.original_name
+        binding.rating.rating = Utils.nomalizeRating(data.vote_average)
+        binding.tvReleaseDate.text = data.release_date?:"-"
+        binding.tvLanguage.text = data.original_language
+        binding.tvPopularity.text = data.popularity.toString()
+        binding.tvOverview.text = data.overview
         setupFavourite(data)
     }
 
     private fun setupFavourite(data: Result){
         if (data.favourite == Const.favouriteStateTrue){
-            fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-            fab_fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_red_24dp))
-            fab_fav.setOnClickListener {this.onRemoveFavourite(data)}
+            binding.fabFav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+            binding.fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_red_24dp))
+            binding.fabFav.setOnClickListener {this.onRemoveFavourite(data)}
         }else{
-            fab_fav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
-            fab_fav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_gray_24dp))
-            fab_fav.setOnClickListener {this.onAddFavourite(data)}
+            binding.fabFav.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white))
+            binding.fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favourite_gray_24dp))
+            binding.fabFav.setOnClickListener {this.onAddFavourite(data)}
         }
     }
 

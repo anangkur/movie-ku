@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.anangkur.movieku.R
@@ -20,6 +19,7 @@ import com.anangkur.movieku.feature.custom.SliderTabAdapter
 import com.anangkur.movieku.feature.custom.TabAdapter
 import com.anangkur.movieku.feature.favourite.FavouriteActivity
 import com.anangkur.movieku.data.ViewModelFactory
+import com.anangkur.movieku.databinding.ActivityMainBinding
 import com.anangkur.movieku.feature.main.movie.MovieFragment
 import com.anangkur.movieku.feature.main.tv.TvFragment
 import com.anangkur.movieku.feature.notificationSetting.NotificationSettingActivity
@@ -28,8 +28,6 @@ import com.anangkur.movieku.utils.Const
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.iid.FirebaseInstanceId
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.toolbar
 
 class MainActivity : AppCompatActivity(), MainActionListener{
 
@@ -38,9 +36,12 @@ class MainActivity : AppCompatActivity(), MainActionListener{
 
     private lateinit var pagerAdapter: SliderTabAdapter
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
         setupToolbar()
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupSelectedCustomTab(0)
         setupViewPagerSlider()
 
-        search_bar.setOnClickListener { this.onClickSearch() }
+        binding.searchBar.setOnClickListener { this.onClickSearch() }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
     }
 
     private fun setupToolbar(){
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.title = ""
     }
 
@@ -87,30 +88,30 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         viewModel = ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(MainViewModel::class.java)
 
         viewModel.apply {
-            sliderDataLive.observe(this@MainActivity, Observer {
-                for (item in it){
+            sliderDataLive.observe(this@MainActivity) {
+                for (item in it) {
                     pagerAdapter.addFragment(ImageSliderFragment.getInstance(item))
                 }
                 setupSliderPage(pagerAdapter)
-                layout_error_slider.visibility = View.GONE
-            })
-            showErrorSliderLive.observe(this@MainActivity, Observer {
-                layout_error_slider.visibility = View.VISIBLE
-                layout_error_slider.setOnClickListener { getSliderData(1) }
-            })
-            showProgressSliderLive.observe(this@MainActivity, Observer {
-                if (it){
-                    pb_slider.visibility = View.VISIBLE
-                    layout_error_slider.visibility = View.GONE
-                }else{
-                    pb_slider.visibility = View.GONE
+                binding.layoutErrorSlider.root.visibility = View.GONE
+            }
+            showErrorSliderLive.observe(this@MainActivity) {
+                binding.layoutErrorSlider.root.visibility = View.VISIBLE
+                binding.layoutErrorSlider.root.setOnClickListener { getSliderData(1) }
+            }
+            showProgressSliderLive.observe(this@MainActivity) {
+                if (it) {
+                    binding.pbSlider.visibility = View.VISIBLE
+                    binding.layoutErrorSlider.root.visibility = View.GONE
+                } else {
+                    binding.pbSlider.visibility = View.GONE
                 }
-            })
-            firebaseToken.observe(this@MainActivity, Observer {
-                if (it == null){
+            }
+            firebaseToken.observe(this@MainActivity) {
+                if (it == null) {
                     generateFirebaseToken()
                 }
-            })
+            }
         }
     }
 
@@ -125,9 +126,8 @@ class MainActivity : AppCompatActivity(), MainActionListener{
     }
 
     private fun setupViewPager(){
-        vp_main.adapter = tabAdapter
-        tab_main.setupWithViewPager(vp_main)
-        vp_main.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        binding.vpMain.adapter = tabAdapter
+        binding.vpMain.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
                 // do nothing
             }
@@ -139,18 +139,19 @@ class MainActivity : AppCompatActivity(), MainActionListener{
                 setupSelectedCustomTab(position)
             }
         })
+        binding.tabMain.setupWithViewPager(binding.vpMain)
     }
 
     private fun setupCustomTab(){
-        for (i in 0 until tab_main.tabCount) {
-            val tab = tab_main.getTabAt(i)
+        for (i in 0 until binding.tabMain.tabCount) {
+            val tab = binding.tabMain.getTabAt(i)
             tab?.customView = null
             tab?.customView = tabAdapter.getTabView(i, this)
         }
     }
 
     private fun setupSelectedCustomTab(position: Int){
-        val tab = tab_main.getTabAt(position)
+        val tab = binding.tabMain.getTabAt(position)
         tab?.customView = null
         tab?.customView = tabAdapter.getSelectedTabView(position, this)
     }
@@ -160,9 +161,9 @@ class MainActivity : AppCompatActivity(), MainActionListener{
     }
 
     private fun setupSliderPage(pagerAdapter: SliderTabAdapter){
-        vp_slider.adapter = pagerAdapter
-        tab_slider.setupWithViewPager(vp_slider, true)
-        disableClickTablayout(tab_slider)
+        binding.vpSlider.adapter = pagerAdapter
+        binding.tabSlider.setupWithViewPager(binding.vpSlider, true)
+        disableClickTablayout(binding.tabSlider)
     }
 
     private fun disableClickTablayout(tabLayout: TabLayout){
