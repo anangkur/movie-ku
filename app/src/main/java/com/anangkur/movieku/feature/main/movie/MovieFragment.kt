@@ -5,26 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.anangkur.movieku.R
 import com.anangkur.movieku.data.model.Result
+import com.anangkur.movieku.databinding.FragmentMovieBinding
 import com.anangkur.movieku.feature.detail.DetailActivity
 import com.anangkur.movieku.feature.main.MainActivity
 import com.anangkur.movieku.feature.main.MainItemListener
 import com.anangkur.movieku.feature.main.MainViewModel
 import com.anangkur.movieku.utils.Const
-import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment(), MainItemListener {
 
     private lateinit var movieViewModel: MainViewModel
     private lateinit var movieVerticalAdapter: MovieVerticalAdapter
     private lateinit var movieHorizontalAdapter: MovieHorizontalAdapter
+    private lateinit var binding: FragmentMovieBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_movie, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return FragmentMovieBinding.inflate(inflater, container, false).also {
+            binding = it
+        }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,44 +48,44 @@ class MovieFragment : Fragment(), MainItemListener {
     private fun setupViewModel(){
         movieViewModel = (requireActivity() as MainActivity).viewModel
         movieViewModel.apply {
-            horizontalDataLive.observe(this@MovieFragment, Observer {
-                layout_error_horizontal.visibility = View.GONE
+            horizontalDataLive.observe(viewLifecycleOwner) {
+                binding.layoutErrorHorizontal.root.visibility = View.GONE
                 movieHorizontalAdapter.setRecyclerData(it)
-            })
-            verticalLiveData.observe(this@MovieFragment, Observer {
-                layout_error_vertical.visibility = View.GONE
+            }
+            verticalLiveData.observe(viewLifecycleOwner) {
+                binding.layoutErrorVertical.root.visibility = View.GONE
                 movieVerticalAdapter.setRecyclerData(it)
-            })
-            showProgressHorizontalLive.observe(this@MovieFragment, Observer {
-                if (it){
-                    pb_horizontal.visibility = View.VISIBLE
-                    layout_error_horizontal.visibility = View.GONE
-                }else{
-                    pb_horizontal.visibility = View.GONE
+            }
+            showProgressHorizontalLive.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.pbHorizontal.visibility = View.VISIBLE
+                    binding.layoutErrorHorizontal.root.visibility = View.GONE
+                } else {
+                    binding.pbHorizontal.visibility = View.GONE
                 }
-            })
-            showProgressVerticalLive.observe(this@MovieFragment, Observer {
-                if (it){
-                    pb_vertical.visibility = View.VISIBLE
-                    layout_error_vertical.visibility = View.GONE
-                }else{
-                    pb_vertical.visibility = View.GONE
+            }
+            showProgressVerticalLive.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.pbVertical.visibility = View.VISIBLE
+                    binding.layoutErrorVertical.root.visibility = View.GONE
+                } else {
+                    binding.pbVertical.visibility = View.GONE
                 }
-            })
-            showErrorHorizontalLive.observe(this@MovieFragment, Observer {
-                layout_error_horizontal.visibility = View.VISIBLE
-                layout_error_horizontal.setOnClickListener { getHorizontalData(1) }
-            })
-            showErrorVerticalLive.observe(this@MovieFragment, Observer {
-                layout_error_vertical.visibility = View.VISIBLE
-                layout_error_vertical.setOnClickListener { getVerticalData(1) }
-            })
+            }
+            showErrorHorizontalLive.observe(viewLifecycleOwner) {
+                binding.layoutErrorHorizontal.root.visibility = View.VISIBLE
+                binding.layoutErrorHorizontal.root.setOnClickListener { getHorizontalData(1) }
+            }
+            showErrorVerticalLive.observe(viewLifecycleOwner) {
+                binding.layoutErrorVertical.root.visibility = View.VISIBLE
+                binding.layoutErrorVertical.root.setOnClickListener { getVerticalData(1) }
+            }
         }
     }
 
     private fun setupVerticalAdapter(){
         movieVerticalAdapter = MovieVerticalAdapter(this)
-        recycler_vertical.apply {
+        binding.recyclerVertical.apply {
             adapter = movieVerticalAdapter
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
@@ -93,7 +94,7 @@ class MovieFragment : Fragment(), MainItemListener {
 
     private fun setupHorizontalAdapter(){
         movieHorizontalAdapter = MovieHorizontalAdapter(this)
-        recycler_horizontal.apply {
+        binding.recyclerHorizontal.apply {
             adapter = movieHorizontalAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             itemAnimator = DefaultItemAnimator()

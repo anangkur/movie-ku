@@ -8,17 +8,21 @@ import androidx.fragment.app.Fragment
 import com.anangkur.movieku.BuildConfig.baseImageUrl
 import com.anangkur.movieku.R
 import com.anangkur.movieku.data.model.Result
+import com.anangkur.movieku.databinding.FragmentImageSliderBinding
 import com.anangkur.movieku.feature.detail.DetailActivity
 import com.anangkur.movieku.utils.Const
 import com.anangkur.movieku.utils.Utils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.fragment_image_slider.view.*
 
 class ImageSliderFragment: Fragment(){
 
+    private lateinit var binding: FragmentImageSliderBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_image_slider, container, false)
+        return FragmentImageSliderBinding.inflate(inflater, container, false).also {
+            binding = it
+        }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,10 +34,12 @@ class ImageSliderFragment: Fragment(){
                 .apply(RequestOptions().centerCrop())
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(requireContext())))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))
-                .into(view.iv_slider)
-            view.tv_title.text = result.title
-            view.tv_overview.text = result.overview
-            view.setOnClickListener { DetailActivity.startActivity(requireActivity(), result, Const.TYPE_MOVIE, Const.requestCodeFavMovie) }
+                .into(binding.ivSlider)
+            binding.tvTitle.text = result.title
+            binding.tvOverview.text = result.overview
+            binding.root.setOnClickListener {
+                DetailActivity.startActivity(requireActivity(), result, Const.TYPE_MOVIE, Const.requestCodeFavMovie)
+            }
         }
     }
 

@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import com.anangkur.movieku.R
-import kotlinx.android.synthetic.main.tab_custom.view.*
+import com.anangkur.movieku.databinding.TabCustomBinding
 
 class TabAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 
@@ -37,18 +37,22 @@ class TabAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(f
     }
 
     fun getTabView(position: Int, context: Context): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.tab_custom, null)
-        view.iv_tab.setImageDrawable(listIconInactive[position])
-        view.tv_tab.text = (listTitle[position])
-        view.tv_tab.setTextColor(view.context.resources.getColor(R.color.gray))
-        return view
+        val binding: TabCustomBinding = TabCustomBinding.inflate(LayoutInflater.from(context))
+        binding.ivTab.setImageDrawable(listIconInactive[position])
+        binding.tvTab.apply {
+            text = (listTitle[position])
+            setTextColor(context.resources.getColor(R.color.gray))
+        }
+        return binding.root
     }
 
     fun getSelectedTabView(position: Int, context: Context): View {
-        val view = LayoutInflater.from(context).inflate(R.layout.tab_custom, null)
-        view.iv_tab.setImageDrawable(listIconActive[position])
-        view.tv_tab.text = (listTitle[position])
-        view.tv_tab.setTextColor(view.context.resources.getColor(R.color.black))
-        return view
+        val binding: TabCustomBinding = TabCustomBinding.inflate(LayoutInflater.from(context))
+        binding.ivTab.setImageDrawable(listIconActive[position])
+        binding.tvTab.apply {
+            text = (listTitle[position])
+            setTextColor(context.resources.getColor(R.color.black))
+        }
+        return binding.root
     }
 }

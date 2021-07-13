@@ -13,20 +13,19 @@ import com.anangkur.movieku.feature.custom.TabAdapter
 import com.anangkur.movieku.feature.search.movie.SearchMovieFragment
 import com.anangkur.movieku.feature.search.tv.SearchTvFragment
 import com.anangkur.movieku.data.ViewModelFactory
-import kotlinx.android.synthetic.main.activity_search.*
 import androidx.appcompat.widget.SearchView
+import com.anangkur.movieku.databinding.ActivitySearchBinding
 import com.anangkur.movieku.utils.Utils
-import kotlinx.android.synthetic.main.activity_search.toolbar
-
 
 class SearchActivity : AppCompatActivity() {
 
     lateinit var viewModel: SearchViewModel
     private lateinit var tabAdapter: TabAdapter
+    private lateinit var binding: ActivitySearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(ActivitySearchBinding.inflate(layoutInflater).also { binding = it }.root)
 
         setupToolbar()
         setupTabAdapter()
@@ -38,9 +37,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar(){
-        setSupportActionBar(toolbar)
-        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_black_24dp)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         title = ""
     }
 
@@ -55,9 +54,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager(){
-        vp_search.adapter = tabAdapter
-        tab_search.setupWithViewPager(vp_search)
-        vp_search.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        binding.vpSearch.adapter = tabAdapter
+        binding.tabSearch.setupWithViewPager(binding.vpSearch)
+        binding.vpSearch.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
                 // do nothing
             }
@@ -72,15 +71,15 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupCustomTab(){
-        for (i in 0 until tab_search.tabCount) {
-            val tab = tab_search.getTabAt(i)
+        for (i in 0 until binding.tabSearch.tabCount) {
+            val tab = binding.tabSearch.getTabAt(i)
             tab?.customView = null
             tab?.customView = tabAdapter.getTabView(i, this)
         }
     }
 
     private fun setupSelectedCustomTab(position: Int){
-        val tab = tab_search.getTabAt(position)
+        val tab = binding.tabSearch.getTabAt(position)
         tab?.customView = null
         tab?.customView = tabAdapter.getSelectedTabView(position, this)
     }
@@ -95,7 +94,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setupSearchView(){
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
                     viewModel.getAllMovie(it)

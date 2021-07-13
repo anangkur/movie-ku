@@ -5,26 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import com.anangkur.movieku.R
 import com.anangkur.movieku.data.model.Result
+import com.anangkur.movieku.databinding.FragmentFavouriteMovieBinding
 import com.anangkur.movieku.feature.detail.DetailActivity
 import com.anangkur.movieku.feature.favourite.FavouriteActivity
 import com.anangkur.movieku.feature.favourite.FavouriteAdapter
 import com.anangkur.movieku.feature.favourite.FavouriteViewModel
 import com.anangkur.movieku.feature.main.MainItemListener
 import com.anangkur.movieku.utils.Const
-import kotlinx.android.synthetic.main.fragment_favourite_movie.*
 
 class FavouriteMovieFragment : Fragment(), MainItemListener{
 
     private lateinit var viewModel: FavouriteViewModel
     private lateinit var favMovieAdapter: FavouriteAdapter
+    private lateinit var binding: FragmentFavouriteMovieBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_favourite_movie, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return FragmentFavouriteMovieBinding.inflate(inflater, container, false).also { binding = it }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,27 +36,27 @@ class FavouriteMovieFragment : Fragment(), MainItemListener{
     private fun setupViewModel(){
         viewModel = (requireActivity() as FavouriteActivity).viewModel
         viewModel.apply {
-            movieLive.observe(this@FavouriteMovieFragment, Observer {
+            movieLive.observe(viewLifecycleOwner) {
                 favMovieAdapter.setRecyclerData(it)
-                layout_error_fav.visibility = View.GONE
-            })
-            showErrorGetMovie.observe(this@FavouriteMovieFragment, Observer {
-                layout_error_fav.visibility = View.VISIBLE
-            })
-            showProgressGetMovie.observe(this@FavouriteMovieFragment, Observer {
-                if (it){
-                    pb_recycler_fav.visibility = View.VISIBLE
-                    layout_error_fav.visibility = View.GONE
-                }else{
-                    pb_recycler_fav.visibility = View.GONE
+                binding.layoutErrorFav.root.visibility = View.GONE
+            }
+            showErrorGetMovie.observe(viewLifecycleOwner) {
+                binding.layoutErrorFav.root.visibility = View.VISIBLE
+            }
+            showProgressGetMovie.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.pbRecyclerFav.visibility = View.VISIBLE
+                    binding.layoutErrorFav.root.visibility = View.GONE
+                } else {
+                    binding.pbRecyclerFav.visibility = View.GONE
                 }
-            })
+            }
         }
     }
 
     private fun setupAdapter(){
         favMovieAdapter = FavouriteAdapter(this)
-        recycler_fav.apply {
+        binding.recyclerFav.apply {
             adapter = favMovieAdapter
             itemAnimator = DefaultItemAnimator()
             layoutManager = GridLayoutManager(requireContext(), 2)
