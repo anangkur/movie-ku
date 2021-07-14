@@ -25,9 +25,11 @@ import com.anangkur.movieku.feature.main.tv.TvFragment
 import com.anangkur.movieku.feature.notificationSetting.NotificationSettingActivity
 import com.anangkur.movieku.feature.search.SearchActivity
 import com.anangkur.movieku.utils.Const
+import com.anangkur.movieku.utils.blur
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.iid.FirebaseInstanceId
+import eightbitlab.com.blurview.RenderScriptBlur
 
 class MainActivity : AppCompatActivity(), MainActionListener{
 
@@ -56,6 +58,7 @@ class MainActivity : AppCompatActivity(), MainActionListener{
         setupCustomTab()
         setupSelectedCustomTab(0)
         setupViewPagerSlider()
+        setupBlurTab()
 
         binding.searchBar.setOnClickListener { this.onClickSearch() }
     }
@@ -188,5 +191,9 @@ class MainActivity : AppCompatActivity(), MainActionListener{
                 Log.d("generateToken", token)
             }
         })
+    }
+
+    private fun setupBlurTab() {
+        binding.blurViewTab.blur(viewToBlur = binding.root)
     }
 }

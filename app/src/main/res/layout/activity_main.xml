@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout style="@style/CoordinatorDefault"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    style="@style/CoordinatorDefault"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
@@ -40,8 +41,8 @@
                 <LinearLayout
                     android:id="@+id/search_bar"
                     style="@style/LinearHorizontalWrap"
-                    android:background="@drawable/rect_rounded_10dp_solid_white"
-                    android:gravity="center|start">
+                    android:gravity="center|start"
+                android:background="@drawable/rect_rounded_10dp_solid_white">
                     <ImageView
                         style="@style/ImageViewWrapAll"
                         android:src="@drawable/ic_search_gray"
@@ -52,15 +53,22 @@
                         android:layout_marginStart="@dimen/dimens_10dp"/>
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blur_view_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:blurOverlayColor="@color/white_40">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_main"
+                    style="@style/TabLayoutDefault"
+                    app:tabMaxWidth="0dp"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed"
+                    app:tabIndicatorColor="@color/black"
+                    android:minHeight="?actionBarSize"/>
+            </eightbitlab.com.blurview.BlurView>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_main"
-            style="@style/TabLayoutDefault"
-            app:tabMaxWidth="0dp"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabIndicatorColor="@color/black"
-            android:minHeight="?actionBarSize"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_main"
