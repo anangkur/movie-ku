@@ -112,6 +112,9 @@ dependencies {
 
     // coil
     implementation "io.coil-kt:coil:1.3.0"
+
+    // others
+    implementation 'com.eightbitlab:blurview:1.6.6'
 }
 
 apply plugin: 'com.google.gms.google-services'
