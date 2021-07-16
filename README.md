@@ -119,7 +119,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Anang Kurniawan - [@anang_kur](https://twitter.com/anang_kur) - anang@sampingan.co.id
+Anang Kurniawan - [@anang_kur](https://twitter.com/anang_kur) - anangk97@gmail.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
