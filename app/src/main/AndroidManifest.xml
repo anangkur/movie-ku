@@ -27,6 +27,7 @@
         <activity android:name="com.anangkur.movieku.feature.favourite.FavouriteActivity" />
         <activity android:name="com.anangkur.movieku.feature.main.MainActivity"/>
         <activity android:name="com.anangkur.movieku.feature.detail.DetailActivity" />
+        <activity android:name=".feature.detail.DetailActivityV2"/>
         <activity android:name=".feature.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

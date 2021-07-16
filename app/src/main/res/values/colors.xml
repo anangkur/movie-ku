@@ -5,11 +5,20 @@
     <color name="colorAccent">#f1c40f</color>
 
     <color name="white">#ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="white_50">#80ffffff</color>
+    <color name="white_40">#66ffffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="white_0">#00ffffff</color>
     <color name="gray_light">#eeeeee</color>
+    <color name="gray_light_60">#99eeeeee</color>
+    <color name="gray_light_50">#80eeeeee</color>
+    <color name="gray_light_40">#66eeeeee</color>
     <color name="gray">#aaaaaa</color>
     <color name="black">#000000</color>
     <color name="black_60">#99000000</color>
     <color name="black_40">#66000000</color>
+    <color name="black_20">#33000000</color>
 
     <color name="btn_red">#e74c3c</color>
 </resources>
