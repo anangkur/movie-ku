@@ -41,7 +41,8 @@
 ## Table of Contents
 
 * [About The Project](#about-the-project)
-    * [Built With](#built-with)
+* [Features](#features)
+* [Built With](#built-with)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
@@ -75,7 +76,7 @@
   </tr>
  </table>
 
-The features contained in this application include:
+## Features
 - List of Movies.
 - List of TV Shows.
 - Save Movies/TV Shows into Favorites.
