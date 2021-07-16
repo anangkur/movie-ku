@@ -47,7 +47,6 @@ class FavouriteAdapter(private val mainItemListener: MainItemListener): Recycler
             Glide.with(itemView.context)
                 .load("$baseImageUrl${data.backdrop_path?:data.poster_path}")
                 .apply(RequestOptions().centerCrop())
-                .apply(RequestOptions().transform(RoundedCorners(48)))
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))
                 .into(binding.ivItem)

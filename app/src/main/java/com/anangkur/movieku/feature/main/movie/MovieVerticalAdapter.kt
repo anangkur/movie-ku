@@ -47,7 +47,6 @@ class MovieVerticalAdapter(val itemListener: MainItemListener): RecyclerView.Ada
             Glide.with(binding.root.context)
                 .load("$baseImageUrl${data.poster_path}")
                 .apply(RequestOptions().centerCrop())
-                .apply(RequestOptions().transforms(RoundedCorners(54)))
                 .apply(RequestOptions().placeholder(Utils.createCircularProgressDrawable(itemView.context)))
                 .apply(RequestOptions().error(R.drawable.ic_broken_image))
                 .into(binding.ivItem)

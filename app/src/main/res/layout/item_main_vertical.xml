@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/LinearHorizontalWrap"
-    android:padding="@dimen/dimens_16dp"
-    android:foreground="?selectableItemBackground">
-    <ImageView
-        android:id="@+id/iv_item"
-        android:layout_height="@dimen/dimens_150dp"
-        android:layout_width="@dimen/dimens_100dp"
-        android:elevation="@dimen/dimens_4dp"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/dimens_16dp"
+    android:layout_marginVertical="@dimen/dimens_16dp"
+    android:layout_marginHorizontal="@dimen/dimens_10dp">
     <LinearLayout
-        style="@style/LinearVerticalWrap"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/dimens_16dp">
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/TextTitleBig"
-            android:textStyle="bold"
-            android:text="@string/text_lorem_ipsum"/>
-        <RatingBar
-            android:id="@+id/rating"
-            style="@style/RatingBarSmall"
-            android:layout_marginTop="@dimen/dimens_10dp"
-            android:layout_marginBottom="@dimen/dimens_10dp"/>
+        style="@style/LinearHorizontalWrap"
+        android:foreground="?selectableItemBackground">
+        <ImageView
+            android:id="@+id/iv_item"
+            android:layout_height="@dimen/dimens_150dp"
+            android:layout_width="@dimen/dimens_100dp"
+            android:elevation="@dimen/dimens_4dp"/>
         <LinearLayout
-            style="@style/LinearHorizontalWrap">
+            style="@style/LinearVerticalWrap"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dimens_16dp"
+            android:padding="@dimen/dimens_16dp">
             <TextView
-                style="@style/TextTitleNormal"
-                android:text="@string/text_popularity"/>
-            <TextView
-                android:id="@+id/tv_popularity"
-                style="@style/TextTitleNormal"
+                android:id="@+id/tv_title"
+                style="@style/TextTitleBig"
                 android:textStyle="bold"
-                android:text="@string/text_lorem_ipsum"
-                android:layout_marginStart="@dimen/dimens_10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/LinearVerticalDefault"
-            android:gravity="bottom">
-            <TextView
-                android:id="@+id/tv_duration"
-                style="@style/TextTitleNormal"
-                android:text="@string/text_lorem_ipsum"
-                android:layout_marginTop="@dimen/dimens_10dp"/>
+                android:text="@string/text_lorem_ipsum"/>
+            <RatingBar
+                android:id="@+id/rating"
+                style="@style/RatingBarSmall"
+                android:layout_marginTop="@dimen/dimens_10dp"
+                android:layout_marginBottom="@dimen/dimens_10dp"/>
+            <LinearLayout
+                style="@style/LinearHorizontalWrap">
+                <TextView
+                    style="@style/TextTitleNormal"
+                    android:text="@string/text_popularity"/>
+                <TextView
+                    android:id="@+id/tv_popularity"
+                    style="@style/TextTitleNormal"
+                    android:textStyle="bold"
+                    android:text="@string/text_lorem_ipsum"
+                    android:layout_marginStart="@dimen/dimens_10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/LinearVerticalDefault"
+                android:gravity="bottom">
+                <TextView
+                    android:id="@+id/tv_duration"
+                    style="@style/TextTitleNormal"
+                    android:text="@string/text_lorem_ipsum"
+                    android:layout_marginTop="@dimen/dimens_10dp"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>
