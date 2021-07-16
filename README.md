@@ -80,6 +80,8 @@ The features contained in this application include:
 - List of TV Shows.
 - Save Movies/TV Shows into Favorites.
 - Search Movies/TV Shows.
+- Notification Setting
+- Widget
 
 ## Built With
 * [Kotlin](https://kotlinlang.org/)
