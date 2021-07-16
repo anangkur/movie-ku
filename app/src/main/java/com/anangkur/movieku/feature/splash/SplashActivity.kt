@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.anangkur.movieku.BuildConfig
 import com.anangkur.movieku.R
 import com.anangkur.movieku.feature.main.MainActivity
 
@@ -41,6 +42,12 @@ class SplashActivity : AppCompatActivity() {
                         text = stringResource(R.string.app_name),
                         fontSize = 28.sp,
                         fontFamily = FontFamily(fonts = listOf(Font(R.font.comfortaa_bold)))
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = 10.dp),
+                        text = "version ${BuildConfig.VERSION_NAME}",
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(fonts = listOf(Font(R.font.comfortaa_regular)))
                     )
                 }
             }
