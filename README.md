@@ -81,6 +81,16 @@
 * [View Binding](https://developer.android.com/topic/libraries/view-binding)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [TMDB API](https://www.themoviedb.org/)
+* [Glide](https://github.com/bumptech/glide)
+* [Coil](https://github.com/coil-kt/coil)
+* [Retrofit](https://github.com/square/retrofit)
+* [OKHTTP](https://github.com/square/okhttp)
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+* [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+* [Room](https://developer.android.com/jetpack/androidx/releases/room)
+* [FCM](https://firebase.google.com/docs/cloud-messaging)
+* [Chucker](https://github.com/ChuckerTeam/chucker)
+* [BlurView](https://github.com/Dimezis/BlurView)
 
 <!-- CONTRIBUTING -->
 ## Contributing
