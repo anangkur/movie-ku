@@ -75,6 +75,12 @@
   </tr>
  </table>
 
+The features contained in this application include:
+- List of Movies.
+- List of TV Shows.
+- Save Movies/TV Shows into Favorites.
+- Search Movies/TV Shows.
+
 ## Built With
 * [Kotlin](https://kotlinlang.org/)
 * [Androidx](https://developer.android.com/jetpack/androidx)
