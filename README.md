@@ -30,6 +30,11 @@
   <p align="center">
     This is a sample project for completing <a href="https://www.dicoding.com/academies/14/tutorials">Belajar Fundamental Aplikasi Android by Dicoding</a>
   </p>
+  
+  <p align="center">
+    <img src="https://img.shields.io/badge/Language-Kotlin-brightgreen">
+    <img src="https://img.shields.io/badge/status-GRADUATED-green">
+  </p>
 </p>
 
 <!-- TABLE OF CONTENTS -->
