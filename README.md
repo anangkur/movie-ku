@@ -23,7 +23,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="app/src/main/res/drawable/ic_movie_active.png" alt="Logo" width="80" height="80">
+    <img src="app/src/main/res/drawable/ic_movie_active_512.png" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">Movie Ku</h3>
 
@@ -49,24 +49,24 @@
 
 <table>
   <tr>
-    <td><img src="app/src/main/res/drawable/ss_playground.png" alt="Playground"></td>
-    <td><img src="app/src/main/res/drawable/ss_playstore.png" alt="Playstore"></td>
+    <td><img src="app/src/main/res/drawable/splash.png" alt="Splash"></td>
+    <td><img src="app/src/main/res/drawable/movie.png" alt="Movie"></td>
   </tr>
   <tr>
     <td align="center">Splash</td>
     <td align="center">Movie</td>
   </tr>
   <tr>
-    <td><img src="app/src/main/res/drawable/ss_playground.png" alt="Playground"></td>
-    <td><img src="app/src/main/res/drawable/ss_playstore.png" alt="Playstore"></td>
+    <td><img src="app/src/main/res/drawable/tv.png" alt="TV"></td>
+    <td><img src="app/src/main/res/drawable/detail.png" alt="Detail"></td>
   </tr>
   <tr>
     <td align="center">TV</td>
     <td align="center">Detail</td>
   </tr>
   <tr>
-    <td><img src="app/src/main/res/drawable/ss_playground.png" alt="Playground"></td>
-    <td><img src="app/src/main/res/drawable/ss_playstore.png" alt="Playstore"></td>
+    <td><img src="app/src/main/res/drawable/search.png" alt="Search"></td>
+    <td><img src="app/src/main/res/drawable/favorite.png" alt="Favorite"></td>
   </tr>
   <tr>
     <td align="center">Search</td>
