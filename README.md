@@ -41,7 +41,8 @@
 ## Table of Contents
 
 * [About The Project](#about-the-project)
-    * [Built With](#built-with)
+* [Features](#features)
+* [Built With](#built-with)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
@@ -75,12 +76,30 @@
   </tr>
  </table>
 
+## Features
+- List of Movies.
+- List of TV Shows.
+- Save Movies/TV Shows into Favorites.
+- Search Movies/TV Shows.
+- Notification Setting
+- Widget
+
 ## Built With
 * [Kotlin](https://kotlinlang.org/)
 * [Androidx](https://developer.android.com/jetpack/androidx)
 * [View Binding](https://developer.android.com/topic/libraries/view-binding)
 * [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [TMDB API](https://www.themoviedb.org/)
+* [Glide](https://github.com/bumptech/glide)
+* [Coil](https://github.com/coil-kt/coil)
+* [Retrofit](https://github.com/square/retrofit)
+* [OKHTTP](https://github.com/square/okhttp)
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+* [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+* [Room](https://developer.android.com/jetpack/androidx/releases/room)
+* [FCM](https://firebase.google.com/docs/cloud-messaging)
+* [Chucker](https://github.com/ChuckerTeam/chucker)
+* [BlurView](https://github.com/Dimezis/BlurView)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -103,7 +122,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Anang Kurniawan - [@anang_kur](https://twitter.com/anang_kur) - anang@sampingan.co.id
+Anang Kurniawan - [@anang_kur](https://twitter.com/anang_kur) - anangk97@gmail.com
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
