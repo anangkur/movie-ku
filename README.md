@@ -51,24 +51,20 @@
   <tr>
     <td><img src="app/src/main/res/drawable/splash.png" alt="Splash"></td>
     <td><img src="app/src/main/res/drawable/movie.png" alt="Movie"></td>
+    <td><img src="app/src/main/res/drawable/tv.png" alt="TV"></td>
   </tr>
   <tr>
     <td align="center">Splash</td>
     <td align="center">Movie</td>
-  </tr>
-  <tr>
-    <td><img src="app/src/main/res/drawable/tv.png" alt="TV"></td>
-    <td><img src="app/src/main/res/drawable/detail.png" alt="Detail"></td>
-  </tr>
-  <tr>
     <td align="center">TV</td>
-    <td align="center">Detail</td>
   </tr>
   <tr>
+    <td><img src="app/src/main/res/drawable/detail.png" alt="Detail"></td>
     <td><img src="app/src/main/res/drawable/search.png" alt="Search"></td>
     <td><img src="app/src/main/res/drawable/favorite.png" alt="Favorite"></td>
   </tr>
   <tr>
+    <td align="center">Detail</td>
     <td align="center">Search</td>
     <td align="center">Favourite</td>
   </tr>
