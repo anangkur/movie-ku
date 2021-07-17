@@ -68,8 +68,8 @@
             android:name="com.anangkur.movieku.data.MovieProvider"
             android:authorities="com.anangkur.movieku.provider"
             android:exported="true"
-            android:readPermission="com.anangkur.madesubmission1.READ_DATABASE"
-            android:writePermission="com.anangkur.madesubmission1.WRITE_DATABASE" />
+            android:readPermission="com.anangkur.movieku.READ_DATABASE"
+            android:writePermission="com.anangkur.movieku.WRITE_DATABASE" />
     </application>
 
 </manifest>
