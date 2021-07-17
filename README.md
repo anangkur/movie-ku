@@ -83,6 +83,7 @@
 - Search Movies/TV Shows.
 - Notification Setting
 - Widget
+- Shared content With [Consumer APP](https://github.com/anangkur/Movie-Ku-Consumer).
 
 ## Built With
 * [Kotlin](https://kotlinlang.org/)
@@ -100,6 +101,7 @@
 * [FCM](https://firebase.google.com/docs/cloud-messaging)
 * [Chucker](https://github.com/ChuckerTeam/chucker)
 * [BlurView](https://github.com/Dimezis/BlurView)
+* [Content Provider](https://github.com/anangkur/Movie-Ku-Consumer)
 
 <!-- CONTRIBUTING -->
 ## Contributing
