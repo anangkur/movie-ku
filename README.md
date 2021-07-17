@@ -34,6 +34,9 @@
   <p align="center">
     <img src="https://img.shields.io/badge/Language-Kotlin-brightgreen">
     <img src="https://img.shields.io/badge/status-GRADUATED-green">
+    <a href="https://play.google.com/store/apps/details?id=com.anangkur.movieku">
+      <img src="https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dcom.anangkur.movieku%26l%3DPlayStore%26m%3D%24version">
+    </a>
   </p>
 </p>
 
@@ -46,8 +49,6 @@
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
-
 
 
 <!-- ABOUT THE PROJECT -->
